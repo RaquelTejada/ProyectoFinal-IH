@@ -65,3 +65,5 @@ const itinerarySchema = new Schema(
 )
 
 const Itinerary = model('Itinerary', itinerarySchema)
+
+module.exports = Itinerary

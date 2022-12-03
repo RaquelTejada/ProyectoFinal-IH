@@ -1,5 +1,7 @@
 .App {
   text-align: center;
+  font-family: 'Prompt', sans-serif;
+  font-weight: 200;
 }
 
 .App-logo {
@@ -28,11 +30,44 @@
   color: #61dafb;
 }
 
+a {
+  text-decoration: none !important;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
+
+/* .color1 {
+  #ffbd87
+}
+
+;
+
+.color2 {
+  #ffd791
+}
+
+;
+
+.color3 {
+  #f7e8a6
+}
+
+;
+
+.color4 {
+  #d9e8ae
+}
+
+;
+
+.color5 {
+  #bfe3c0
+} */

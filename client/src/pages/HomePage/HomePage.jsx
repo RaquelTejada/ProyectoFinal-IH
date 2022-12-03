@@ -9,7 +9,7 @@ const HomePage = () => {
                 <Col md={{ span: 8, offset: 2 }}>
                     <h1>Itineraies App!</h1>
                     <hr />
-                    <p>Proyecto final Ironhack</p>
+                    <h3>Proyecto final Ironhack</h3>
                     {/* <Link to="/galeria">
                         <Button variant="dark">Ir a la galería</Button>
                     </Link> */}

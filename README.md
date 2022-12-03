@@ -20,6 +20,9 @@ Developed by Naomi Burgués and  Raquel Tejada
 | POST |api/profile/edit/:id | Edit profile | |
 | GET |api/:city | Itineraries city's page | |
 | GET |api/:city/:id | Itineraries details | |
+| GET |api/itinerary/create | Create itinerary | |
+| POST |api/itinerary/create | Create itinerary | |
+| GET |api/events/list | Events list | |
 | GET |api/event/create | Create event | |
 | POST |api/event/create | Create event | |
 | GET |api/event/:id | Event page | |
@@ -49,6 +52,8 @@ Developed by Naomi Burgués and  Raquel Tejada
 | /profile/:id | Profile | YES |
 | /profile/edit/:id | Edit profile | YES |
 | /:city | Itineraries city's page | YES |
+| /itinerary/create | Create itinerary  | YES |
+| /events/list | Events list | YES |
 | /event/create | Create event | YES |
 | /event/:id | Event page | YES |
 | /event/comment/:id | Comment event | YES |
@@ -78,11 +83,14 @@ Developed by Naomi Burgués and  Raquel Tejada
 ### PROTECTED
 
 - Auth Home Page
-- Itineraries
+- Itineraries create
 - Itineraries details
 - Itinerarires list (admin)
-- Events
+- Events create
+- Events details
+- Events list
 - Profile
+- Admin duties
 
 ## COMPONENTS
 
