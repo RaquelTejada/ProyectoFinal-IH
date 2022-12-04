@@ -45,11 +45,11 @@ router.post('/signup', (req, res, next) => {
 
 // router.post('/login', (req, res, next) => {
 
-//     const { email, password } = req.body;
+//     const { email, password } = req.body
 
 //     if (email === '' || password === '') {
-//         res.status(400).json({ message: "Provide email and password." });
-//         return;
+//         res.status(400).json({ message: "Provide email and password." })
+//         return
 //     }
 
 //     User
@@ -58,12 +58,12 @@ router.post('/signup', (req, res, next) => {
 
 //             if (!foundUser) {
 //                 res.status(401).json({ message: "User not found." })
-//                 return;
+//                 return
 //             }
 
 //             if (bcrypt.compareSync(password, foundUser.password)) {
 
-//                 const { _id, email, username } = foundUser;
+//                 const { _id, email, username } = foundUser
 
 //                 const payload = { _id, email, username }
 
@@ -73,21 +73,18 @@ router.post('/signup', (req, res, next) => {
 //                     { algorithm: 'HS256', expiresIn: "6h" }
 //                 )
 
-//                 res.status(200).json({ authToken });
+//                 res.status(200).json({ authToken })
 //             }
 //             else {
-//                 res.status(401).json({ message: "Unable to authenticate the user" });
+//                 res.status(401).json({ message: "Unable to authenticate the user" })
 //             }
 
 //         })
 //         .catch(err => {
 //             console.log(err)
 //             res.status(500).json({ message: "Internal Server Error" })
-//         });
-// });
-
-
-
+//         })
+// })
 
 // router.get('/verify', isAuthenticated, (req, res) => {
 //     res.status(200).json(req.payload)

@@ -2,9 +2,9 @@ import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.service"
 
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
-import { MessageContext } from './../../contexts/userMessage.context'
+// import { MessageContext } from './../../contexts/userMessage.context'
 
 
 const SignupForm = () => {
@@ -21,9 +21,9 @@ const SignupForm = () => {
         setSignupData({ ...signupData, [name]: value })
     }
 
-    const { setShowToast, setToastMessage } = useContext(MessageContext)
+    // const { setShowToast, setToastMessage } = useContext(MessageContext)
 
-    const navigate = useNavigate()
+    // const navigate = useNavigate()
 
     const handleSubmit = e => {
 
@@ -31,11 +31,11 @@ const SignupForm = () => {
 
         authService
             .signup(signupData)
-            .then(() => {
-                setShowToast(true)
-                setToastMessage('Usuario creado correctamente')
-                navigate('/')
-            })
+            .then(res => console.log('EL USUARIO ESTÁ CREADO', signupData))
+            // setShowToast(true)
+            // setToastMessage('Usuario creado correctamente')
+            // navigate('/')
+
             .catch(err => console.log(err))
     }
 
