@@ -11,12 +11,12 @@ router.get('/getAllItineraries', (req, res, next) => {
         .catch(err => res.status(500).json(err))
 })
 
-router.get('/getFilteredItineraries/:city', (req, res, next) => {
+router.get('/getOneItinerary/:itinerary_id', (req, res, next) => {
 
-    const { city } = req.params
+    const { itinerary_id } = req.params
 
     Itinerary
-        .findOne(city)
+        .findById(itinerary_id)
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

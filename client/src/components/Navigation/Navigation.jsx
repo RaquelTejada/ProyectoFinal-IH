@@ -19,7 +19,7 @@ const Navigation = () => {
                         <Nav.Link as='div'>Eventos</Nav.Link>
                     </Link>
                     <NavDropdown title="Acceso" id="basic-nav-dropdown">
-                        <Link to="/sign-up">
+                        <Link to="/registro">
                             <Nav.Link as='div'>Registro</Nav.Link>
                         </Link>
                         <Link to="/log-in ">
