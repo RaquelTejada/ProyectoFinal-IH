@@ -31,15 +31,13 @@ const SignupForm = () => {
 
         authService
             .signup(signupData)
-            .then(res => console.log('EL USUARIO ESTÁ CREADO', signupData))
-        // setShowToast(true)
-        // setToastMessage('Usuario creado correctamente')
-        navigate('/iniciar-sesion')
-
+            .then(() => {
+                // setShowToast(true)
+                // setToastMessage('Usuario creado correctamente')
+                navigate('/iniciar-sesion')
+            })
             .catch(err => console.log(err))
     }
-
-
 
     const { username, password, email, imageUrl } = signupData
 

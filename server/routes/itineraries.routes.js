@@ -1,6 +1,5 @@
 const router = require('express').Router()
 
-const { response } = require('../app')
 const Itinerary = require('./../models/Itinerary.model')
 
 router.get('/getAllItineraries', (req, res, next) => {
@@ -50,7 +49,7 @@ router.delete('/delete/:itinerary_id', (req, res, next) => {
 router.post('/saveItinerary', (req, res, next) => {
 
     Itinerary
-        .create({ ...req.body, owner: req.playload._id })
+        .create({ ...req.body, owner: req.playload })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

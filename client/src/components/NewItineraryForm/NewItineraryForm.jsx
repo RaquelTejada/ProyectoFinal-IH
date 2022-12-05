@@ -1,10 +1,11 @@
 import { useState } from "react"
-import { Form, Button, Row, Col } from "react-bootstrap"
+import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 
 const NewItineraryForm = ({ fireFinalActions }) => {
 
     const [itineraryData, setItineraryData] = useState({
+
         city: '',
         transport: '',
         category: '',
@@ -17,7 +18,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
 
     const handleInputChange = e => {
         const { name, value } = e.target
-        itineraryData({ ...itineraryData, [name]: value })
+        setItineraryData({ ...itineraryData, [name]: value })
     }
 
     const handleFormSubmit = e => {
@@ -41,10 +42,13 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={city} onChange={handleInputChange} name="city" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="desc">
-                <Form.Label>Medio de transporte</Form.Label>
+            {/* <Form.Label>Medio de transporte</Form.Label>
+            <Form.Select className="mb-3" aria-label="Default select example">
                 <Form.Control type="text" value={transport} onChange={handleInputChange} name="transport" />
-            </Form.Group>
+                <option>Andando</option>
+                <option>En bici</option>
+                <option>En coche</option>
+            </Form.Select> */}
 
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Categoría</Form.Label>
