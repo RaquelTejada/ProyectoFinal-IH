@@ -50,7 +50,7 @@ router.delete('/delete/:itinerary_id', (req, res, next) => {
 router.post('/saveItinerary', (req, res, next) => {
 
     Itinerary
-        .create(req.body)
+        .create({ ...req.body, owner: req.playload._id })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
