@@ -66,7 +66,7 @@ Developed by Naomi Burgués and  Raquel Tejada
 
 ### PROTECTED
 
-- Auth Home Page
+- Home Page Pro
 - Itineraries create
 - Itineraries details
 - Itinerarires list (admin)
