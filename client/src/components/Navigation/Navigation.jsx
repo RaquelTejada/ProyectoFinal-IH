@@ -1,5 +1,5 @@
 import './Navigation.css'
-import { Nav, Navbar, NavDropdown } from 'react-bootstrap'
+import { Nav, Navbar, NavDropdown, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 const Navigation = () => {
@@ -18,19 +18,21 @@ const Navigation = () => {
                     <Link to="/lista-eventos">
                         <Nav.Link as='div'>Eventos</Nav.Link>
                     </Link>
-                    <NavDropdown title="Acceso" id="basic-nav-dropdown">
+                </Nav>
+                <Form className="d-flex me-5">
+                    <NavDropdown title="Acceso" align="end">
                         <Link to="/registro">
                             <Nav.Link as='div'>Registro</Nav.Link>
                         </Link>
-                        <Link to="/iniciar-sesion ">
+                        <Link to="/iniciar-sesion">
                             <Nav.Link as='div'>Iniciar sesión</Nav.Link>
                         </Link>
                         <NavDropdown.Divider />
-                        <Link to="/cerrar-sesion ">
+                        <Link to="/cerrar-sesion">
                             <Nav.Link as='div'>Cerrar sesión</Nav.Link>
                         </Link>
                     </NavDropdown>
-                </Nav>
+                </Form>
             </Navbar.Collapse>
         </Navbar>
     )

@@ -8,29 +8,14 @@ Developed by Naomi Burgués and  Raquel Tejada
 
 | HTTP METHOD | URI PATH | DESCRIPTION | JSON |
 | --- | --- | --- | --- |
-| GET |api/ | Index page |  |
-| GET |api/sign-up | Create user form | |
-| POST |api/sing-up | Create user handler | |
-| GET |api/log-in | Init session form | |
-| POST |api/log-in | Init session handler | |
-| POST |api/log-out | Exit session handler | --- |
-| GET |api/auth/home-page | Index logged page | |
-| GET |api/profile/:id | Profile | |
-| GET |api/profile/edit/:id | Edit profile | |
-| POST |api/profile/edit/:id | Edit profile | |
-| GET |api/:city | Itineraries city's page | |
-| GET |api/:city/:id | Itineraries details | |
-| GET |api/itinerary/create | Create itinerary | |
-| POST |api/itinerary/create | Create itinerary | |
-| GET |api/events/list | Events list | |
-| GET |api/event/create | Create event | |
-| POST |api/event/create | Create event | |
-| GET |api/event/:id | Event page | |
-| GET |api/event/comment/:id | Comment event | |
-| POST |api/event/comment/:id | Comment event | |
-| POST |api/profile/delete/:id | Delete user | |
-| POST |api/event/delete/:id | Delete event | |
-| POST |api/event/comment/delete/:id | Delete comment | |
+| POST |api/auth/sing-up | Create user handler | |
+| POST |api/auth/log-in | Init session handler | |
+| GET |api/itineraries/getAllItineraries | Info All Itineraries | |
+| GET |api/itineraries/getOneItinerary/:itinerary_id' | Details itinerary | |
+| POST |api/itineraries//saveItinerary | Create itinerary | |
+| GET |api/events/getAllEvents | Info All Events | |
+| GET |api/events/getOneEvent/:event_id | Details event | |
+| POST |api/events//saveEvent | Create event | |
 | GET |api/location | Api locations | ✔️|
 
 ## CLIENT
@@ -41,7 +26,6 @@ Developed by Naomi Burgués and  Raquel Tejada
 | --- | --- | --- |
 | / | HomePage | NO |
 | /sign-up | Create user form | NO |
-| /sing-up | Create user handler | NO |
 | /log-in | Init session form | NO |
 
 ### USER
