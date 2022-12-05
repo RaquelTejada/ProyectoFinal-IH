@@ -38,25 +38,14 @@ const itinerarySchema = new Schema(
             required: [true, 'La descripción es obligatoria']
         },
 
-        imageUrl01: {
+        images: [{
             type: String,
-            required: [true, 'La imagen es obligatoria']
-        },
+        }],
 
-        imageUrl02: {
-            type: String,
-            required: [true, 'La imagen es obligatoria']
-        },
-
-        imageUrl03: {
-            type: String,
-            required: [true, 'La imagen es obligatoria']
-        },
-
-        // owner: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'User'
-        // }
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }
     },
 
     {

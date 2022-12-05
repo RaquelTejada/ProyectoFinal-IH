@@ -7,17 +7,17 @@ const eventSchema = new Schema(
             required: [true, 'El título es obligatorio']
         },
 
-        // owner: {
-        //     type: Schema.Types.ObjectId,
-        //     ref: 'User'
-        // },
+        owner: {
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        },
 
         description: {
             type: String,
             required: [true, 'La descripción es obligatoria']
         },
 
-        eventDate: {
+        date: {
             type: Date,
             required: [true, 'La fecha es obligatoria']
         },

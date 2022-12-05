@@ -13,7 +13,7 @@ const SignupForm = () => {
         username: '',
         email: '',
         password: '',
-        ImageUrl: ''
+        imageUrl: ''
     })
 
     const handleInputChange = e => {
@@ -41,7 +41,7 @@ const SignupForm = () => {
 
 
 
-    const { username, password, email, ImageUrl } = signupData
+    const { username, password, email, imageUrl } = signupData
 
     return (
 
@@ -62,9 +62,9 @@ const SignupForm = () => {
                 <Form.Control type="email" value={email} onChange={handleInputChange} name="email" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="ImageUrl">
+            <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Foto de perfil</Form.Label>
-                <Form.Control type="file" value={ImageUrl} onChange={handleInputChange} name="ImageUrl" />
+                <Form.Control type="file" value={imageUrl} onChange={handleInputChange} name="imageUrl" />
             </Form.Group>
 
             <div className="d-grid">

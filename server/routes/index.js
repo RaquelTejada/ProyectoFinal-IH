@@ -1,10 +1,13 @@
+
+const { isAuthenticated } = require('../middleware/jwt.middleware')
+
 module.exports = app => {
 
     const itinerariesRoutes = require("./itineraries.routes")
-    app.use("/api/itineraries", itinerariesRoutes)
+    app.use("/api/itineraries", isAuthenticated, itinerariesRoutes)
 
     const eventsRoutes = require("./events.routes")
-    app.use("/api/events", eventsRoutes)
+    app.use("/api/events", isAuthenticated, eventsRoutes)
 
     const authRoutes = require("./auth.routes")
     app.use("/api/auth", authRoutes)
