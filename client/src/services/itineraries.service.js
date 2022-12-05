@@ -1,0 +1,38 @@
+import axios from 'axios'
+
+class ItineraryService {
+
+    constructor() {
+
+        this.api = axios.create({
+            baseURL: `${process.env.REACT_APP_API_URL}/itineraries`
+        })
+
+        this.api.interceptors.request.use((config) => {
+
+            const storedToken = localStorage.getItem('authToken')
+
+            if (storedToken) {
+                config.headers = { Authorization: `Bearer ${storedToken}` }
+            }
+
+            return config
+        })
+    }
+
+    getItineraries() {
+        return this.api.get('/getAllItineraries')
+    }
+
+    getOneItinerary(itinerary_id) {
+        return this.api.get(`/getOneItinerary/${itinerary_id}`)
+    }
+
+    saveItinerary(itineraryData) {
+        return this.api.post('/saveItinerary', itineraryData)
+    }
+}
+
+const itineraryService = new ItineraryService()
+
+export default itineraryService

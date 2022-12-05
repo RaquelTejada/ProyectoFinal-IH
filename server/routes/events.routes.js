@@ -51,7 +51,7 @@ router.delete('/delete/:event_id', (req, res, next) => {
 router.post("/saveEvent", (req, res, next) => {
 
     Event
-        .create(req.body)
+        .create({ ...req.body, owner: req.playload._id })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })
