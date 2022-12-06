@@ -1,13 +1,15 @@
 import './Navigation.css'
 import { Nav, Navbar, NavDropdown, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import Logo from '../../images/liit-logo.png'
 
 const Navigation = () => {
 
     return (
         <Navbar className='color-nav' expand="lg">
+            <img className='logo-img' src={Logo}></img>
             <Link to="/">
-                <Navbar.Brand className='brand-name' as='div'>Rutalia</Navbar.Brand>
+                <Navbar.Brand className='brand-name' as='div'>Liit</Navbar.Brand>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
