@@ -7,11 +7,11 @@ const itinerarySchema = new Schema(
             required: [true, 'La ciudad es obligatoria']
         },
 
-        // transport: {
-        //     type: String,
-        //     enum: ['Andando', 'En bici', 'En coche'],
-        //     required: [true, 'El medio de transporte es obligatorio']
-        // },
+        transport: {
+            type: String,
+            enum: ['Andando', 'En bici', 'En coche'],
+            required: [true, 'El medio de transporte es obligatorio']
+        },
 
         category: {
             type: String,

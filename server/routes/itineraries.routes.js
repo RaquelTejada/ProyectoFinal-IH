@@ -49,7 +49,7 @@ router.delete('/delete/:itinerary_id', (req, res, next) => {
 router.post('/saveItinerary', (req, res, next) => {
 
     Itinerary
-        .create({ ...req.body, owner: req.playload })
+        .create({ ...req.body, owner: req.payload._id })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

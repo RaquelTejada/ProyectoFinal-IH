@@ -2,6 +2,9 @@ import { useState } from "react"
 import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 
+
+import { useNavigate } from 'react-router-dom'
+
 const NewItineraryForm = ({ fireFinalActions }) => {
 
     const [itineraryData, setItineraryData] = useState({
@@ -16,19 +19,40 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         images: ''
     })
 
+
     const handleInputChange = e => {
         const { name, value } = e.target
+        console.log(name, value)
         setItineraryData({ ...itineraryData, [name]: value })
     }
+
+    const handleCheckboxChange = e => {
+        console.log(e.target.checked)
+        const { name, checked } = e.target
+        setItineraryData({ ...itineraryData, [name]: checked })
+    }
+
+    const navigate = useNavigate()
 
     const handleFormSubmit = e => {
         e.preventDefault()
 
+
+
         itinerariesService
             .saveItinerary(itineraryData)
-            .then(() => {
-                fireFinalActions()
+            .then((response) => {
+                const { _id: itinerary_id } = response.data
+                console.log(response)
+                // fireFinalActions()
+                navigate(`/detalles/${itinerary_id}`)
             })
+            // .getOneItinerary(itinerary_id)
+            // .then(() => {
+            //     // setShowToast(true)
+            //     // setToastMessage('Usuario creado correctamente')
+            //     navigate(`/detalles/${itinerary_id}`)
+            // })
             .catch(err => console.error(err))
     }
 
@@ -42,17 +66,27 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={city} onChange={handleInputChange} name="city" />
             </Form.Group>
 
-            {/* <Form.Label>Medio de transporte</Form.Label>
-            <Form.Select className="mb-3" aria-label="Default select example">
-                <Form.Control type="text" value={transport} onChange={handleInputChange} name="transport" />
-                <option>Andando</option>
-                <option>En bici</option>
-                <option>En coche</option>
-            </Form.Select> */}
+            <Form.Group className="mb-3" controlId="name">
+                <Form.Label>Medio de transporte</Form.Label>
+                <Form.Select className="mb-3" aria-label="transport" value={transport} onChange={handleInputChange} name="transport">
+                    <option>Elige el medio de transporte...</option>
+                    <option>Andando</option>
+                    <option>En bici</option>
+                    <option>En coche</option>
+                </Form.Select>
+            </Form.Group>
 
-            <Form.Group className="mb-3" controlId="desc">
+            <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Categoría</Form.Label>
-                <Form.Control type="text" value={category} onChange={handleInputChange} name="category" />
+                <Form.Select className="mb-3" aria-label="category" value={category} onChange={handleInputChange} name="category">
+                    <option>Elige la categoría de tu ruta...</option>
+                    <option>Arte</option>
+                    <option>Gastronomía</option>
+                    <option>Naturaleza</option>
+                    <option>Ocio nocturno</option>
+                    <option>Playas</option>
+                    <option>Turismo rural</option>
+                </Form.Select>
             </Form.Group>
 
             <Form.Group className="mb-3" controlId="desc">
@@ -65,10 +99,17 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Control type="text" value={duration} onChange={handleInputChange} name="duration" />
             </Form.Group>
 
-            <Form.Group className="mb-3" controlId="desc">
-                <Form.Label>¿Se puede hacer con animales?</Form.Label>
-                <Form.Control type="radio" value={pets} onChange={handleInputChange} name="pets" />
-            </Form.Group>
+
+            <div key={`default-checkbox`} className="mb-3" value={pets}>
+                <Form.Check
+                    onChange={handleCheckboxChange}
+                    type={'checkbox'}
+                    id={`default-checkbox`}
+                    label={`Se puede realizar con animales`}
+                    name='pets'
+                />
+
+            </div>
 
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Descripción</Form.Label>
