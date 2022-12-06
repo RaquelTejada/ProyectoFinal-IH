@@ -1,4 +1,16 @@
-.Home {
-    text-align: center;
-    margin-top: 5%;
+.bomain-div-home-pagedy {
+    height: 93vh;
+}
+
+.margin-card {
+    margin-top: 20px;
+}
+
+.card-title {
+    font-size: 90px;
+    color: #D5BDAF;
+}
+
+.card-size {
+    object-fit: cover;
 }
