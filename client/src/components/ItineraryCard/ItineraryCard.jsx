@@ -5,7 +5,7 @@ import { AuthContext } from './../../contexts/auth.context'
 import { Link } from 'react-router-dom'
 import { useContext } from 'react';
 
-function ItineraryCard({ city, transport, _id, owner }) {
+function ItineraryCard({ city, transport, _id, owner, imageUrl, title }) {
 
     const { user } = useContext(AuthContext)
 

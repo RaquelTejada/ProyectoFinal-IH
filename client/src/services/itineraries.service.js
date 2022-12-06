@@ -31,6 +31,10 @@ class ItineraryService {
     saveItinerary(itineraryData) {
         return this.api.post('/saveItinerary', itineraryData)
     }
+
+    getFilteredItineraries(itineraryCity) {
+        return this.api.get(`/filtered?city=${itineraryCity}`)
+    }
 }
 
 const itineraryService = new ItineraryService()
