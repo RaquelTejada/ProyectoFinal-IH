@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import eventService from "../../services/events.service"
 
 
 import { useNavigate } from 'react-router-dom'
+import { MessageContext } from './../../contexts/userMessage.context'
 
 
 const NewEventForm = ({ fireFinalActions }) => {
@@ -14,6 +15,8 @@ const NewEventForm = ({ fireFinalActions }) => {
         description: '',
         date: new Date,
     })
+
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
 
     const handleInputChange = e => {
@@ -32,7 +35,8 @@ const NewEventForm = ({ fireFinalActions }) => {
             .saveEvent(eventData)
             .then((response) => {
                 const { _id: event_id } = response.data
-                console.log(response)
+                setShowToast(true)
+                setToastMessage('Evento creado correctamente')
                 // fireFinalActions()
                 navigate(`/detalles/${event_id}`)
             })

@@ -3,6 +3,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import AppRoutes from './routes/AppRoutes'
 import Navigation from './components/Navigation/Navigation'
 import Footer from './components/Footer/Footer'
+import UserMessage from './components/UserMessage/UserMessage'
+
 
 const App = () => {
   return (
@@ -10,6 +12,7 @@ const App = () => {
       <Navigation />
       <Footer />
       <AppRoutes />
+      <UserMessage />
     </div>
   )
 }

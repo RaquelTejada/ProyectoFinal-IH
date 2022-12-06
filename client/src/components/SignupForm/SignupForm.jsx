@@ -4,7 +4,7 @@ import authService from "../../services/auth.service"
 
 import { useNavigate } from 'react-router-dom'
 
-// import { MessageContext } from './../../contexts/userMessage.context'
+import { MessageContext } from './../../contexts/userMessage.context'
 
 
 const SignupForm = () => {
@@ -21,7 +21,7 @@ const SignupForm = () => {
         setSignupData({ ...signupData, [name]: value })
     }
 
-    // const { setShowToast, setToastMessage } = useContext(MessageContext)
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const navigate = useNavigate()
 
@@ -32,8 +32,8 @@ const SignupForm = () => {
         authService
             .signup(signupData)
             .then(() => {
-                // setShowToast(true)
-                // setToastMessage('Usuario creado correctamente')
+                setShowToast(true)
+                setToastMessage('Usuario creado correctamente')
                 navigate('/iniciar-sesion')
             })
             .catch(err => console.log(err))

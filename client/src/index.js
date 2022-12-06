@@ -6,16 +6,19 @@ import { BrowserRouter as Router } from 'react-router-dom'
 
 import { MessageProviderWrapper } from './contexts/userMessage.context'
 import { AuthProviderWrapper } from './contexts/auth.context'
+import { ItinerariesProviderWrapper } from './contexts/itinerary.context'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>
     <AuthProviderWrapper>
-      {/* <MessageProviderWrapper> */}
-      <Router>
-        <App />
-      </Router>
-      {/* </MessageProviderWrapper> */}
+      <MessageProviderWrapper>
+        <ItinerariesProviderWrapper>
+          <Router>
+            <App />
+          </Router>
+        </ItinerariesProviderWrapper>
+      </MessageProviderWrapper>
     </AuthProviderWrapper>
   </React.StrictMode>
 )

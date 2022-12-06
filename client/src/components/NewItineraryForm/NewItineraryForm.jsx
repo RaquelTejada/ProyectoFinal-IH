@@ -1,6 +1,7 @@
-import { useState } from "react"
+import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
+import { MessageContext } from './../../contexts/userMessage.context'
 
 
 import { useNavigate } from 'react-router-dom'
@@ -18,6 +19,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         description: '',
         images: ''
     })
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
 
     const handleInputChange = e => {
@@ -43,16 +45,11 @@ const NewItineraryForm = ({ fireFinalActions }) => {
             .saveItinerary(itineraryData)
             .then((response) => {
                 const { _id: itinerary_id } = response.data
-                console.log(response)
+                setShowToast(true)
+                setToastMessage('Ruta creada correctamente')
                 // fireFinalActions()
                 navigate(`/detalles/${itinerary_id}`)
             })
-            // .getOneItinerary(itinerary_id)
-            // .then(() => {
-            //     // setShowToast(true)
-            //     // setToastMessage('Usuario creado correctamente')
-            //     navigate(`/detalles/${itinerary_id}`)
-            // })
             .catch(err => console.error(err))
     }
 

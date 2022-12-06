@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import { useNavigate } from 'react-router-dom'
 import { AuthContext } from "../../contexts/auth.context"
-// import { MessageContext } from './../../contexts/userMessage.context'
+import { MessageContext } from './../../contexts/userMessage.context'
 import authService from "../../services/auth.service"
 
 
@@ -21,7 +21,7 @@ const LoginForm = () => {
 
     const navigate = useNavigate()
     const { storeToken, authenticateUser } = useContext(AuthContext)
-    // const { setShowToast, setToastMessage } = useContext(MessageContext)
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const handleSubmit = e => {
 
@@ -33,8 +33,8 @@ const LoginForm = () => {
                 const tokenFromServe = data.authToken
                 storeToken(tokenFromServe)
                 authenticateUser()
-                // setShowToast(true)
-                // setToastMessage('Usuario creado correctamente')
+                setShowToast(true)
+                setToastMessage('Usuario creado correctamente')
                 navigate('/index-usuario')
             })
             .catch(err => console.log(err))
