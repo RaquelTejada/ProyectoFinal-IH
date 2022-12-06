@@ -1,5 +1,6 @@
 const router = require('express').Router()
 
+const { response } = require('express')
 const Itinerary = require('./../models/Itinerary.model')
 
 router.get('/getAllItineraries', (req, res, next) => {
@@ -50,6 +51,16 @@ router.post('/saveItinerary', (req, res, next) => {
 
     Itinerary
         .create({ ...req.body, owner: req.payload._id })
+        .then(response => res.json(response))
+        .catch(err => res.status(500).json(err))
+})
+
+router.get('/filtered', (req, res, next) => {
+
+    const { city } = req.query
+    console.log(city)
+    Itinerary
+        .find({ city })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

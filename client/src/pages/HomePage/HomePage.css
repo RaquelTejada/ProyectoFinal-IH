@@ -7,10 +7,13 @@
 }
 
 .card-title {
-    font-size: 90px;
-    color: #D5BDAF;
+    font-size: 60px;
+    font-weight: 400;
+    text-shadow: 2px 2px #D6CCC2;
+    color: #39FF14;
 }
 
-.card-size {
+.card-size img {
+    height: 350px;
     object-fit: cover;
 }
