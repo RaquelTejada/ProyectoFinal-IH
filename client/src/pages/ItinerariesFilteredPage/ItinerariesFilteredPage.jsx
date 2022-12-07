@@ -24,7 +24,7 @@ const ItinerariesFilteredPage = () => {
 
     return (
         <div>
-            <h1>Events List</h1>
+            <h1>Actividades en {city}</h1>
             <ItinerariesList itineraries={itineraries} />
         </div>
     )
