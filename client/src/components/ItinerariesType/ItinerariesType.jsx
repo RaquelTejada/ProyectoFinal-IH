@@ -2,7 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './ItinerariesType.css'
 import { Card } from 'react-bootstrap'
-import Roma from '../../images/Roma.jpg'
+import Roma from '../../images/Roma.jpeg'
 
 const ItineraryType = () => {
     return (
