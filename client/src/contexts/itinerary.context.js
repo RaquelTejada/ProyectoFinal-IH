@@ -6,16 +6,13 @@ const ItinerariesContext = createContext()
 
 function ItinerariesProviderWrapper(props) {
 
-    const { city } = useParams()
-
     const [itineraries, setItineraries] = useState([])
 
-    const loadItineraries = () => {
-
+    const loadItineraries = (city, category) => {
         itineraryService
-            .getFilteredItineraries(city)
+            .getFilteredItineraries(city, category)
             .then((response) => {
-                console.log(response.data)
+                console.log('ESTAMOS EN EL CONTEXTO Y ESTOS SON LOS ITIS', response.data)
                 setItineraries(response.data)
             })
             .catch(err => console.log(err))
@@ -27,7 +24,7 @@ function ItinerariesProviderWrapper(props) {
 
 
     return (
-        < ItinerariesContext.Provider value={{ itineraries }}>
+        < ItinerariesContext.Provider value={{ itineraries, loadItineraries }}>
             {props.children}
         </ItinerariesContext.Provider >
 

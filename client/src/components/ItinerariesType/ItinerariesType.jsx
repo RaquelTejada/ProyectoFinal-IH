@@ -1,64 +1,63 @@
-import { Container, Row, Col } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
 import './ItinerariesType.css'
-import { Card } from 'react-bootstrap'
-import Roma from '../../images/Roma.jpg'
+import { useEffect, useState, useContext } from 'react'
+import { ItinerariesContext } from '../../contexts/itinerary.context'
+import ItineraryCard from '../ItineraryCard/ItineraryCard'
 
 const ItineraryType = () => {
+
+    const [itinerarySpecs, setItinerarySpecs] = useState({
+        city: '',
+        category: ''
+    })
+
+    const { itineraries, loadItineraries } = useContext(ItinerariesContext)
+
+    const { hostcity } = useParams()
+
+    useEffect(() => {
+        setItinerarySpecs({ ...itinerarySpecs, city: hostcity })
+    }, [])
+
+    const handleTypeChange = e => {
+        const { name } = e.target
+        setItinerarySpecs({ ...itinerarySpecs, category: name })
+        loadItineraries(itinerarySpecs.city, name)
+    }
+
+    const { category, city } = itinerarySpecs
+
     return (
         <div className='main-div-home-page'>
-            <Container fluid className="margin-card">
-                <Row>
-                    <Col >
-                        <Card className="bg-gray card-size">
-                            <Link to="/itinerario/Madrid/Arte">
-                                <Card.Img src={Roma} alt="Card image" />
-                                <Card.ImgOverlay>
-                                    <Card.Title className='card-title'>Arte</Card.Title>
-                                </Card.ImgOverlay>
-                            </Link>
-                        </Card>
-                    </Col>
-                    <Col >
-                        <Card className="bg-gray card-size">
-                            <Card.Img src={Roma} alt="Card image" />
-                            <Card.ImgOverlay>
-                                <Card.Title className='card-title'>Gastronomia</Card.Title>
-                            </Card.ImgOverlay>
-                        </Card>
-                    </Col>
-                    <Col >
-                        <Card className="bg-gray card-size">
-                            <Card.Img src={Roma} alt="Card image" />
-                            <Card.ImgOverlay>
-                                <Card.Title className='card-title'>Naturaleza</Card.Title>
-                            </Card.ImgOverlay>
-                        </Card>
-                    </Col>
-                    <Row>
-                        <Container fluid className="margin-card">
 
-                        </Container>
-                    </Row>
-                    <Col >
-                        <Card className="bg-gray card-size">
-                            <Card.Img src={Roma} alt="Card image" />
-                            <Card.ImgOverlay>
-                                <Card.Title className='card-title'>Ocio Nocturno</Card.Title>
-                            </Card.ImgOverlay>
-                        </Card>
-                    </Col>
-                    <Col >
-                        <Card className="bg-gray card-size">
-                            <Card.Img src={Roma} alt="Card image" />
-                            <Card.ImgOverlay>
-                                <Card.Title className='card-title'>Turismo Rural</Card.Title>
-                            </Card.ImgOverlay>
-                        </Card>
-                    </Col>
-                </Row>
+            <Container>
+
+                <Button name="Arte" onClick={handleTypeChange}>Arte</Button>
+                <Button name="Gastronomia" onClick={handleTypeChange}>Gastronomía</Button>
+                <Button name="Naturaleza" onClick={handleTypeChange}>Naturaleza</Button>
+                <Button name="Ocio nocturno" onClick={handleTypeChange}>Ocio nocturno</Button>
+                <Button name="Turismo rural" onClick={handleTypeChange}>Turismo rural</Button>
+                <hr />
+
+                <h1>Resultados de itinerarios de {category} en {city}</h1>
+
+                {itineraries.map(elm => {
+                    return (
+                        <Col sm={{ span: 4 }} key={elm._id} >
+                            <ItineraryCard {...elm} />
+                        </Col>
+                    )
+                })}
+
             </Container>
-        </div >
+
+
+
+
+
+
+        </div>
     )
 }
 export default ItineraryType

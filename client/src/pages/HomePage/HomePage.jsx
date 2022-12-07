@@ -14,12 +14,13 @@ const HomePage = () => {
     return (
         <div className='main-div-home-page'>
             <Container fluid className="margin-card">
+
                 <h1 className='home-page-title'>Empieza tu viaje con Liit</h1>
 
                 <Row>
                     <Col >
                         <Card className="bg-gray card-size">
-                            <Link to="/itinerario/:city">
+                            <Link to="/itinerario/Madrid">
                                 <Card.Img src={Madrid} alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>MADRID</Card.Title>

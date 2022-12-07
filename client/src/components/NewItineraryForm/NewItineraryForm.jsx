@@ -74,7 +74,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Select className="mb-3" aria-label="category" value={category} onChange={handleInputChange} name="category">
                     <option>Elige la categoría de tu ruta...</option>
                     <option>Arte</option>
-                    <option>Gastronomía</option>
+                    <option>Gastronomia</option>
                     <option>Naturaleza</option>
                     <option>Ocio nocturno</option>
                     <option>Playas</option>

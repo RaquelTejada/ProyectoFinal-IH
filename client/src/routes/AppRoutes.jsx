@@ -13,8 +13,8 @@ const AppRoutes = () => {
         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/index-usuario" element={<HomePagePro />} />
-            <Route path="/itinerario/:city" element={< ItineraryType />} />
-            <Route path="/itinerario/:city/:category" element={< ItinerariesFilteredPage />} />
+            <Route path="/itinerario/:hostcity" element={< ItineraryType />} />
+            <Route path="/itinerario/:hostcity/:category" element={< ItinerariesFilteredPage />} />
             <Route path="/detalles/:itinerario_id" element={<p>DETALLES ITINERARIO</p>} />
             <Route path="/lista-eventos" element={<EventsListPage />} />
             <Route path="/detalles/:evento_id" element={<p>DETALLES EVENTO</p>} />
