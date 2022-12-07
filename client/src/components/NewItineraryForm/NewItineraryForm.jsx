@@ -2,7 +2,7 @@ import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 import { MessageContext } from './../../contexts/userMessage.context'
-
+import uploadServices from "../../services/upload.service"
 
 import { useNavigate } from 'react-router-dom'
 
@@ -48,6 +48,24 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 navigate(`/detalles/${itinerary_id}`)
             })
             .catch(err => console.error(err))
+    }
+
+    const [loadingImage, setLoadingImage] = useState(false)
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setItineraryData({ ...itineraryData, images: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => console.log(err))
     }
 
     const { city, transport, category, title, duration, pets, description, images } = itineraryData
@@ -111,11 +129,11 @@ const NewItineraryForm = ({ fireFinalActions }) => {
 
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Imágenes</Form.Label>
-                <Form.Control type="file" multiple value={images} onChange={handleInputChange} name="images" />
+                <Form.Control type="file" multiple onChange={handleFileUpload} />
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit">Crear ruta</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear ruta'}</Button>
             </div>
         </Form>
     )

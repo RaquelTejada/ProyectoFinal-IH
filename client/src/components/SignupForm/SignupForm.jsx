@@ -5,6 +5,7 @@ import authService from "../../services/auth.service"
 import { useNavigate } from 'react-router-dom'
 
 import { MessageContext } from './../../contexts/userMessage.context'
+import uploadServices from "../../services/upload.service"
 
 
 const SignupForm = () => {
@@ -39,6 +40,24 @@ const SignupForm = () => {
             .catch(err => console.log(err))
     }
 
+    const [loadingImage, setLoadingImage] = useState(false)
+
+    const handleFileUpload = e => {
+
+        setLoadingImage(true)
+
+        const formData = new FormData()
+        formData.append('imageData', e.target.files[0])
+
+        uploadServices
+            .uploadimage(formData)
+            .then(res => {
+                setSignupData({ ...signupData, images: res.data.cloudinary_url })
+                setLoadingImage(false)
+            })
+            .catch(err => console.log(err))
+    }
+
     const { username, password, email, imageUrl } = signupData
 
     return (
@@ -62,11 +81,11 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Foto de perfil</Form.Label>
-                <Form.Control type="file" value={imageUrl} onChange={handleInputChange} name="imageUrl" />
+                <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit">Registrarme</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Registrarme'}</Button>
             </div>
 
         </Form>
