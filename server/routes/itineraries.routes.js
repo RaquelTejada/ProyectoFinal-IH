@@ -1,66 +1,17 @@
 const router = require('express').Router()
 
-const { response } = require('express')
-const Itinerary = require('./../models/Itinerary.model')
+const { getAllItineraries, getOneItinerary, editItinerary, deleteItinerary, saveItinerary, filteredItineraries } = require('../controllers/itineraries.controller')
 
-router.get('/getAllItineraries', (req, res, next) => {
+router.get('/getAllItineraries', getAllItineraries)
 
-    Itinerary
-        .find()
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
+router.get('/getOneItinerary/:itinerary_id', getOneItinerary)
 
-router.get('/getOneItinerary/:itinerary_id', (req, res, next) => {
+router.put('/edit/:itinerary_id', editItinerary)
 
-    const { itinerary_id } = req.params
+router.delete('/delete/:itinerary_id', deleteItinerary)
 
-    Itinerary
-        .findById(itinerary_id)
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
+router.post('/saveItinerary', saveItinerary)
 
-router.put('/edit/:itinerary_id', (req, res, next) => {
-
-    const { itinerary_id } = req.params
-
-    const { city, transport, category, title, duration, pets, description, images } = req.body
-
-    User
-        .findByIdAndUpdate(itinerary_id, { city, transport, category, title, duration, pets, description, images })
-        .then(response => res.json(response))
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
-})
-
-router.delete('/delete/:itinerary_id', (req, res, next) => {
-
-    const { itinerary_id } = req.params
-
-    User
-        .findByIdAndDelete(itinerary_id)
-        .then(() => res.status(200).json({ message: "OK" }))
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
-})
-
-router.post('/saveItinerary', (req, res, next) => {
-
-    Itinerary
-        .create({ ...req.body, owner: req.payload._id })
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
-
-router.get('/filtered', (req, res, next) => {
-
-    Itinerary
-        .find({ ...req.query })
-        .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
-})
+router.get('/filtered', filteredItineraries)
 
 module.exports = router

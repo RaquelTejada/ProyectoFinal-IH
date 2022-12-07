@@ -16,7 +16,7 @@ const HomePage = () => {
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/Madrid">
-                                <Card.Img src={Madrid} alt="Card image" />
+                                <Card.Img src={Roma} alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>MADRID</Card.Title>
                                 </Card.ImgOverlay>

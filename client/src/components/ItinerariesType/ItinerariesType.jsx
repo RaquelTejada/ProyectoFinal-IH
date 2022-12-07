@@ -6,6 +6,7 @@ import { ItinerariesContext } from '../../contexts/itinerary.context'
 import ItineraryCard from '../ItineraryCard/ItineraryCard'
 import { Card } from 'react-bootstrap'
 import Roma from '../../images/Roma.jpeg'
+import ItinerariesList from '../ItinerariesList/ItinerariesList'
 
 const ItineraryType = () => {
 
@@ -14,7 +15,7 @@ const ItineraryType = () => {
         category: ''
     })
 
-    const { itineraries, loadItineraries } = useContext(ItinerariesContext)
+    const { loadItineraries } = useContext(ItinerariesContext)
 
     const { hostcity } = useParams()
 
@@ -44,21 +45,9 @@ const ItineraryType = () => {
 
                 <h1>Resultados de itinerarios de {category} en {city}</h1>
 
-                {itineraries.map(elm => {
-                    return (
-                        <Col sm={{ span: 4 }} key={elm._id} >
-                            <ItineraryCard {...elm} />
-                        </Col>
-                    )
-                })}
+                <ItinerariesList />
 
             </Container>
-
-
-
-
-
-
         </div>
     )
 }
