@@ -1,7 +1,12 @@
 import { Col, Row } from "react-bootstrap"
 import ItineraryCard from "../ItineraryCard/ItineraryCard"
+import { useContext } from 'react'
+import { ItinerariesContext } from '../../contexts/itinerary.context'
 
-const ItinerariesList = ({ itineraries }) => {
+
+const ItinerariesList = () => {
+
+    const { itineraries } = useContext(ItinerariesContext)
 
     return (
         <Row>

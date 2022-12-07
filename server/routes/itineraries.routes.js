@@ -57,10 +57,8 @@ router.post('/saveItinerary', (req, res, next) => {
 
 router.get('/filtered', (req, res, next) => {
 
-    const { city } = req.query
-    console.log(city)
     Itinerary
-        .find({ city })
+        .find({ ...req.query })
         .then(response => res.json(response))
         .catch(err => res.status(500).json(err))
 })

@@ -1,31 +1,34 @@
 import './ItinerariesFilteredPage.css'
-import itinerariesService from '../../services/itineraries.service'
-import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItinerariesList from '../../components/ItinerariesList/ItinerariesList'
+import { ItinerariesContext } from '../../contexts/itinerary.context'
+import { useContext } from 'react'
 
 const ItinerariesFilteredPage = () => {
 
-    const { city } = useParams()
+    const { itineraries } = useContext(ItinerariesContext)
 
-    const [itineraries, setItineraries] = useState([])
 
-    useEffect(() => {
+    // const { city } = useParams()
 
-        itinerariesService
-            .getFilteredItineraries(city)
-            .then((response) => {
-                console.log(response)
-                setItineraries(response.data)
-            })
-            .catch(err => console.log(err))
+    // const [itineraries, setItineraries] = useState([])
 
-    }, [city])
+    // useEffect(() => {
+
+    //     itinerariesService
+    //         .getFilteredItineraries(city)
+    //         .then((response) => {
+    //             console.log(response)
+    //             setItineraries(response.data)
+    //         })
+    //         .catch(err => console.log(err))
+
+    // }, [city])
 
     return (
         <div>
             <h1>Events List</h1>
-            <ItinerariesList itineraries={itineraries} />
+            <ItinerariesList />
         </div>
     )
 }

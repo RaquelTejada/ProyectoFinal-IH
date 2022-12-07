@@ -32,8 +32,8 @@ class ItineraryService {
         return this.api.post('/saveItinerary', itineraryData)
     }
 
-    getFilteredItineraries(itineraryCity) {
-        return this.api.get(`/filtered?city=${itineraryCity}`)
+    getFilteredItineraries(city, category) {
+        return this.api.get(`/filtered?city=${city}&category=${category}`)
     }
 }
 

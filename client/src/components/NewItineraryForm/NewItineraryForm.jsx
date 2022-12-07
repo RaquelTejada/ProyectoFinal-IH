@@ -9,7 +9,6 @@ import { useNavigate } from 'react-router-dom'
 const NewItineraryForm = ({ fireFinalActions }) => {
 
     const [itineraryData, setItineraryData] = useState({
-
         city: '',
         transport: '',
         category: '',
@@ -19,8 +18,8 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         description: '',
         images: ''
     })
-    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const handleInputChange = e => {
         const { name, value } = e.target
@@ -39,8 +38,6 @@ const NewItineraryForm = ({ fireFinalActions }) => {
     const handleFormSubmit = e => {
         e.preventDefault()
 
-
-
         itinerariesService
             .saveItinerary(itineraryData)
             .then((response) => {
@@ -54,7 +51,6 @@ const NewItineraryForm = ({ fireFinalActions }) => {
     }
 
     const { city, transport, category, title, duration, pets, description, images } = itineraryData
-
 
     return (
         <Form onSubmit={handleFormSubmit}>
