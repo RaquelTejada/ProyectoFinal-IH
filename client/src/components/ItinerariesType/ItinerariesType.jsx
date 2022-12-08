@@ -14,12 +14,13 @@ const ItineraryType = () => {
         category: ''
     })
 
-    const { loadItineraries } = useContext(ItinerariesContext)
+    const { loadItineraries, resetItineraries } = useContext(ItinerariesContext)
 
     const { hostcity } = useParams()
 
     useEffect(() => {
-        setItinerarySpecs({ ...itinerarySpecs, city: hostcity })
+        resetItineraries()
+        setItinerarySpecs({ city: hostcity })
     }, [])
 
     const handleTypeChange = e => {

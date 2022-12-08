@@ -2,26 +2,38 @@ import './ItineraryCard.css'
 import { Button, ButtonGroup, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { AuthContext } from './../../contexts/auth.context'
-import { Link } from 'react-router-dom'
-import { useContext, useState } from 'react';
+import { MessageContext } from './../../contexts/userMessage.context'
+import { Link, useParams, useNavigate } from 'react-router-dom'
+import itineraryService from '../../services/itineraries.service'
+import { ItinerariesContext } from '../../contexts/itinerary.context';
 
-import NewItineraryForm from "../../components/NewItineraryForm/NewItineraryForm"
+import { useContext } from 'react';
 
-function ItineraryCard({ city, transport, _id, owner, images, title }) {
+function ItineraryCard({ city, transport, _id, owner, images, title, category }) {
+
+    const { loadItineraries } = useContext(ItinerariesContext)
+
+    const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const { user } = useContext(AuthContext)
-    // const [showModal, setShowModal] = useState(false)
 
-    // const openModal = () => setShowModal(true)
-    // const closeModal = () => setShowModal(false)
+    const deleteItinerary = e => {
+        e.preventDefault()
 
-    // const fireFinalActions = () => {
-    //     closeModal()
-    // }
+        itineraryService
+            .deleteItinerary(_id)
+            .then(() => {
+                setShowToast(true)
+                setToastMessage('Ruta eliminada correctamente')
+                loadItineraries(city, category)
+
+            })
+            .catch(err => console.error(err))
+    }
+
 
     return (
         <>
-
             <Card className="mb-4 ItineraryCard">
                 <Card.Img variant="top" src={images} />
                 <Card.Body>
@@ -40,9 +52,7 @@ function ItineraryCard({ city, transport, _id, owner, images, title }) {
                             <>
                                 <div className="d-grid">
                                     <ButtonGroup aria-label="Basic example">
-                                        <Link to={`/detalles/${_id}`}>
-                                            <Button variant="dark" size="sm">Eliminar</Button>
-                                        </Link>
+                                        <Button variant="dark" size="sm" onClick={deleteItinerary}>Eliminar</Button>
                                         <Link to={`/editar/${_id}`}>
                                             <Button variant="dark" size="sm">Editar</Button>
                                         </Link>
@@ -53,31 +63,6 @@ function ItineraryCard({ city, transport, _id, owner, images, title }) {
                     }
                 </Card.Body>
             </Card>
-
-            {/* <div> */}
-            {/* {
-                    !owner || owner != user?._id
-                        ?
-                        <>
-                            <Button onClick={openModal} variant="dark">Crea tu propia ruta</Button>
-                        </>
-                        :
-                        <>
-                            <Button onClick={openModal} variant="dark">Crea tu propia ruta</Button>
-                            <div className="d-grid">
-                                <Modal show={showModal} onHide={closeModal}>
-                                    <Modal.Header closeButton>
-                                        <Modal.Title>Nueva ruta</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <NewItineraryForm fireFinalActions={fireFinalActions} />
-                                    </Modal.Body>
-                                </Modal>
-                            </div>
-                        </>
-                } */}
-
-            {/* </div> */}
         </>
     );
 }

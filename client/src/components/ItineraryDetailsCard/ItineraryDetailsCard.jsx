@@ -1,29 +1,27 @@
+import './ItineraryDetailsCard.css'
 import Card from 'react-bootstrap/Card'
 import itineraryService from '../../services/itineraries.service'
 import { ItinerariesContext } from '../../contexts/itinerary.context';
-// import { useParams } from 'react-router-dom'
-import { useContext, useState, useEffect } from 'react';
 
-function ItineraryDetailsPage(
-    { city, transport, itinerary_id, owner, images, title, category, duration, pets, description }
-) {
+import { useContext, useState } from 'react';
+
+
+
+function ItineraryDetailsCard({ city, transport, _id, owner, images, title, category, duration, pets, description }) {
     const [details, setDetails] = useState()
     const { getItineraryDetails } = useContext(ItinerariesContext)
-    // const { _id } = useParams()
 
+    const itineraryDetails = e => {
+        e.preventDefault()
 
-    const itineraryDetails = () => {
         itineraryService
-            .getOneItinerary(itinerary_id)
+            .getOneItinerary(_id)
             .then((response) => {
                 const detailsiti = response.data;
                 setDetails(detailsiti)
             })
             .catch(err => console.error(err))
     }
-    useEffect(() => {
-        itineraryDetails()
-    })
 
 
     return (
@@ -44,4 +42,4 @@ function ItineraryDetailsPage(
     );
 }
 
-export default ItineraryDetailsPage
+export default ItineraryDetailsCard

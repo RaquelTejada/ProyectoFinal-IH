@@ -45,7 +45,19 @@ const itinerarySchema = new Schema(
         owner: {
             type: Schema.Types.ObjectId,
             ref: 'User'
-        }
+        },
+
+        // rating: {
+
+        // },
+
+        // Like: {
+
+        // },
+
+        // Fav: {
+
+        // }
     },
 
     {

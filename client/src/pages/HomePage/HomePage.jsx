@@ -14,9 +14,9 @@ const HomePage = () => {
 
     const [query, setQuery] = useState('')
 
-    useEffect(() => {
-        getAllItineraries()
-    }, []);
+    // useEffect(() => {
+    //     getAllItineraries()
+    // }, []);
 
     const handleQuery = (e) => {
         setQuery(e.target.value);

@@ -8,6 +8,10 @@ function ItinerariesProviderWrapper(props) {
 
     const [itineraries, setItineraries] = useState([])
 
+    const resetItineraries = () => {
+        setItineraries([])
+    }
+
     const loadItineraries = (city, category) => {
         itineraryService
             .getFilteredItineraries(city, category)
@@ -26,13 +30,23 @@ function ItinerariesProviderWrapper(props) {
             .catch(err => console.log(err))
     }
 
+    const getItineraryDetails = (itinerary_id) => {
+        itineraryService
+            .getOneItinerary(itinerary_id)
+            .then((response) => {
+                setItineraries(response.data)
+                console.log(response.data)
+            })
+            .catch(err => console.log(err))
+    }
+
     useEffect(() => {
         getAllItineraries()
     }, [])
 
 
     return (
-        < ItinerariesContext.Provider value={{ itineraries, loadItineraries, getAllItineraries }}>
+        < ItinerariesContext.Provider value={{ itineraries, loadItineraries, getItineraryDetails, resetItineraries, getAllItineraries }}>
             {props.children}
         </ItinerariesContext.Provider >
 
