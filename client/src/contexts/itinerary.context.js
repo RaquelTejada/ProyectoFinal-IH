@@ -16,6 +16,17 @@ function ItinerariesProviderWrapper(props) {
         itineraryService
             .getFilteredItineraries(city, category)
             .then((response) => {
+                console.log(response.data)
+                setItineraries(response.data)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const loadDestinations = (city) => {
+        itineraryService
+            .getFilteredItineraries(city)
+            .then((response) => {
+                console.log(response.data)
                 setItineraries(response.data)
             })
             .catch(err => console.log(err))

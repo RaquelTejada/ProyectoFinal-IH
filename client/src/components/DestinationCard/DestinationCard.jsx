@@ -45,7 +45,7 @@ function DestinationCard({ city, transport, _id, owner, images, title }) {
 
             </Card.Body>
         </Card>
-    );
+    )
 }
 
 export default DestinationCard;

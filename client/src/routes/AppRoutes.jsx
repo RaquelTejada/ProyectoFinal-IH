@@ -24,7 +24,6 @@ const AppRoutes = () => {
             <Route path="/registro" element={<SignupPage />} />
             <Route path="/iniciar-sesion" element={<LoginPage />} />
             <Route path="/perfil" element={<p>PERFIL</p>} />
-            <Route path="/cerrar-sesion" element={<p>CERRAR SESIÓN</p>} />
             <Route path="/*" element={<h1>404</h1>} />
         </Routes>
     )

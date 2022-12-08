@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom'
 import './ItinerariesType.css'
 import { useEffect, useState, useContext } from 'react'
 import { ItinerariesContext } from '../../contexts/itinerary.context'
-import ItineraryCard from '../ItineraryCard/ItineraryCard'
-import { Card } from 'react-bootstrap'
 import ItinerariesList from '../ItinerariesList/ItinerariesList'
 
 const ItineraryType = () => {
