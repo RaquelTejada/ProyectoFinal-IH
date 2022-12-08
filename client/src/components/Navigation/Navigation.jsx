@@ -1,21 +1,22 @@
 import './Navigation.css'
 import { Nav, Navbar, NavDropdown, Form } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import Logo from '../../images/liit-logo.png'
 
 const Navigation = () => {
 
     return (
         <Navbar className='color-nav' expand="lg">
-            <img className='logo-img' src={Logo}></img>
+            <Link to="/">
+                <img className='logo-img' src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670495264/Proyecto%20Final%20IH/LiitLogo.png"></img>
+            </Link>
             <Link to="/">
                 <Navbar.Brand className='brand-name' as='div'>Liit</Navbar.Brand>
             </Link>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Link to="/crear-itinerario">
-                        <Nav.Link as='div'>Crear ruta</Nav.Link>
+                    <Link to="/destinos">
+                        <Nav.Link as='div'>Todos los destinos</Nav.Link>
                     </Link>
                     <Link to="/lista-eventos">
                         <Nav.Link as='div'>Eventos</Nav.Link>

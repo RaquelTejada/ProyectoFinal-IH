@@ -35,7 +35,7 @@ const LoginForm = () => {
                 authenticateUser()
                 setShowToast(true)
                 setToastMessage('Usuario creado correctamente')
-                navigate('/index-usuario')
+                navigate('/')
             })
             .catch(err => console.log(err))
     }

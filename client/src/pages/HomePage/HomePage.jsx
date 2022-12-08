@@ -2,21 +2,41 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './HomePage.css'
 import { Card } from 'react-bootstrap'
-import Roma from '../../images/Roma.jpeg'
+import { useState, useContext, useEffect } from 'react'
+import { ItinerariesContext } from '../../contexts/itinerary.context'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+
 
 const HomePage = () => {
 
+    const { itineraries, getAllItineraries } = useContext(ItinerariesContext)
+
+    const [query, setQuery] = useState('')
+
+    useEffect(() => {
+        getAllItineraries()
+    }, []);
+
+    const handleQuery = (e) => {
+        setQuery(e.target.value);
+    };
+
+
     return (
         <div className='main-div-home-page'>
+
             <Container fluid className="margin-card">
 
-                <h1 className='home-page-title'>Empieza tu viaje con Liit</h1>
+                <h1 className='home-page-title'>Destinos destacados</h1>
+
+                <input type='text' name='' id='' value={query} onChange={handleQuery} placeholder='...busca por destino' />
 
                 <Row>
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/Madrid">
-                                <Card.Img src={Roma} alt="Card image" />
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670489152/Proyecto%20Final%20IH/HomePage/HomePageMadrid.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>MADRID</Card.Title>
                                 </Card.ImgOverlay>
@@ -26,7 +46,7 @@ const HomePage = () => {
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/Roma">
-                                <Card.Img src={Roma} alt="Card image" />
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490376/Proyecto%20Final%20IH/HomePage/HomePageRoma.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>ROMA</Card.Title>
                                 </Card.ImgOverlay>
@@ -36,7 +56,7 @@ const HomePage = () => {
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/Amsterdam">
-                                <Card.Img src={Roma} alt="Card image" />
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490709/Proyecto%20Final%20IH/HomePage/HomePageAmsterdam.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>AMSTERDAM</Card.Title>
                                 </Card.ImgOverlay>
@@ -51,7 +71,7 @@ const HomePage = () => {
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/NuevaYork">
-                                <Card.Img src={Roma} alt="Card image" />
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670491258/Proyecto%20Final%20IH/HomePage/HomePageNY.webp" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>NUEVA YORK</Card.Title>
                                 </Card.ImgOverlay>
@@ -61,7 +81,7 @@ const HomePage = () => {
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/París">
-                                <Card.Img src={Roma} alt="Card image" />
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490638/Proyecto%20Final%20IH/HomePage/HomePageParis.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>PARíS</Card.Title>
                                 </Card.ImgOverlay>
@@ -71,7 +91,7 @@ const HomePage = () => {
                     <Col >
                         <Card className="bg-gray card-size">
                             <Link to="/itinerario/Londres">
-                                <Card.Img src={Roma} alt="Card image" />
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490562/Proyecto%20Final%20IH/HomePage/HomePageLondres.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>LONDRES</Card.Title>
                                 </Card.ImgOverlay>

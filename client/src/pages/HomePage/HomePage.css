@@ -8,9 +8,9 @@
 
 .card-title {
     font-size: 60px;
-    font-weight: 400;
+    font-weight: 200;
     text-shadow: 2px 2px #D6CCC2;
-    color: #39FF14;
+    color: rgb(30, 30, 30);
 }
 
 .card-size img {
@@ -19,5 +19,8 @@
 }
 
 .home-page-title {
-    color: #D5BDAF;
+    font-size: 40px;
+    font-weight: 200;
+    text-shadow: 2px 2px #D6CCC2;
+    color: rgb(30, 30, 30);
 }

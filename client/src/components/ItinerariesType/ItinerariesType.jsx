@@ -5,7 +5,6 @@ import { useEffect, useState, useContext } from 'react'
 import { ItinerariesContext } from '../../contexts/itinerary.context'
 import ItineraryCard from '../ItineraryCard/ItineraryCard'
 import { Card } from 'react-bootstrap'
-import Roma from '../../images/Roma.jpeg'
 import ItinerariesList from '../ItinerariesList/ItinerariesList'
 
 const ItineraryType = () => {
