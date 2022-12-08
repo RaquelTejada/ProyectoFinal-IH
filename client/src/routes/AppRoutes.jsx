@@ -6,6 +6,7 @@ import EventsListPage from "../pages/EventsListPage/EventsListPage"
 import SignupPage from "../pages/SignupPage/SignupPage"
 import LoginPage from "../pages/LoginPage/LoginPage"
 import ItineraryType from "../components/ItinerariesType/ItinerariesType"
+import ItineraryEditPage from "../pages/ItineraryEditPage/ItineraryEditPage"
 
 const AppRoutes = () => {
 
@@ -15,7 +16,8 @@ const AppRoutes = () => {
             <Route path="/index-usuario" element={<HomePagePro />} />
             <Route path="/itinerario/:hostcity" element={< ItineraryType />} />
             <Route path="/itinerario/:hostcity/:category" element={< ItinerariesFilteredPage />} />
-            <Route path="/detalles/:itinerario_id" element={<p>DETALLES ITINERARIO</p>} />
+            <Route path="/detalles/:itinerary_id" element={<p>DETALLES ITINERARIO</p>} />
+            <Route path="/editar/:itinerary_id" element={< ItineraryEditPage />} />
             <Route path="/lista-eventos" element={<EventsListPage />} />
             <Route path="/detalles/:evento_id" element={<p>DETALLES EVENTO</p>} />
             <Route path="/registro" element={<SignupPage />} />

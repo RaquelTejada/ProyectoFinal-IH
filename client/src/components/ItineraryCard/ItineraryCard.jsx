@@ -1,48 +1,84 @@
 import './ItineraryCard.css'
-import { Button, ButtonGroup, Container, Row, Col } from 'react-bootstrap';
+import { Button, ButtonGroup, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { AuthContext } from './../../contexts/auth.context'
 import { Link } from 'react-router-dom'
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 
-function ItineraryCard({ city, transport, _id, owner, imageUrl, title }) {
+import NewItineraryForm from "../../components/NewItineraryForm/NewItineraryForm"
+
+function ItineraryCard({ city, transport, _id, owner, images, title }) {
 
     const { user } = useContext(AuthContext)
+    // const [showModal, setShowModal] = useState(false)
+
+    // const openModal = () => setShowModal(true)
+    // const closeModal = () => setShowModal(false)
+
+    // const fireFinalActions = () => {
+    //     closeModal()
+    // }
 
     return (
+        <>
 
-        <Card className="mb-4 CoasterCard">
-            <Card.Img variant="top" src={imageUrl} />
-            <Card.Body>
-                <Card.Title><h3>{title}</h3></Card.Title>
-                {
+            <Card className="mb-4 ItineraryCard">
+                <Card.Img variant="top" src={images} />
+                <Card.Body>
+                    <Link to={`/detalles/${_id}`}>
+                        <div>
+                            <Card.Title><h3>{title}</h3></Card.Title>
+                        </div>
+                    </Link>
+
+                    {
+                        !owner || owner != user?._id
+                            ?
+                            <>
+                            </>
+                            :
+                            <>
+                                <div className="d-grid">
+                                    <ButtonGroup aria-label="Basic example">
+                                        <Link to={`/detalles/${_id}`}>
+                                            <Button variant="dark" size="sm">Eliminar</Button>
+                                        </Link>
+                                        <Link to={`/editar/${_id}`}>
+                                            <Button variant="dark" size="sm">Editar</Button>
+                                        </Link>
+                                        {/* <Button variant="dark" size="sm" onClick={() => alert('ENLAZAR PÁGINA DE EDITAR')}>Editar</Button> */}
+                                    </ButtonGroup>
+                                </div>
+                            </>
+                    }
+                </Card.Body>
+            </Card>
+
+            {/* <div> */}
+            {/* {
                     !owner || owner != user?._id
                         ?
                         <>
-                            <Link to={`/detalles/${_id}`}>
-                                <div className="d-grid">
-                                    <Button variant="dark" size="sm">Ver detalles</Button>
-                                </div>
-                            </Link>
+                            <Button onClick={openModal} variant="dark">Crea tu propia ruta</Button>
                         </>
                         :
                         <>
+                            <Button onClick={openModal} variant="dark">Crea tu propia ruta</Button>
                             <div className="d-grid">
-                                <ButtonGroup aria-label="Basic example">
-                                    <Link to={`/detalles/${_id}`}>
-                                        <Button variant="dark" size="sm">Ver detalles</Button>
-                                    </Link>
-                                    <Button variant="dark" size="sm" onClick={() => alert('ENLAZAR PÁGINA DE EDITAR')}>Editar</Button>
-                                </ButtonGroup>
+                                <Modal show={showModal} onHide={closeModal}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Nueva ruta</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <NewItineraryForm fireFinalActions={fireFinalActions} />
+                                    </Modal.Body>
+                                </Modal>
                             </div>
-
                         </>
+                } */}
 
-                }
-
-
-            </Card.Body>
-        </Card>
+            {/* </div> */}
+        </>
     );
 }
 

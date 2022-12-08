@@ -26,7 +26,7 @@ const editItinerary = (req, res, next) => {
 
     const { city, transport, category, title, duration, pets, description, images } = req.body
 
-    User
+    Itinerary
         .findByIdAndUpdate(itinerary_id, { city, transport, category, title, duration, pets, description, images })
         .then(response => res.json(response))
         .catch(err => {
@@ -38,7 +38,7 @@ const deleteItinerary = (req, res, next) => {
 
     const { itinerary_id } = req.params
 
-    User
+    Itinerary
         .findByIdAndDelete(itinerary_id)
         .then(() => res.status(200).json({ message: "OK" }))
         .catch(err => {

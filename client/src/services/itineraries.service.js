@@ -35,6 +35,14 @@ class ItineraryService {
     getFilteredItineraries(city, category) {
         return this.api.get(`/filtered?city=${city}&category=${category}`)
     }
+
+    editItinerary(itinerary_id, body) {
+        return this.api.put(`/edit/${itinerary_id}`, body)
+    }
+
+    deleteItinerary(itinerary_id) {
+        return this.api.delete(`/delete/${itinerary_id}`)
+    }
 }
 
 const itineraryService = new ItineraryService()
