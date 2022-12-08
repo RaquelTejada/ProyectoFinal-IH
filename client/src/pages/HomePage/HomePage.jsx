@@ -11,12 +11,21 @@ import axios from 'axios'
 const HomePage = () => {
 
     const { itineraries, getAllItineraries } = useContext(ItinerariesContext)
-
     const [query, setQuery] = useState('')
 
-    useEffect(() => {
-        getAllItineraries()
-    }, []);
+    const [iti, setIti] = useState('')
+
+    // const itiArray = () => {
+    //     itineraries.map(elm => {
+    //         setIti(elm.city)
+    //     })
+    //     console.log(itiArray)
+    // }
+
+
+    // useEffect(() => {
+    //     getAllItineraries()
+    // }, []);
 
     const handleQuery = (e) => {
         setQuery(e.target.value);
@@ -30,7 +39,7 @@ const HomePage = () => {
 
                 <h1 className='home-page-title'>Destinos destacados</h1>
 
-                <input type='text' name='' id='' value={query} onChange={handleQuery} placeholder='...busca por destino' />
+                <input type='text' value={query} onChange={handleQuery} placeholder='...busca por destino' />
 
                 <Row>
                     <Col >
