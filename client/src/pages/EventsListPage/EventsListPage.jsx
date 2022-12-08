@@ -32,9 +32,6 @@ const EventsListPage = () => {
 
     return (
         <div>
-
-
-
             <Container className="Home">
                 <Row>
                     <Col md={{ span: 8, offset: 2 }}>

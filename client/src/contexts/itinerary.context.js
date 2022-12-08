@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react"
 import itineraryService from "../services/itineraries.service"
-import { useParams } from "react-router-dom"
+
 
 const ItinerariesContext = createContext()
 
@@ -12,19 +12,27 @@ function ItinerariesProviderWrapper(props) {
         itineraryService
             .getFilteredItineraries(city, category)
             .then((response) => {
-                console.log('ESTAMOS EN EL CONTEXTO Y ESTOS SON LOS ITIS', response.data)
+                setItineraries(response.data)
+            })
+            .catch(err => console.log(err))
+    }
+
+    const getAllItineraries = () => {
+        itineraryService
+            .getItineraries()
+            .then((response) => {
                 setItineraries(response.data)
             })
             .catch(err => console.log(err))
     }
 
     useEffect(() => {
-        loadItineraries()
+        getAllItineraries()
     }, [])
 
 
     return (
-        < ItinerariesContext.Provider value={{ itineraries, loadItineraries }}>
+        < ItinerariesContext.Provider value={{ itineraries, loadItineraries, getAllItineraries }}>
             {props.children}
         </ItinerariesContext.Provider >
 
