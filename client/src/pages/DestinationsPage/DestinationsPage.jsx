@@ -1,24 +1,44 @@
 import './DestinationsPage.css'
 import { Card } from 'react-bootstrap'
-import { ItinerariesContext } from '../../contexts/itinerary.context'
-import { useContext } from 'react'
+import itineraryService from '../../services/itineraries.service'
+import { useState, useEffect } from 'react'
 
 
 const DestinationsPage = () => {
 
-    const { itineraries } = useContext(ItinerariesContext)
+    const [destinations, setDestinations] = useState()
 
+    const printDestinations = () => {
+
+        itineraryService
+            .getAllDestinations()
+            .then(response => setDestinations(response.data.cities))
+            .catch(err => console.error(err))
+    }
+
+    useEffect(() => {
+        printDestinations()
+    }, [])
+    console.log(destinations)
     return (
-
-        <Card className="mb-4 DestinationCard">
-            <Card.Body>
-                <Card.Title><h3>{itineraries.city}</h3></Card.Title>
-                <Card.Text>
-                    <h4>{itineraries.title}</h4>
-                    <h5>{itineraries.transport}</h5>
-                </Card.Text>
-            </Card.Body>
-        </Card>
+        <>
+            {
+                destinations ? destinations.map((destination, idx) => {
+                    console.log(destination)
+                    return (
+                        <Card className="mb-4 DestinationCard" key={idx}>
+                            <Card.Body>
+                                <Card.Title><h3>{destination}</h3></Card.Title>
+                                {/* <Card.Text>
+                                    <h4>{destination.title}</h4>
+                                    <h5>{destination.transport}</h5>
+                                </Card.Text> */}
+                            </Card.Body>
+                        </Card>)
+                })
+                    :
+                    'Cargando...'}
+        </>
     )
 
 }

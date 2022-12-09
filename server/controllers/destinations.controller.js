@@ -7,7 +7,7 @@ const getDestinationsByCity = (req, res, next) => {
     Itinerary
         .find()
         .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
+        .catch(err => next(err))
 }
 
 module.exports = {

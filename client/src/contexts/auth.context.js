@@ -16,16 +16,21 @@ function AuthProviderWrapper(props) {
 
         const token = localStorage.getItem("authToken")
 
-        authService
-            .verify(token)
-            .then(({ data }) => {
-                setUser(data)
-                setIsLoading(false)
-            })
-            .catch(err => {
-                setUser(null)
-                setIsLoading(false)
-            })
+        if (token) {
+
+            setIsLoading(true)
+
+            authService
+                .verify(token)
+                .then(({ data }) => {
+                    setUser(data)
+                    setIsLoading(false)
+                })
+                .catch(err => {
+                    setUser(null)
+                    setIsLoading(false)
+                })
+        }
     }
 
     const logoutUser = () => {

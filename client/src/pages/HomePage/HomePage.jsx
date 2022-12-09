@@ -39,7 +39,7 @@ const HomePage = () => {
 
                 <h1 className='home-page-title'>Destinos destacados</h1>
 
-                <input type='text' value={query} onChange={handleQuery} placeholder='...busca por destino' />
+                <input className='form-control mb-3' type='text' value={query} onChange={handleQuery} placeholder='...busca por destino' />
 
                 <Row>
                     <Col >

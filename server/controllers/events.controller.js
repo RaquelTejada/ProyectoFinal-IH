@@ -7,7 +7,7 @@ const getAllEvents = (req, res, next) => {
     Event
         .find()
         .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
+        .catch(err => next(err))
 }
 
 const getOneEvent = (req, res, next) => {
@@ -17,7 +17,7 @@ const getOneEvent = (req, res, next) => {
     Event
         .findById(event_id)
         .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
+        .catch(err => next(err))
 }
 
 const editEvent = (req, res, next) => {
@@ -29,9 +29,7 @@ const editEvent = (req, res, next) => {
     User
         .findByIdAndUpdate(event_id, { title, description, date })
         .then(response => res.json(response))
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
+        .catch(err => next(err))
 }
 
 const deleteEvent = (req, res, next) => {
@@ -41,9 +39,7 @@ const deleteEvent = (req, res, next) => {
     User
         .findByIdAndDelete(event_id)
         .then(() => res.status(200).json({ message: "OK" }))
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
+        .catch(err => next(err))
 }
 
 const saveEvent = (req, res, next) => {
@@ -51,7 +47,7 @@ const saveEvent = (req, res, next) => {
     Event
         .create({ ...req.body, owner: req.payload._id })
         .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
+        .catch(err => next(err))
 }
 
 const filteredItineraries = (req, res, next) => {
@@ -59,7 +55,7 @@ const filteredItineraries = (req, res, next) => {
     Itinerary
         .find({ ...req.query })
         .then(response => res.json(response))
-        .catch(err => res.status(500).json(err))
+        .catch(err => next(err))
 }
 
 module.exports = {

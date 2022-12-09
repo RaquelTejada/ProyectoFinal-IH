@@ -1,10 +1,9 @@
 import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import eventService from "../../services/events.service"
-
-
 import { useNavigate } from 'react-router-dom'
 import { MessageContext } from './../../contexts/userMessage.context'
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 const NewEventForm = ({ fireFinalActions }) => {
@@ -28,6 +27,8 @@ const NewEventForm = ({ fireFinalActions }) => {
 
     const navigate = useNavigate()
 
+    const [errors, setErrors] = useState([])
+
     const handleFormSubmit = e => {
         e.preventDefault()
 
@@ -40,7 +41,7 @@ const NewEventForm = ({ fireFinalActions }) => {
                 // fireFinalActions()
                 navigate(`/detalles/${event_id}`)
             })
-            .catch(err => console.error(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const { title, description, date } = eventData
@@ -62,6 +63,8 @@ const NewEventForm = ({ fireFinalActions }) => {
                 <Form.Label>Fecha del evento</Form.Label>
                 <Form.Control type="date" multiple value={date} onChange={handleInputChange} name="date" />
             </Form.Group>
+
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit">Crear evento</Button>
