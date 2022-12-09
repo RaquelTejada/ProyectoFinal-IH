@@ -22,9 +22,7 @@ const Navigation = () => {
                     <Link to="/destinos">
                         <Nav.Link as='div'>Todos los destinos</Nav.Link>
                     </Link>
-                    <Link to="/lista-eventos">
-                        <Nav.Link as='div'>Eventos</Nav.Link>
-                    </Link>
+
                     <Nav.Link as="div">¡Hola, {!user ? 'invitad@' : user.username}!</Nav.Link>
                 </Nav>
                 <Form className="d-flex me-5">

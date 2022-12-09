@@ -10,34 +10,15 @@ const signup = (req, res, next) => {
 
     const { email, password, username } = req.body
 
-    if (password.length < 4) {
-        res.status(400).json({ message: 'Password must have at least 4 characters' })
-        return
-    }
-
     User
-        .findOne({ email })
-        .then((foundUser) => {
-
-            if (foundUser) {
-                res.status(400).json({ message: "User already exists." })
-                return
-            }
-
-            const salt = bcrypt.genSaltSync(saltRounds)
-            const hashedPassword = bcrypt.hashSync(password, salt)
-
-            return User.create({ email, password: hashedPassword, username })
-        })
+        .create({ email, password, username })
         .then((createdUser) => {
             const { email, username, _id, imageUrl } = createdUser
             const user = { email, username, _id, imageUrl }
 
             res.status(201).json({ user })
         })
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
+        .catch(err => next(err))
 }
 
 const login = (req, res, next) => {
@@ -45,7 +26,7 @@ const login = (req, res, next) => {
     const { email, password } = req.body
 
     if (email === '' || password === '') {
-        res.status(400).json({ message: "Provide email and password." })
+        res.status(400).json({ errorMessages: ["Indica email y contraseña."] })
         return
     }
 
@@ -54,7 +35,7 @@ const login = (req, res, next) => {
         .then((foundUser) => {
 
             if (!foundUser) {
-                res.status(401).json({ message: "User not found." })
+                res.status(401).json({ errorMessages: ["Usuario no encontrado."] })
                 return
             }
 
@@ -73,14 +54,11 @@ const login = (req, res, next) => {
                 res.status(200).json({ authToken })
             }
             else {
-                res.status(401).json({ message: "Unable to authenticate the user" })
+                res.status(401).json({ errorMessages: ["Fallo en la autentificación del usuario."] })
             }
 
         })
-        .catch(err => {
-            console.log(err)
-            res.status(500).json({ message: "Internal Server Error" })
-        })
+        .catch(err => next(err))
 }
 const editUser = (req, res, next) => {
 
@@ -91,9 +69,7 @@ const editUser = (req, res, next) => {
     User
         .findByIdAndUpdate(user_id, { username, imageUrl, email })
         .then(response => res.json(response))
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
+        .catch(err => next(err))
 }
 
 const deleteUser = (req, res, next) => {
@@ -103,9 +79,7 @@ const deleteUser = (req, res, next) => {
     User
         .findByIdAndDelete(user_id)
         .then(() => res.status(200).json({ message: "OK" }))
-        .catch(err => {
-            res.status(500).json({ message: "Internal Server Error" })
-        })
+        .catch(err => next(err))
 }
 
 const verify = (req, res, next) => {

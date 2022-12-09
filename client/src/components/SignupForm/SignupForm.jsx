@@ -1,11 +1,10 @@
 import { useState, useContext } from "react"
 import { Form, Button } from "react-bootstrap"
 import authService from "../../services/auth.service"
-
 import { useNavigate } from 'react-router-dom'
-
 import { MessageContext } from './../../contexts/userMessage.context'
 import uploadServices from "../../services/upload.service"
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
 const SignupForm = () => {
@@ -24,6 +23,8 @@ const SignupForm = () => {
 
     const { setShowToast, setToastMessage } = useContext(MessageContext)
 
+    const [errors, setErrors] = useState([])
+
     const navigate = useNavigate()
 
     const handleSubmit = e => {
@@ -37,7 +38,9 @@ const SignupForm = () => {
                 setToastMessage('Usuario creado correctamente')
                 navigate('/iniciar-sesion')
             })
-            .catch(err => console.log(err))
+            .catch(err => {
+                setErrors(err.response.data.errorMessages)
+            })
     }
 
     const [loadingImage, setLoadingImage] = useState(false)
@@ -55,7 +58,7 @@ const SignupForm = () => {
                 setSignupData({ ...signupData, images: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const { username, password, email, imageUrl } = signupData
@@ -83,6 +86,8 @@ const SignupForm = () => {
                 <Form.Label>Foto de perfil</Form.Label>
                 <Form.Control type="file" onChange={handleFileUpload} />
             </Form.Group>
+
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Registrarme'}</Button>

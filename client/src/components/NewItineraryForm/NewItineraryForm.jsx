@@ -3,8 +3,12 @@ import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 import { MessageContext } from './../../contexts/userMessage.context'
 import uploadServices from "../../services/upload.service"
+<<<<<<< HEAD
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
+=======
+import ErrorMessage from "../ErrorMessage/ErrorMessage"
+>>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 
 import { useNavigate } from 'react-router-dom'
 
@@ -36,6 +40,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
     }
 
     const navigate = useNavigate()
+    const [errors, setErrors] = useState([])
 
     const handleFormSubmit = e => {
         e.preventDefault()
@@ -49,7 +54,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 // fireFinalActions()
                 navigate(`/detalles/${itinerary_id}`)
             })
-            .catch(err => console.error(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const [loadingImage, setLoadingImage] = useState(false)
@@ -67,7 +72,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 setItineraryData({ ...itineraryData, images: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
-            .catch(err => console.log(err))
+            .catch(err => setErrors(err.response.data.errorMessages))
     }
 
     const { city, transport, category, title, duration, pets, description, images } = itineraryData
@@ -176,6 +181,8 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Label>Imágenes</Form.Label>
                 <Form.Control type="file" multiple onChange={handleFileUpload} />
             </Form.Group>
+
+            {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear ruta'}</Button>

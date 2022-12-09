@@ -44,7 +44,9 @@ class ItineraryService {
         return this.api.delete(`/delete/${itinerary_id}`)
     }
 
-
+    getAllDestinations() {
+        return this.api.get('/getAllDestinations')
+    }
 }
 
 const itineraryService = new ItineraryService()
