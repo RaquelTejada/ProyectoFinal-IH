@@ -62,11 +62,16 @@ const filteredItineraries = (req, res, next) => {
         .catch(err => res.status(500).json(err))
 }
 
+
+
+
+
 module.exports = {
     getAllItineraries,
     getOneItinerary,
     editItinerary,
     deleteItinerary,
     saveItinerary,
-    filteredItineraries
+    filteredItineraries,
+
 }

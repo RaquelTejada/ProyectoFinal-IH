@@ -3,7 +3,7 @@ import { Button, ButtonGroup, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { AuthContext } from './../../contexts/auth.context'
 import { MessageContext } from './../../contexts/userMessage.context'
-import { Link, useParams, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import itineraryService from '../../services/itineraries.service'
 import { ItinerariesContext } from '../../contexts/itinerary.context';
 

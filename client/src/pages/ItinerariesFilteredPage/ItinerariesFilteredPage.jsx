@@ -1,5 +1,4 @@
 import './ItinerariesFilteredPage.css'
-import { useParams } from 'react-router-dom'
 import ItinerariesList from '../../components/ItinerariesList/ItinerariesList'
 import { ItinerariesContext } from '../../contexts/itinerary.context'
 import { useContext } from 'react'
@@ -10,7 +9,7 @@ const ItinerariesFilteredPage = () => {
 
     return (
         <div>
-            <h1>Events List</h1>
+            <h1>Elige la categoría que te apetece para poder ver tus rutas...</h1>
             <ItinerariesList />
         </div>
     )

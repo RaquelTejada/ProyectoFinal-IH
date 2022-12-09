@@ -3,6 +3,8 @@ import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 import { MessageContext } from './../../contexts/userMessage.context'
 import uploadServices from "../../services/upload.service"
+import PlacesAutocomplete from 'react-places-autocomplete';
+import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
 
 import { useNavigate } from 'react-router-dom'
 
@@ -69,13 +71,56 @@ const NewItineraryForm = ({ fireFinalActions }) => {
     }
 
     const { city, transport, category, title, duration, pets, description, images } = itineraryData
+    const [autocompleteCity, setAutocompleteCity] = useState('')
+    const [coordinates, setCoordinates] = useState({
+        lat: null,
+        lng: null
+    })
+    const handleSelect = async value => {
+        const result = geocodeByAddress(value)
+        console.log(value)
+        setItineraryData({ ...itineraryData, ['city']: value })
 
+    }
     return (
         <Form onSubmit={handleFormSubmit}>
-            <Form.Group className="mb-3" controlId="name">
+
+            <PlacesAutocomplete
+                value={autocompleteCity}
+                onChange={setAutocompleteCity}
+                onSelect={handleSelect}
+            >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+
+                        <p>Latitude: {coordinates.lat}</p>
+                        <p>Longitude: {coordinates.lng}</p>
+
+                        <Form.Group className="mb-3" controlId="name">
+                            <Form.Label>Ciudad</Form.Label>
+                            {/* <Form.Control input {...getInputProps({ placeholder: "Escriba la ciudad" })} className="mb-3" /> */}
+                            <input {...getInputProps({ placeholder: "Escriba la ciudad" })} className="form-control" />
+                        </Form.Group>
+
+                        {/* <input {...getInputProps({ placeholder: "Escriba la ciudad" })} className="mb-3" /> */}
+                        <div>
+                            {loading ? <div>...Cargando</div> : null}
+                            {suggestions.map(suggestion => {
+                                const style = {
+                                    backgroundColor: suggestion.active ? "#F5EBE0" : '#fff'
+                                }
+                                return <div {...getSuggestionItemProps(suggestion, { style })}>
+                                    {suggestion.description}
+                                </div>
+                            })}
+                        </div>
+                    </div>
+                )}
+            </PlacesAutocomplete>
+            {/* <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Ciudad</Form.Label>
                 <Form.Control type="text" value={city} onChange={handleInputChange} name="city" />
-            </Form.Group>
+            </Form.Group> */}
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Medio de transporte</Form.Label>
@@ -135,7 +180,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
             <div className="d-grid">
                 <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear ruta'}</Button>
             </div>
-        </Form>
+        </Form >
     )
 }
 

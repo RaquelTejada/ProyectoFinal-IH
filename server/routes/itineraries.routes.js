@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { getAllItineraries, getOneItinerary, editItinerary, deleteItinerary, saveItinerary, filteredItineraries } = require('../controllers/itineraries.controller')
+const { getAllItineraries, getOneItinerary, editItinerary, deleteItinerary, saveItinerary, filteredItineraries, detailsItinerary } = require('../controllers/itineraries.controller')
 
 router.get('/getAllItineraries', getAllItineraries)
 
@@ -13,5 +13,7 @@ router.delete('/delete/:itinerary_id', deleteItinerary)
 router.post('/saveItinerary', saveItinerary)
 
 router.get('/filtered', filteredItineraries)
+
+
 
 module.exports = router

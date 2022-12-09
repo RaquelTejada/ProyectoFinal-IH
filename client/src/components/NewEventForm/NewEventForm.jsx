@@ -25,7 +25,6 @@ const NewEventForm = ({ fireFinalActions }) => {
         setEventData({ ...eventData, [name]: value })
     }
 
-
     const navigate = useNavigate()
 
     const handleFormSubmit = e => {
