@@ -8,10 +8,10 @@ const jwt = require('jsonwebtoken')
 
 const signup = (req, res, next) => {
 
-    const { email, password, username } = req.body
+    const { email, password, username, imageUrl } = req.body
 
     User
-        .create({ email, password, username })
+        .create({ email, password, username, imageUrl })
         .then((createdUser) => {
             const { email, username, _id, imageUrl } = createdUser
             const user = { email, username, _id, imageUrl }

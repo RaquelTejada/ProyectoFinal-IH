@@ -2,34 +2,9 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import './HomePage.css'
 import { Card } from 'react-bootstrap'
-import { useState, useContext, useEffect } from 'react'
-import { ItinerariesContext } from '../../contexts/itinerary.context'
-import { useParams } from 'react-router-dom'
-import axios from 'axios'
-
+import SelectSupplier from '../../components/SelectSupplier/SelectSupplier'
 
 const HomePage = () => {
-
-    const { itineraries, getAllItineraries } = useContext(ItinerariesContext)
-    const [query, setQuery] = useState('')
-
-    const [iti, setIti] = useState('')
-
-    // const itiArray = () => {
-    //     itineraries.map(elm => {
-    //         setIti(elm.city)
-    //     })
-    //     console.log(itiArray)
-    // }
-
-
-    // useEffect(() => {
-    //     getAllItineraries()
-    // }, []);
-
-    const handleQuery = (e) => {
-        setQuery(e.target.value);
-    };
 
 
     return (
@@ -39,7 +14,7 @@ const HomePage = () => {
 
                 <h1 className='home-page-title'>Destinos destacados</h1>
 
-                <input className='form-control mb-3' type='text' value={query} onChange={handleQuery} placeholder='...busca por destino' />
+                {/* <SelectSupplier /> */}
 
                 <Row>
                     <Col >

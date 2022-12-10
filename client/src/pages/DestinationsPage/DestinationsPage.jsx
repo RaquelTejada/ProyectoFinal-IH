@@ -19,12 +19,11 @@ const DestinationsPage = () => {
     useEffect(() => {
         printDestinations()
     }, [])
-    console.log(destinations)
+
     return (
         <>
             {
                 destinations ? destinations.map((destination, idx) => {
-                    console.log(destination)
                     return (
                         <Card className="mb-4 DestinationCard" key={idx}>
                             <Card.Body>

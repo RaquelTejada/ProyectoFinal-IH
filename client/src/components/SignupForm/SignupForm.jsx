@@ -55,7 +55,7 @@ const SignupForm = () => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setSignupData({ ...signupData, images: res.data.cloudinary_url })
+                setSignupData({ ...signupData, imageUrl: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
             .catch(err => setErrors(err.response.data.errorMessages))
@@ -84,7 +84,7 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Foto de perfil</Form.Label>
-                <Form.Control type="file" onChange={handleFileUpload} />
+                <Form.Control type="file" value={imageUrl} name='imageUrl' onChange={handleFileUpload} />
             </Form.Group>
 
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
