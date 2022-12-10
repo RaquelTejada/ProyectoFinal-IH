@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import ItineraryDetailsCard from '../../components/ItineraryDetailsCard/ItineraryDetailsCard';
 import CreateEvent from '../../components/CreateEvent/CreateEvent';
+import MyMap from '../../components/ItineraryMap/ItineraryMap';
 
 function ItineraryDetailsPage(props) {
     const [itinerary, setItinerary] = useState()
@@ -27,6 +28,8 @@ function ItineraryDetailsPage(props) {
                 : 'Cargando...'}
 
             <CreateEvent />
+
+            <MyMap />
         </>
     );
 }

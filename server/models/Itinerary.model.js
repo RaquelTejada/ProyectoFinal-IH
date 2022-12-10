@@ -51,13 +51,20 @@ const itinerarySchema = new Schema(
 
         // },
 
-        // Like: {
+        events: {
+            type: Schema.Types.ObjectId,
+            ref: 'Event'
+        },
 
-        // },
+        locations: [{
+            type:
+            {
+                type: String
+            },
 
-        // Fav: {
+            coordinates: [Number]
 
-        // }
+        }]
     },
 
     {

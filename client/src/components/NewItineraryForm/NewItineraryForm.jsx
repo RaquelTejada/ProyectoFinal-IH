@@ -3,12 +3,9 @@ import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 import { MessageContext } from './../../contexts/userMessage.context'
 import uploadServices from "../../services/upload.service"
-<<<<<<< HEAD
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
-=======
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
->>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 
 import { useNavigate } from 'react-router-dom'
 
@@ -22,7 +19,9 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         duration: '',
         pets: false,
         description: '',
-        images: ''
+        images: '',
+        location: ''
+
     })
 
     const { setShowToast, setToastMessage } = useContext(MessageContext)
@@ -46,7 +45,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         itinerariesService
-            .saveItinerary(itineraryData)
+            .saveItinerary({ ...itineraryData, coordinates })
             .then((response) => {
                 const { _id: itinerary_id } = response.data
                 setShowToast(true)
@@ -82,8 +81,10 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         lng: null
     })
     const handleSelect = async value => {
-        const result = geocodeByAddress(value)
-        console.log(value)
+        const result = await geocodeByAddress(value)
+        const latLng = await getLatLng(result[0])
+        setAutocompleteCity(value)
+        setCoordinates(latLng)
         setItineraryData({ ...itineraryData, ['city']: value })
 
     }

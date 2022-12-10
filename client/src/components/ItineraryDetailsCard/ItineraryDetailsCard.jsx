@@ -4,7 +4,6 @@ import Card from 'react-bootstrap/Card'
 
 
 function ItineraryDetailsCard({ itinerary }) {
-    console.log(itinerary)
 
     return (
         <>

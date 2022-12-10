@@ -45,6 +45,12 @@ const deleteItinerary = (req, res, next) => {
 
 const saveItinerary = (req, res, next) => {
 
+    // const location = {
+    //     type: 'Point',
+    //     coordinates: [lat, lng]
+    // }
+    console.log(req.body)
+
     Itinerary
         .create({ ...req.body, owner: req.payload._id })
         .then(response => res.json(response))
@@ -59,10 +65,6 @@ const filteredItineraries = (req, res, next) => {
         .catch(err => next(err))
 }
 
-<<<<<<< HEAD
-
-
-=======
 const getAllDestinations = (req, res, next) => {
 
     Itinerary
@@ -78,7 +80,6 @@ const getAllDestinations = (req, res, next) => {
         })
         .catch(err => next(err))
 }
->>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 
 
 module.exports = {
@@ -88,9 +89,5 @@ module.exports = {
     deleteItinerary,
     saveItinerary,
     filteredItineraries,
-<<<<<<< HEAD
-
-=======
     getAllDestinations
->>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 }
