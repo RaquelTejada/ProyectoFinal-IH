@@ -59,10 +59,6 @@ const filteredItineraries = (req, res, next) => {
         .catch(err => next(err))
 }
 
-<<<<<<< HEAD
-
-
-=======
 const getAllDestinations = (req, res, next) => {
 
     Itinerary
@@ -78,7 +74,6 @@ const getAllDestinations = (req, res, next) => {
         })
         .catch(err => next(err))
 }
->>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 
 
 module.exports = {
@@ -88,9 +83,5 @@ module.exports = {
     deleteItinerary,
     saveItinerary,
     filteredItineraries,
-<<<<<<< HEAD
-
-=======
     getAllDestinations
->>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 }

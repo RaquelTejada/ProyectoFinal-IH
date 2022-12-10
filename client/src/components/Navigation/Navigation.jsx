@@ -27,7 +27,7 @@ const Navigation = () => {
                 </Nav>
                 <Form className="d-flex me-5">
                     <NavDropdown title="Acceso" align="end">
-                        <Link to="/">
+                        <Link to="/perfil">
                             {user && <Nav.Link as='div' onClick={authenticateUser}>Perfil</Nav.Link>}
                         </Link>
                         <Link to="/registro">

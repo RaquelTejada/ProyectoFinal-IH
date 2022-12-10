@@ -16,7 +16,6 @@ function ItinerariesProviderWrapper(props) {
         itineraryService
             .getFilteredItineraries(city, category)
             .then((response) => {
-                console.log(response.data)
                 setItineraries(response.data)
             })
             .catch(err => console.log(err))
@@ -26,7 +25,6 @@ function ItinerariesProviderWrapper(props) {
         itineraryService
             .getFilteredItineraries(city)
             .then((response) => {
-                console.log(response.data)
                 setItineraries(response.data)
             })
             .catch(err => console.log(err))
@@ -46,7 +44,6 @@ function ItinerariesProviderWrapper(props) {
             .getOneItinerary(itinerary_id)
             .then((response) => {
                 setItineraries(response.data)
-                console.log(response.data)
             })
             .catch(err => console.log(err))
     }

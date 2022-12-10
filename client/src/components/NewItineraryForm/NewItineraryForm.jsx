@@ -3,12 +3,9 @@ import { Form, Button } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 import { MessageContext } from './../../contexts/userMessage.context'
 import uploadServices from "../../services/upload.service"
-<<<<<<< HEAD
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
-=======
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
->>>>>>> f51edf5a44771dbdcd098841cbdb854a8ac50ecc
 
 import { useNavigate } from 'react-router-dom'
 
