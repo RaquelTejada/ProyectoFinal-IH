@@ -4,6 +4,7 @@ const itinerarySchema = new Schema(
     {
         city: {
             type: String,
+            trim: true,
             required: [true, 'La ciudad es obligatoria']
         },
 
