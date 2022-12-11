@@ -1,9 +1,10 @@
-import { Container, Row, Col, Button } from 'react-bootstrap'
+import { Container, Row, Col, Button, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import './ItinerariesType.css'
 import { useEffect, useState, useContext } from 'react'
 import { ItinerariesContext } from '../../contexts/itinerary.context'
 import ItinerariesList from '../ItinerariesList/ItinerariesList'
+import { Link } from 'react-router-dom'
 
 const ItineraryType = () => {
 
@@ -27,21 +28,52 @@ const ItineraryType = () => {
         loadItineraries(itinerarySpecs.city, name)
     }
 
-    const { category, city } = itinerarySpecs
+    const { city } = itinerarySpecs
 
     return (
-        <div className='main-div-home-page'>
+        <div >
 
-            <Container>
+            <Container fluid className='category-container'>
 
-                <Button name="Arte" onClick={handleTypeChange}>Arte</Button>
-                <Button name="Gastronomia" onClick={handleTypeChange}>Gastronomía</Button>
-                <Button name="Naturaleza" onClick={handleTypeChange}>Naturaleza</Button>
-                <Button name="Ocio nocturno" onClick={handleTypeChange}>Ocio nocturno</Button>
-                <Button name="Turismo rural" onClick={handleTypeChange}>Turismo rural</Button>
-                <hr />
+                <h1 className='card-title category-capitalize'>{city}</h1>
 
-                <h1>Resultados de itinerarios de {category} en {city}</h1>
+                <Row className='category-row'>
+
+                    <Card className='category-card' >
+                        <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670756908/arte.webp" />
+                        <Card.Body>
+                            <Link name="Arte" className='category-title' onClick={handleTypeChange}>Arte</Link>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className='category-card'>
+                        <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670754391/gastronomia.webp" />
+                        <Card.Body>
+                            <Link name="Gastronomia" className='category-title' onClick={handleTypeChange}>Gastronomía</Link>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className='category-card'>
+                        <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758617/naturaleza.webp" />
+                        <Card.Body>
+                            <Link name="Naturaleza" className='category-title' onClick={handleTypeChange}>Naturaleza</Link>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className='category-card'>
+                        <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670757667/ocioNocturno.jpg" />
+                        <Card.Body>
+                            <Link name="Ocio nocturno" className='category-title' onClick={handleTypeChange}>Ocio nocturno</Link>
+                        </Card.Body>
+                    </Card>
+
+                    <Card className='category-card'>
+                        <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758326/turismo.jpg" />
+                        <Card.Body>
+                            <Link name=">Turismo rural" className='category-title' onClick={handleTypeChange}>Turismo rural</Link>
+                        </Card.Body>
+                    </Card>
+                </Row>
 
                 <ItinerariesList />
 
