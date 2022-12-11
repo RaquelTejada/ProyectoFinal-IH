@@ -8,6 +8,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 const NewEventForm = ({ fireFinalActions }) => {
 
+
+
     const [eventData, setEventData] = useState({
 
         title: '',

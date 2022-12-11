@@ -8,6 +8,7 @@ import MyMap from '../../components/ItineraryMap/ItineraryMap';
 import EventCalendar from '../../components/Calendar/Calendar';
 
 function ItineraryDetailsPage() {
+
     const [itinerary, setItinerary] = useState()
     const { itinerary_id } = useParams()
 
@@ -31,7 +32,6 @@ function ItineraryDetailsPage() {
             <CreateEvent />
             <EventCalendar />
             <MyMap />
-            <CreateEvent />
         </>
     );
 }

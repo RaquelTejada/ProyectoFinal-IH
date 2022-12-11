@@ -15,19 +15,20 @@ const CreateEvent = () => {
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
-    // const { user } = useContext(AuthContext)
-
-    const fireFinalActions = () => {
-        closeModal()
-    }
-
-    useEffect(() => {
-
+    const loadEvents = () => {
         eventService
             .getEvents()
             .then(({ data }) => setEvents(data))
             .catch(err => console.log(err))
+    }
 
+    const fireFinalActions = () => {
+        loadEvents()
+        closeModal()
+    }
+
+    useEffect(() => {
+        loadEvents()
     }, [])
 
     return (
