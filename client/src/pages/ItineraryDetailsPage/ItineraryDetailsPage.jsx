@@ -5,8 +5,9 @@ import { useState, useEffect } from 'react';
 import ItineraryDetailsCard from '../../components/ItineraryDetailsCard/ItineraryDetailsCard';
 import CreateEvent from '../../components/CreateEvent/CreateEvent';
 import MyMap from '../../components/ItineraryMap/ItineraryMap';
+import EventCalendar from '../../components/Calendar/Calendar';
 
-function ItineraryDetailsPage(props) {
+function ItineraryDetailsPage() {
     const [itinerary, setItinerary] = useState()
     const { itinerary_id } = useParams()
 
@@ -26,6 +27,9 @@ function ItineraryDetailsPage(props) {
             {itinerary ?
                 <ItineraryDetailsCard itinerary={itinerary} />
                 : 'Cargando...'}
+
+            <CreateEvent />
+            <EventCalendar />
             <MyMap />
             <CreateEvent />
         </>
