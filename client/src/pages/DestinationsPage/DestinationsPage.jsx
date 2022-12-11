@@ -1,7 +1,8 @@
 import './DestinationsPage.css'
-import { Card } from 'react-bootstrap'
+import { Card, Container, Row, Col } from 'react-bootstrap'
 import itineraryService from '../../services/itineraries.service'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 
 
 const DestinationsPage = () => {
@@ -20,23 +21,27 @@ const DestinationsPage = () => {
         printDestinations()
     }, [])
 
+
     return (
         <>
-            {
-                destinations ? destinations.map((destination, idx) => {
-                    return (
-                        <Card className="mb-4 DestinationCard" key={idx}>
-                            <Card.Body>
-                                <Card.Title><h3>{destination}</h3></Card.Title>
-                                {/* <Card.Text>
-                                    <h4>{destination.title}</h4>
-                                    <h5>{destination.transport}</h5>
-                                </Card.Text> */}
-                            </Card.Body>
-                        </Card>)
-                })
-                    :
-                    'Cargando...'}
+            <Container fluid>
+                <Row>
+                    {
+                        destinations ? destinations.map((destination, idx) => {
+                            return (
+                                <Col md={{ span: 4 }}>
+                                    <Card className="mb-4 destination-card" key={idx}>
+                                        < Link to={`/itinerario/${destination}`} >
+                                            <span className='card-title destination-span'>{destination}</span>
+                                        </Link >
+                                    </Card>
+                                </Col>
+                            )
+                        })
+                            :
+                            'Cargando...'}
+                </Row>
+            </Container>
         </>
     )
 

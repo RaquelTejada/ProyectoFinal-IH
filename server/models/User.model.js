@@ -24,7 +24,7 @@ const userSchema = new Schema(
 
     imageUrl: {
       type: String,
-      default: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/2c/Default_pfp.svg/1200px-Default_pfp.svg.png'
+      default: 'https://img.freepik.com/foto-gratis/toma-interior-hermosa-mujer-afroamericana-feliz-sonriendo-alegremente-manteniendo-brazos-cruzados-relajandose-interior-despues-conferencias-matutinas-universidad_273609-1270.jpg?w=1380&t=st=1670762540~exp=1670763140~hmac=64dce91ff8c86ed513caeb392d33535e91ae6d22785f015886d9044c6665b7b2'
     },
 
     // Fav: {

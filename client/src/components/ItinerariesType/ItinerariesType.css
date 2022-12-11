@@ -1,0 +1,30 @@
+.category-container {
+    margin-top: 2rem;
+}
+
+.category-card {
+    width: 20rem;
+    height: 18rem;
+}
+
+.category-image {
+    margin-top: 15px;
+    height: 18rem;
+}
+
+.category-title {
+    font-size: 30px;
+    font-weight: 200;
+    text-shadow: 2px 2px #D6CCC2;
+    color: rgb(30, 30, 30);
+}
+
+.category-row {
+    display: flex;
+    justify-content: space-around;
+}
+
+.category-capitalize {
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
