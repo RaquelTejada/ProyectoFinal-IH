@@ -3,6 +3,11 @@ import { useCallback } from 'react'
 import '../ItineraryMap/ItineraryMap.css'
 import { useState } from 'react'
 
+const containerStyle = {
+    width: '100%',
+    height: '400px'
+}
+
 function MyMap(props) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -40,7 +45,8 @@ function MyMap(props) {
     }, [])
 
     return isLoaded ? (
-        <GoogleMap className='map'
+        <GoogleMap
+            mapContainerStyle={containerStyle}
             position={position}
             options={OPTIONS}
             onLoad={onLoad}

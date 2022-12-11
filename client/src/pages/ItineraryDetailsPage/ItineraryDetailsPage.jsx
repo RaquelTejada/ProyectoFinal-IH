@@ -26,10 +26,8 @@ function ItineraryDetailsPage(props) {
             {itinerary ?
                 <ItineraryDetailsCard itinerary={itinerary} />
                 : 'Cargando...'}
-
-            <CreateEvent />
-
             <MyMap />
+            <CreateEvent />
         </>
     );
 }

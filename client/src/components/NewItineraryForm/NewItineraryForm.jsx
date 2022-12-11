@@ -6,6 +6,7 @@ import uploadServices from "../../services/upload.service"
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
+import SelectSupplier from "../SelectSupplier/SelectSupplier"
 
 import { useNavigate } from 'react-router-dom'
 
@@ -20,7 +21,8 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         pets: false,
         description: '',
         images: '',
-        location: ''
+        lat: 0,
+        lng: 0
 
     })
 
@@ -45,7 +47,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         itinerariesService
-            .saveItinerary({ ...itineraryData, coordinates })
+            .saveItinerary({ ...itineraryData, coordinates: itineryLocations })
             .then((response) => {
                 const { _id: itinerary_id } = response.data
                 setShowToast(true)
@@ -74,7 +76,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
             .catch(err => setErrors(err.response.data.errorMessages))
     }
 
-    const { city, transport, category, title, duration, pets, description, images } = itineraryData
+    const { city, transport, category, title, duration, pets, description, images, lat, lng } = itineraryData
     const [autocompleteCity, setAutocompleteCity] = useState('')
     const [coordinates, setCoordinates] = useState({
         lat: null,
@@ -88,42 +90,18 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         setItineraryData({ ...itineraryData, ['city']: value })
 
     }
+    const [itineryLocations, setItineraryLocations] = useState([])
+    const handleItinerary = () => {
+        setItineraryLocations([...itineryLocations, coordinates])
+    }
+    console.log({ itineryLocations })
+
     return (
         <Form onSubmit={handleFormSubmit}>
+            {/* <SelectSupplier /> */}
 
-            <PlacesAutocomplete
-                value={autocompleteCity}
-                onChange={setAutocompleteCity}
-                onSelect={handleSelect}
-            >
-                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-                    <div>
-
-                        <p>Latitude: {coordinates.lat}</p>
-                        <p>Longitude: {coordinates.lng}</p>
-
-                        <Form.Group className="mb-3" controlId="name">
-                            <Form.Label>Ciudad</Form.Label>
-                            {/* <Form.Control input {...getInputProps({ placeholder: "Escriba la ciudad" })} className="mb-3" /> */}
-                            <input {...getInputProps({ placeholder: "Escriba la ciudad" })} className="form-control" />
-                        </Form.Group>
-
-                        {/* <input {...getInputProps({ placeholder: "Escriba la ciudad" })} className="mb-3" /> */}
-                        <div>
-                            {loading ? <div>...Cargando</div> : null}
-                            {suggestions.map(suggestion => {
-                                const style = {
-                                    backgroundColor: suggestion.active ? "#F5EBE0" : '#fff'
-                                }
-                                return <div {...getSuggestionItemProps(suggestion, { style })}>
-                                    {suggestion.description}
-                                </div>
-                            })}
-                        </div>
-                    </div>
-                )}
-            </PlacesAutocomplete>
-            {/* <Form.Group className="mb-3" controlId="name">
+            {/* 
+            <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Ciudad</Form.Label>
                 <Form.Control type="text" value={city} onChange={handleInputChange} name="city" />
             </Form.Group> */}
@@ -182,6 +160,32 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Label>Imágenes</Form.Label>
                 <Form.Control type="file" multiple onChange={handleFileUpload} />
             </Form.Group>
+            <PlacesAutocomplete
+                value={autocompleteCity}
+                onChange={setAutocompleteCity}
+                onSelect={handleSelect}
+            >
+                {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+                    <div>
+
+                        <Form.Group className="mb-3" controlId="name">
+                            <Button onClick={handleItinerary} variant="dark" className='form-label'>Añadir paradas</Button>
+                            <input {...getInputProps({ placeholder: "Escriba la parada" })} className="form-control" />
+                        </Form.Group>
+                        <div>
+                            {loading ? <div>...Cargando</div> : null}
+                            {suggestions.map(suggestion => {
+                                const style = {
+                                    backgroundColor: suggestion.active ? "#F5EBE0" : '#fff'
+                                }
+                                return <div {...getSuggestionItemProps(suggestion, { style })}>
+                                    {suggestion.description}
+                                </div>
+                            })}
+                        </div>
+                    </div>
+                )}
+            </PlacesAutocomplete>
 
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
