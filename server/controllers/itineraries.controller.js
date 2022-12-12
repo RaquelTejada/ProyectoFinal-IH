@@ -28,7 +28,7 @@ const editItinerary = (req, res, next) => {
     const { city, transport, category, title, duration, pets, description, images } = req.body
 
     Itinerary
-        .findByIdAndUpdate(itinerary_id, { city, transport, category, title, duration, pets, description, images })
+        .findByIdAndUpdate(itinerary_id, { city, transport, category, title, duration, pets, description, images }, { new: true })
         .then(response => res.json(response))
         .catch(err => next(err))
 }

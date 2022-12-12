@@ -48,9 +48,9 @@ function ItinerariesProviderWrapper(props) {
             .catch(err => console.log(err))
     }
 
-    useEffect(() => {
-        getAllItineraries()
-    }, [])
+    // useEffect(() => {
+    //     getAllItineraries()
+    // }, [])
 
 
     return (

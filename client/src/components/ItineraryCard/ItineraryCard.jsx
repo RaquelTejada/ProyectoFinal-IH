@@ -31,42 +31,10 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
             .catch(err => console.error(err))
     }
 
-    const [itinerary, setItinerary] = useState()
     const [showModal, setShowModal] = useState(false)
-
-    const { itinerary_id } = useParams();
-    const navigate = useNavigate()
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
-
-    useEffect(() => {
-        itineraryService
-            .getOneItinerary(itinerary_id)
-            .then((response) => {
-                const editItinerary = response.data;
-                setItinerary(editItinerary);
-            })
-            .catch((error) => console.log(error));
-
-    }, [itinerary_id]);
-
-    const handleFormSubmit = e => {
-        e.preventDefault()
-
-        itineraryService
-            .editItinerary(itinerary_id, itinerary)
-            .then(() => {
-                setShowToast(true)
-                setToastMessage('Ruta editada correctamente')
-                // fireFinalActions()
-                closeModal()
-
-                // navigate(`/detalles/${itinerary_id}`)
-            })
-            .catch(err => console.error(err))
-    }
-
 
     return (
         <>
@@ -96,7 +64,7 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
                                                     <Modal.Title>Editar Ruta</Modal.Title>
                                                 </Modal.Header>
                                                 <Modal.Body>
-                                                    <EditItineraryForm itinerary={itinerary} setItinerary={setItinerary} handleFormSubmit={handleFormSubmit} />
+                                                    <EditItineraryForm itinerary_id={_id} closeModal={closeModal} />
                                                 </Modal.Body>
                                             </Modal>
                                         </div>

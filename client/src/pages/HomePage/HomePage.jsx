@@ -14,7 +14,7 @@ const HomePage = () => {
 
                 <h1 className='home-page-title'>Destinos destacados</h1>
 
-                {/* <SelectSupplier /> */}
+                <SelectSupplier />
 
                 <Row>
                     <Col >
