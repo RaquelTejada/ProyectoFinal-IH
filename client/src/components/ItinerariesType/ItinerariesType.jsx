@@ -1,4 +1,4 @@
-import { Container, Row, Col, Button, Card } from 'react-bootstrap'
+import { Container, Row, Col, Card } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import './ItinerariesType.css'
 import { useEffect, useState, useContext } from 'react'
@@ -28,8 +28,6 @@ const ItineraryType = () => {
         loadItineraries(itinerarySpecs.city, name)
     }
 
-
-
     const { city } = itinerarySpecs
 
     return (
@@ -40,7 +38,7 @@ const ItineraryType = () => {
                 <h1 className='card-title category-capitalize'>{city}</h1>
 
                 <Row className='category-row'>
-                    <Col sm={{ span: 2 }}>
+                    <Col md='auto'>
                         <Card className='category-card' >
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670756908/arte.webp" />
                             <Card.Body>
@@ -48,7 +46,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={{ span: 2 }}>
+                    <Col md='auto'>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670754391/gastronomia.webp" />
                             <Card.Body>
@@ -56,7 +54,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={{ span: 2 }}>
+                    <Col md='auto'>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758617/naturaleza.webp" />
                             <Card.Body>
@@ -64,7 +62,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={{ span: 2 }}>
+                    <Col md='auto'>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670757667/ocioNocturno.jpg" />
                             <Card.Body>
@@ -72,7 +70,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col sm={{ span: 2 }}>
+                    <Col md='auto'>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758326/turismo.jpg" />
                             <Card.Body>

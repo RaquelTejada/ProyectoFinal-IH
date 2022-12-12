@@ -54,7 +54,6 @@ const EventCalendar = () => {
 
     return (
         <div className="App">
-            <h1>Eventos</h1>
             <Calendar localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
         </div>
     );

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react"
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
-
-// import { AuthContext } from '../../contexts/auth.context'
+import './CreateEvent.css'
 
 import NewEventForm from "../../components/NewEventForm/NewEventForm"
 
@@ -33,10 +32,13 @@ const CreateEvent = () => {
 
     return (
         <div>
-            <Container className="Events">
-                <Row>
-                    <Col md={{ span: 8, offset: 2 }}>
-                        <Button onClick={openModal} variant="dark">Crear nuevo evento</Button>
+            <Container>
+                <Row className="d-flex align-items-center">
+                    <Col>
+                        <h1 className="details-title">Eventos</h1>
+                    </Col>
+                    <Col>
+                        <Button className="fill details-event-button" onClick={openModal} variant="gray" size="sm">Crear nuevo evento</Button>
                     </Col>
                 </Row>
             </Container>
@@ -49,7 +51,7 @@ const CreateEvent = () => {
                     <NewEventForm fireFinalActions={fireFinalActions} />
                 </Modal.Body>
             </Modal >
-        </div>
+        </div >
     )
 }
 

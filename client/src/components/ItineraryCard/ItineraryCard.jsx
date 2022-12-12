@@ -38,43 +38,55 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
 
     return (
         <>
-            <Card className="mb-4 ItineraryCard">
-                <Card.Img variant="top" src={images} />
-                <Card.Body>
-                    <Link to={`/detalles/${_id}`}>
-                        <div>
-                            <Card.Title><h3>{title}</h3></Card.Title>
-                        </div>
-                    </Link>
+            {
+                !user
+                    ?
+                    < Card className="mb-4 ItineraryCard">
+                        <Card.Img variant="top" src={images} />
+                        <Link to={`/iniciar-sesion`}>
+                            <div>
+                                <Card.Title><h3>{title}</h3></Card.Title>
+                            </div>
+                        </Link>
+                    </Card>
+                    :
 
-                    {
-                        !owner || owner != user?._id
-                            ?
-                            <>
-                            </>
-                            :
-                            <>
-                                <div className="d-grid">
-                                    <ButtonGroup aria-label="Basic example">
-                                        <Button variant="dark" size="sm" onClick={deleteItinerary}>Eliminar</Button>
-                                        <div>
-                                            <Button variant="dark" onClick={openModal}>Edit</Button>
-                                            <Modal show={showModal} onHide={closeModal}>
-                                                <Modal.Header closeButton>
-                                                    <Modal.Title>Editar Ruta</Modal.Title>
-                                                </Modal.Header>
-                                                <Modal.Body>
-                                                    <EditItineraryForm itinerary_id={_id} closeModal={closeModal} />
-                                                </Modal.Body>
-                                            </Modal>
-                                        </div>
-                                        {/* <Button variant="dark" size="sm" onClick={() => alert('ENLAZAR PÁGINA DE EDITAR')}>Editar</Button> */}
-                                    </ButtonGroup>
+                    < Card className="mb-4 itinerary-card">
+                        <Card.Img className='itinerary-image' variant="top" src={images} />
+                        <Card.Body>
+                            <Link to={`/detalles/${_id}`}>
+                                <div>
+                                    <Card.Title className='itinerary-title'><h3>{title}</h3></Card.Title>
                                 </div>
-                            </>
-                    }
-                </Card.Body>
-            </Card>
+                            </Link>
+                            {
+                                !owner || owner != user?._id
+                                    ?
+                                    <>
+                                    </>
+                                    :
+                                    <>
+                                        <div className="d-grid">
+                                            <ButtonGroup aria-label="Basic example">
+                                                <Button variant="dark" size="sm" onClick={deleteItinerary}>Eliminar</Button>
+                                                <div>
+                                                    <Button variant="dark" onClick={openModal}>Edit</Button>
+                                                    <Modal show={showModal} onHide={closeModal}>
+                                                        <Modal.Header closeButton>
+                                                            <Modal.Title>Editar Ruta</Modal.Title>
+                                                        </Modal.Header>
+                                                        <Modal.Body>
+                                                            <EditItineraryForm itinerary_id={_id} closeModal={closeModal} />
+                                                        </Modal.Body>
+                                                    </Modal>
+                                                </div>
+                                            </ButtonGroup>
+                                        </div>
+                                    </>
+                            }
+                        </Card.Body>
+                    </Card>
+            }
         </>
     );
 }

@@ -6,6 +6,7 @@ import ItineraryDetailsCard from '../../components/ItineraryDetailsCard/Itinerar
 import CreateEvent from '../../components/CreateEvent/CreateEvent';
 import MyMap from '../../components/ItineraryMap/ItineraryMap';
 import EventCalendar from '../../components/Calendar/Calendar';
+import { Container, Row, Col } from 'react-bootstrap';
 
 function ItineraryDetailsPage() {
 
@@ -29,9 +30,17 @@ function ItineraryDetailsPage() {
                 <ItineraryDetailsCard itinerary={itinerary} />
                 : 'Cargando...'}
 
-            <CreateEvent />
-            <EventCalendar />
-            <MyMap />
+            <Container fluid>
+                <Row className="mb-4 d-flex justify-content-center">
+                    <Col md={{ span: 5 }} >
+                        <MyMap />
+                    </Col>
+                    <Col md={{ span: 5 }} >
+                        <CreateEvent />
+                        <EventCalendar />
+                    </Col>
+                </Row>
+            </Container>
         </>
     );
 }

@@ -9,6 +9,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 const LoginForm = () => {
 
+    const { user } = useContext(AuthContext)
+
     const [loginData, setLoginData] = useState({
         email: '',
         password: ''

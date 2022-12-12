@@ -127,7 +127,7 @@ const EditItineraryForm = ({ itinerary_id, closeModal }) => {
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear ruta'}</Button>
+                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar itinerario'}</Button>
             </div>
 
         </Form>

@@ -39,9 +39,9 @@ const itinerarySchema = new Schema(
             required: [true, 'La descripción es obligatoria']
         },
 
-        images: [{
-            type: String,
-        }],
+        images: {
+            type: String
+        },
 
         owner: {
             type: Schema.Types.ObjectId,

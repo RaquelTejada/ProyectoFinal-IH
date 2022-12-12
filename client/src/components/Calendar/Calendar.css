@@ -1,0 +1,53 @@
+.rbc-event,
+.rbc-day-slot .rbc-background-event {
+    border: none;
+    box-sizing: border-box;
+    box-shadow: none;
+    margin: 0;
+    padding: 2px 5px;
+    background-color: #F5EBE0;
+    border-radius: 5px;
+    color: rgb(30, 30, 30);
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.rbc-event.rbc-selected,
+.rbc-day-slot .rbc-selected.rbc-background-event {
+    background-color: #D5BDAF;
+}
+
+.rbc-off-range-bg {
+    background: #EDEDE9;
+}
+
+.rbc-today {
+    background-color: #EDEDE9;
+}
+
+.rbc-button-link {
+    color: inherit;
+    background: none;
+    margin: 0;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    -webkit-user-select: text;
+    user-select: text;
+    font-family: 'Prompt';
+}
+
+.rbc-header {
+    font-family: 'Prompt';
+    overflow: hidden;
+    flex: 1 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 3px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 90%;
+    min-height: 0;
+    border-bottom: 1px solid #ddd;
+}
