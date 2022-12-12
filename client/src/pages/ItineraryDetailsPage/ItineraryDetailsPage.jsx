@@ -27,7 +27,10 @@ function ItineraryDetailsPage() {
         <>
 
             {itinerary ?
-                <ItineraryDetailsCard itinerary={itinerary} />
+                <>
+                    <ItineraryDetailsCard itinerary={itinerary} />
+                    <MyMap locations={itinerary.locations} />
+                </>
                 : 'Cargando...'}
 
             <Container fluid>

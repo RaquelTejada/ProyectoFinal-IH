@@ -8,17 +8,15 @@ const containerStyle = {
     height: '400px'
 }
 
-function MyMap(props) {
+function MyMap({ locations }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
     })
 
     const position = {
-        // lat: props.coordinates[0],
-        // lng: props.coordinates[1]
-        lat: 40.392039239994126,
-        lng: - 3.697925317949509
+        lat: locations[0].coordinates[0],
+        lng: locations[0].coordinates[1]
     }
 
     const [map, setMap] = useState(null)
@@ -54,7 +52,11 @@ function MyMap(props) {
         >
             <>
             </>
-            <Marker onLoad={MarkeronLoad} position={position} />
+            {locations.map((elm) => {
+                return (<Marker onLoad={MarkeronLoad} position={{ lat: elm.coordinates[0], lng: elm.coordinates[1] }} />)
+            })
+            }
+
         </GoogleMap>
     ) : <></>
 }
