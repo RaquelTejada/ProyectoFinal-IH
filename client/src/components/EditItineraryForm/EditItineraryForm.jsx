@@ -1,19 +1,34 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { Form, Button } from "react-bootstrap"
+import { useNavigate } from "react-router-dom"
+import itineraryService from "../../services/itineraries.service"
 import uploadServices from "../../services/upload.service"
+import { MessageContext } from './../../contexts/userMessage.context'
 
-const EditItineraryForm = ({ itinerary, setItinerary, handleFormSubmit }) => {
-    console.log(itinerary)
+
+
+const EditItineraryForm = ({ itinerary_id, closeModal }) => {
+
+    const [itineraryData, setItineraryData] = useState({})
+
+    useEffect(() => {
+        itineraryService
+            .getOneItinerary(itinerary_id)
+            .then(res => setItineraryData(res.data))
+            .catch(err => console.log(err))
+    }, [])
+
+    const navigate = useNavigate()
+
     const handleInputChange = e => {
         const { name, value } = e.target
-        console.log(name, value)
-        setItinerary({ ...itinerary, [name]: value })
+        setItineraryData({ ...itineraryData, [name]: value })
     }
 
     const handleCheckboxChange = e => {
         console.log(e.target.checked)
         const { name, checked } = e.target
-        setItinerary({ ...itinerary, [name]: checked })
+        setItineraryData({ ...itineraryData, [name]: checked })
     }
 
     const [loadingImage, setLoadingImage] = useState(false)
@@ -28,13 +43,27 @@ const EditItineraryForm = ({ itinerary, setItinerary, handleFormSubmit }) => {
         uploadServices
             .uploadimage(formData)
             .then(res => {
-                setItinerary({ ...itinerary, images: res.data.cloudinary_url })
+                setItineraryData({ ...itineraryData, images: res.data.cloudinary_url })
                 setLoadingImage(false)
             })
             .catch(err => console.log(err))
     }
 
-    const { city, transport, category, title, duration, pets, description, images } = itinerary
+    const handleFormSubmit = e => {
+        e.preventDefault()
+
+        itineraryService
+            .editItinerary(itinerary_id, itineraryData)
+            .then(() => {
+                navigate(`/detalles/${itinerary_id}`)
+                closeModal()
+            })
+            .catch(err => console.error(err))
+    }
+
+
+
+    const { city, transport, category, title, duration, pets, description, images } = itineraryData
 
     return (
         <Form onSubmit={handleFormSubmit}>

@@ -3,6 +3,7 @@ import Select from 'react-select'
 import './SelectSupplier.css'
 import itineraryService from '../../services/itineraries.service'
 import { useState, useEffect } from 'react'
+import { Navigate, useNavigate } from "react-router-dom"
 
 
 const SelectSupplier = () => {
@@ -13,26 +14,30 @@ const SelectSupplier = () => {
 
         itineraryService
             .getAllDestinations()
-            .then(response => setDestinations(response.data.cities))
+            .then(response => {
+                const mapDestinations = response.data.cities.map(elm => { return { 'label': elm, 'value': elm } })
+                setDestinations(mapDestinations)
+            })
             .catch(err => console.error(err))
     }
+
 
     useEffect(() => {
         printDestinations()
     }, [])
 
-    let mapDestinations = []
-    destinations ? (
-        mapDestinations = destinations.map(elm => { return { 'label': elm, 'value': elm } }))
-        :
-        destinations = []
+    const navigate = useNavigate()
+
+    const handleSelectChange = ({ value }) => {
+        navigate(`/itinerario/${value}`)
+    }
 
 
     return (
         <div className="Suppliers-container">
-            <Select
-                options={mapDestinations}
-            // onChange={handleSelectChange}
+            <Select placeholder='buscar por destino...'
+                options={destinations}
+                onChange={handleSelectChange}
             />
         </div>
     )
