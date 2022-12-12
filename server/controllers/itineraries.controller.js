@@ -45,16 +45,20 @@ const deleteItinerary = (req, res, next) => {
 
 const saveItinerary = (req, res, next) => {
 
-    // const locations = {
-    //     type: 'Point',
-    //     coordinates: [lat, lng]
-    // }
     const { city, description, title, transport, category, duration, pets, images, events, coordinates } = req.body
 
-    console.log(req.body)
+    const locations = coordinates.map((elm) => {
+        console.log('elm es:', elm)
+        return {
+            type: 'Point',
+            coordinates: [elm.lat, elm.lng]
+        }
+    })
+    console.log('----', locations)
+
 
     Itinerary
-        .create({ city, description, title, transport, category, duration, pets, images, events, locations: coordinates, owner: req.payload._id })
+        .create({ city, description, title, transport, category, duration, pets, images, events, locations, owner: req.payload._id })
         .then(response => res.json(response))
         .catch(err => next(err))
 }

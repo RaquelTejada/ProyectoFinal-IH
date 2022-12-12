@@ -27,7 +27,8 @@ const NewItineraryForm = ({ fireFinalActions }) => {
 
     const [currentStop, setCurrentStop] = useState({
         lat: null,
-        lng: null
+        lng: null,
+        value: null
     })
 
     const [coordinates, setCoordinates] = useState([])
@@ -36,11 +37,11 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         setItineraryData({ ...itineraryData, city: value })
     }
 
-    const [itineraryLocations, setItineraryLocations] = useState([])
+    const [itineraryLocations, setItineraryLocations] = useState()
     const handleItinerary = async value => {
         const result = await geocodeByAddress(value)
         const latLng = await getLatLng(result[0])
-        setCurrentStop(latLng)
+        setCurrentStop({ ...latLng, value: value })
         setItineraryLocations(value)
     }
 
@@ -73,7 +74,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         itinerariesService
-            .saveItinerary({ ...itineraryData, coordinates: itineraryLocations })
+            .saveItinerary({ ...itineraryData, coordinates: coordinates })
             .then((response) => {
                 const { _id: itinerary_id } = response.data
                 setShowToast(true)
@@ -210,6 +211,15 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                     </div>
                 )}
             </PlacesAutocomplete>
+
+            <Form.Group className="mb-3" controlId="desc">
+                <Form.Label>Paradas agregadas:</Form.Label>
+                {coordinates.map((e) => {
+                    return (
+                        <p>{e.value}</p>
+                    )
+                })}
+            </Form.Group>
 
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 

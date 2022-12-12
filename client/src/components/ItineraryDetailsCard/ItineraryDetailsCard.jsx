@@ -7,6 +7,7 @@ function ItineraryDetailsCard({ itinerary }) {
 
     return (
         <>
+
             <Card className="mb-4 ItineraryCard">
                 <Card.Title><h3>{itinerary.title}</h3></Card.Title>
                 <Card.Img variant="top" src={itinerary.images} />
