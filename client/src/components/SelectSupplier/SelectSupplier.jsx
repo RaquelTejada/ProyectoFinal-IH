@@ -21,7 +21,6 @@ const SelectSupplier = () => {
             .catch(err => console.error(err))
     }
 
-
     useEffect(() => {
         printDestinations()
     }, [])
