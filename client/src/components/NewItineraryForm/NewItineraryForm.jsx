@@ -102,7 +102,6 @@ const NewItineraryForm = ({ fireFinalActions }) => {
             .catch(err => setErrors(err.response.data.errorMessages))
     }
 
-
     return (
         <Form onSubmit={handleFormSubmit}>
             <PlacesAutocomplete
