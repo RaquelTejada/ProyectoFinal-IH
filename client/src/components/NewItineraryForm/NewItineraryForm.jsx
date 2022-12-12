@@ -21,16 +21,42 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         pets: false,
         description: '',
         images: '',
-        lat: 0,
-        lng: 0
-
     })
+
+    const { city, transport, category, title, duration, pets, description, images } = itineraryData
+
+    const [currentStop, setCurrentStop] = useState({
+        lat: null,
+        lng: null
+    })
+
+    const [coordinates, setCoordinates] = useState([])
+
+    const handleAutoCompleteCity = async value => {
+        setItineraryData({ ...itineraryData, city: value })
+    }
+
+    const [itineraryLocations, setItineraryLocations] = useState([])
+    const handleItinerary = async value => {
+        const result = await geocodeByAddress(value)
+        const latLng = await getLatLng(result[0])
+        setCurrentStop(latLng)
+        setItineraryLocations(value)
+    }
+
+    const handleLocations = () => {
+        console.log(coordinates)
+        console.log(currentStop)
+        setItineraryLocations('')
+        const _coordinates = [...coordinates]
+        _coordinates.push(currentStop)
+        setCoordinates(_coordinates)
+    }
 
     const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const handleInputChange = e => {
         const { name, value } = e.target
-        console.log(name, value)
         setItineraryData({ ...itineraryData, [name]: value })
     }
 
@@ -47,7 +73,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         itinerariesService
-            .saveItinerary({ ...itineraryData, coordinates: itineryLocations })
+            .saveItinerary({ ...itineraryData, coordinates: itineraryLocations })
             .then((response) => {
                 const { _id: itinerary_id } = response.data
                 setShowToast(true)
@@ -76,36 +102,13 @@ const NewItineraryForm = ({ fireFinalActions }) => {
             .catch(err => setErrors(err.response.data.errorMessages))
     }
 
-    const { city, transport, category, title, duration, pets, description, images, lat, lng } = itineraryData
-    const [autocompleteCity, setAutocompleteCity] = useState('')
-    const [coordinates, setCoordinates] = useState({
-        lat: null,
-        lng: null
-    })
-    const handleSelect = async value => {
-        const result = await geocodeByAddress(value)
-        const latLng = await getLatLng(result[0])
-        setAutocompleteCity(value)
-        setCoordinates(latLng)
-        setItineraryData({ ...itineraryData, ['city']: value })
-
-    }
-    const [itineryLocations, setItineraryLocations] = useState([])
-    const handleItinerary = async value => {
-        const result = await geocodeByAddress(value)
-        const latLng = await getLatLng(result[0])
-        setCoordinates(latLng)
-        setItineraryLocations([value, latLng.lat, latLng.lng])
-        console.log([latLng])
-    }
-
 
     return (
         <Form onSubmit={handleFormSubmit}>
             <PlacesAutocomplete
-                value={autocompleteCity}
-                onChange={setAutocompleteCity}
-            // onSelect={handleSelect}
+                value={city}
+                onChange={handleAutoCompleteCity}
+                onSelect={handleAutoCompleteCity}
             >
                 {({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
                     <div>
@@ -183,7 +186,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 <Form.Control type="file" multiple onChange={handleFileUpload} />
             </Form.Group>
             <PlacesAutocomplete
-                value={itineryLocations}
+                value={itineraryLocations}
                 onChange={setItineraryLocations}
                 onSelect={handleItinerary}
             >
@@ -191,7 +194,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                     <div>
 
                         <Form.Group className="mb-3" controlId="name">
-                            <Button onClick={handleItinerary} variant="dark" className='form-label'>Añadir paradas</Button>
+                            <Button onClick={handleLocations} variant="dark" className='form-label'>Añadir paradas</Button>
                             <input {...getInputProps({ placeholder: "Escriba la parada" })} className="form-control" />
                         </Form.Group>
                         <div>
