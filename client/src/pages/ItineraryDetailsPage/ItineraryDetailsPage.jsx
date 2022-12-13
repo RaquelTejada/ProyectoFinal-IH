@@ -37,15 +37,21 @@ function ItineraryDetailsPage() {
             {itinerary ?
                 <>
                     <ItineraryDetailsCard itinerary={itinerary} />
-                    <MyMap locations={itinerary.locations} />
+                    {/* <MyMap locations={itinerary.locations} /> */}
                 </>
                 : 'Cargando...'}
 
             <Container fluid>
                 <Row className="mb-4 d-flex justify-content-center">
                     <Col md={{ span: 5 }} >
-                        {/* <MyMap /> */}
+
+                        {itinerary ?
+                            <>
+                                <MyMap locations={itinerary.locations} />
+                            </>
+                            : 'Cargando...'}
                     </Col>
+
                     <Col md={{ span: 5 }} >
                         <CreateEvent />
                         <EventCalendar />
