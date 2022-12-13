@@ -54,6 +54,8 @@ function ItineraryDetailsPage() {
 
                     <Col md={{ span: 5 }} >
                         <CreateEvent />
+                    </Col>
+                    <Col md={{ span: 10 }} >
                         <EventCalendar />
                     </Col>
                 </Row>
