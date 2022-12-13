@@ -27,8 +27,7 @@
 }
 
 .rbc-button-link {
-    color: inherit;
-    background: none;
+    color: rgb(30, 30, 30);
     margin: 0;
     padding: 0;
     border: none;
@@ -36,10 +35,12 @@
     -webkit-user-select: text;
     user-select: text;
     font-family: 'Prompt';
+    font-weight: 100;
 }
 
 .rbc-header {
     font-family: 'Prompt';
+    font-weight: 200;
     overflow: hidden;
     flex: 1 0;
     text-overflow: ellipsis;
@@ -50,4 +51,8 @@
     font-size: 90%;
     min-height: 0;
     border-bottom: 1px solid #ddd;
+}
+
+.rbc-btn-group {
+    font-family: 'Prompt';
 }
