@@ -22,6 +22,12 @@ const eventSchema = new Schema(
             required: [true, 'La fecha es obligatoria']
         },
 
+        itineraryOwner: {
+            type: Schema.Types.ObjectId,
+            ref: 'Itinerary'
+        }
+
+
     },
 
     {

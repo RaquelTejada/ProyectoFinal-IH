@@ -45,6 +45,7 @@ const deleteEvent = (req, res, next) => {
 
 const saveEvent = (req, res, next) => {
 
+    console.log(req.body)
     Event
         .create({ ...req.body, owner: req.payload._id })
         .then(response => res.json(response))

@@ -7,13 +7,34 @@ import CreateEvent from '../../components/CreateEvent/CreateEvent';
 import MyMap from '../../components/ItineraryMap/ItineraryMap';
 import EventCalendar from '../../components/Calendar/Calendar';
 import { Container, Row, Col } from 'react-bootstrap';
+import eventService from '../../services/events.service';
 
 function ItineraryDetailsPage() {
 
     const [itinerary, setItinerary] = useState()
     const { itinerary_id } = useParams()
+    const [events, setEvents] = useState();
 
-    console.log(itinerary)
+    const filterEvent = () => {
+        eventService
+            .getEvents()
+            .then(response => {
+                const allEvents = response.data.map(event => {
+                    return {
+                        title: event.title,
+                        start: new Date(event.date),
+                        end: new Date(event.date),
+                        allDay: true,
+                        itineraryOwner: event.itineraryOwner
+                    }
+                })
+
+
+                const filteredEvents = allEvents.filter(event => event.itineraryOwner === itinerary_id)
+
+                setEvents(filteredEvents)
+            })
+    }
 
     const getDetails = (itinerary_id) => {
         itineraryService
@@ -33,7 +54,6 @@ function ItineraryDetailsPage() {
             {itinerary ?
                 <>
                     <ItineraryDetailsCard itinerary={itinerary} />
-                    {/* <MyMap locations={itinerary.locations} /> */}
                 </>
                 : 'Cargando...'}
 
@@ -49,10 +69,10 @@ function ItineraryDetailsPage() {
                     </Col>
 
                     <Col md={{ span: 5 }} >
-                        <CreateEvent />
+                        <CreateEvent itinerary_id={itinerary_id} filterEvent={filterEvent} />
                     </Col>
-                    <Col md={{ span: 10 }} >
-                        <EventCalendar />
+                    <Col md={{ span: 11 }}>
+                        <EventCalendar events={events} filterEvent={filterEvent} />
                     </Col>
                 </Row>
             </Container>

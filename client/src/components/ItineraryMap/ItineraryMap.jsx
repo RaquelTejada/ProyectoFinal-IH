@@ -49,10 +49,12 @@ function MyMap({ locations }) {
     const destinationRef = useRef()
 
     async function calculateRoute() {
+        // eslint-disable-next-line no-undef
         const directionsService = new google.maps.DirectionsService()
         const results = await directionsService.route({
             origin: originRef.current.value,
             destination: destinationRef.current.value,
+            // eslint-disable-next-line no-undef
             // travelMode: google.maps.TravelMode.(el que elija el usuario en el form)
         })
         setDirectionsResponse(results)

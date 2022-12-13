@@ -14,8 +14,6 @@ const App = () => {
       <AppRoutes />
       <Footer />
       <UserMessage />
-
-
     </div>
   )
 }

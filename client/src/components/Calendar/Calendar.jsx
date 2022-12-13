@@ -5,10 +5,10 @@ import startOfWeek from "date-fns/startOfWeek";
 import { useEffect, useState } from "react";
 import { Calendar, dateFnsLocalizer } from "react-big-calendar";
 import "react-big-calendar/lib/css/react-big-calendar.css";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./Calendar.css";
-import eventService from './../../services/events.service'
+import { Modal, Button } from "react-bootstrap";
+
 
 const locales = {
     "en-US": require("date-fns/locale/en-US"),
@@ -21,40 +21,45 @@ const localizer = dateFnsLocalizer({
     locales,
 });
 
-// const events = [
-//     {
-//         title: "Big Meeting",
-//         allDay: true,
-//         start: new Date(2022, 6, 0),
-//         end: new Date(2022, 6, 0),
-//     },
-// ];
 
-const EventCalendar = () => {
-
-    const [events, setEvents] = useState([]);
+const EventCalendar = ({ filterEvent, events }) => {
 
     useEffect(() => {
+        filterEvent()
 
-        eventService
-            .getEvents()
-            .then(data => {
-                data = data.data.map(event => {
-                    return {
-                        title: event.title,
-                        start: new Date(event.date),
-                        end: new Date(event.date),
-                        allDay: true
-                    }
-                })
-                setEvents(data)
-            })
     }, [])
+
+    const [showModal, setShowModal] = useState(false)
+
+    const openModal = () => setShowModal(true)
+    const closeModal = () => setShowModal(false)
+
+    const fireFinalActions = () => {
+        closeModal()
+        filterEvent()
+    }
 
 
     return (
         <div className="App">
-            <Calendar localizer={localizer} events={events} startAccessor="start" endAccessor="end" style={{ height: 500, margin: "50px" }} />
+            <Calendar
+                localizer={localizer}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                style={{ height: 500, margin: "50px" }}
+                onDoubleClickEvent={openModal}
+            />
+            < Modal show={showModal} onHide={closeModal} >
+                <Modal.Header closeButton>
+                    <Modal.Title className="calendar-event-title">Datos de tu evento</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h2 className="calendar-event-title">{events[0].title}</h2>
+                    <Button onClick={openModal} variant="dark" size="sm">Unirse evento</Button>
+                    {/* <EventJoinModal fireFinalActions={fireFinalActions} /> */}
+                </Modal.Body>
+            </Modal >
         </div>
     );
 }

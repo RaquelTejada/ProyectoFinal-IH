@@ -19,7 +19,7 @@ const HomePage = () => {
                 <Row>
                     <Col >
                         <Card className="bg-gray card-size">
-                            <Link to="/itinerario/Madrid">
+                            <Link to="/itinerario/Madrid,%20España">
                                 <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670489152/Proyecto%20Final%20IH/HomePage/HomePageMadrid.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>MADRID</Card.Title>

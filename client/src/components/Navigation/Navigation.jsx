@@ -6,7 +6,7 @@ import { AuthContext } from '../../contexts/auth.context'
 
 const Navigation = () => {
 
-    const { user, logoutUser, authenticateUser } = useContext(AuthContext)
+    const { user, logoutUser } = useContext(AuthContext)
 
     return (
         <Navbar className='color-nav' expand="lg">
@@ -22,24 +22,31 @@ const Navigation = () => {
                     <Link to="/destinos">
                         <Nav.Link as='div'>Todos los destinos</Nav.Link>
                     </Link>
-
-                    <Nav.Link as="div">¡Hola, {!user ? 'invitad@' : user.username}!</Nav.Link>
                 </Nav>
-                <Form className="d-flex me-5">
-                    <NavDropdown title="Acceso" align="end">
-                        <Link to="/perfil">
-                            {user && <Nav.Link as='div' onClick={authenticateUser}>Perfil</Nav.Link>}
-                        </Link>
-                        <Link to="/registro">
-                            <Nav.Link as='div'>Registro</Nav.Link>
-                        </Link>
-                        <Link to="/iniciar-sesion">
-                            <Nav.Link as='div'>Iniciar sesión</Nav.Link>
-                        </Link>
-                        <NavDropdown.Divider />
-                        <Link to="/">
-                            {user && <Nav.Link as='div' onClick={logoutUser}>Cerrar sesión</Nav.Link>}
-                        </Link>
+
+                <Form className="me-5">
+                    <NavDropdown title={!user ? 'Acceso' : user.username} align="end">
+                        {
+                            !user
+                                ?
+                                <>
+                                    <Link to="/registro">
+                                        <Nav.Link className='dropdown-text ' as='div'>Registro</Nav.Link>
+                                    </Link>
+                                    <Link to="/iniciar-sesion">
+                                        <Nav.Link className='dropdown-text' as='div'>Iniciar sesión</Nav.Link>
+                                    </Link>
+                                </>
+                                :
+                                <>
+                                    <Link to="/perfil">
+                                        {user && <Nav.Link className='dropdown-text' as='div'>Perfil</Nav.Link>}
+                                    </Link>
+                                    <Link to="/">
+                                        {user && <Nav.Link className='dropdown-text' as='div' onClick={logoutUser}>Cerrar sesión</Nav.Link>}
+                                    </Link>
+                                </>
+                        }
                     </NavDropdown>
                 </Form>
             </Navbar.Collapse>

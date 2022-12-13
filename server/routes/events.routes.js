@@ -4,7 +4,6 @@ const { getAllEvents, getOneEvent, editEvent, deleteEvent, saveEvent } = require
 
 router.get("/getAllEvents", getAllEvents)
 
-
 router.get("/getOneEvent/:event_id", getOneEvent)
 
 router.put('/edit/:event_id', editEvent)
