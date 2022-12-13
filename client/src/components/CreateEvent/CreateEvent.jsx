@@ -1,34 +1,24 @@
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Container, Row, Col, Button, Modal } from 'react-bootstrap'
 import './CreateEvent.css'
 
 import NewEventForm from "../../components/NewEventForm/NewEventForm"
 
-import eventService from "../../services/events.service"
+const CreateEvent = ({ itinerary_id, filterEvent }) => {
 
-const CreateEvent = () => {
-
-    const [events, setEvents] = useState([])
     const [showModal, setShowModal] = useState(false)
 
     const openModal = () => setShowModal(true)
     const closeModal = () => setShowModal(false)
 
-    const loadEvents = () => {
-        eventService
-            .getEvents()
-            .then(({ data }) => setEvents(data))
-            .catch(err => console.log(err))
-    }
-
     const fireFinalActions = () => {
-        loadEvents()
         closeModal()
+        filterEvent()
     }
 
-    useEffect(() => {
-        loadEvents()
-    }, [])
+    // useEffect(() => {
+
+    // }, [])
 
     return (
         <div>
@@ -48,7 +38,7 @@ const CreateEvent = () => {
                     <Modal.Title>Datos de tu evento</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <NewEventForm fireFinalActions={fireFinalActions} />
+                    <NewEventForm fireFinalActions={fireFinalActions} itinerary_id={itinerary_id} />
                 </Modal.Body>
             </Modal >
         </div >

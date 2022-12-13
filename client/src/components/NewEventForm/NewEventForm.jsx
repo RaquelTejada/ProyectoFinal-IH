@@ -6,8 +6,9 @@ import { MessageContext } from './../../contexts/userMessage.context'
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
 
 
-const NewEventForm = ({ fireFinalActions }) => {
+const NewEventForm = ({ fireFinalActions, itinerary_id }) => {
 
+    // console.log(itinerary_id)
 
 
     const [eventData, setEventData] = useState({
@@ -15,6 +16,7 @@ const NewEventForm = ({ fireFinalActions }) => {
         title: '',
         description: '',
         date: new Date,
+        itineraryOwner: itinerary_id
     })
 
     const { setShowToast, setToastMessage } = useContext(MessageContext)
@@ -22,7 +24,6 @@ const NewEventForm = ({ fireFinalActions }) => {
 
     const handleInputChange = e => {
         const { name, value } = e.target
-        console.log(name, value)
         setEventData({ ...eventData, [name]: value })
     }
 
@@ -39,8 +40,7 @@ const NewEventForm = ({ fireFinalActions }) => {
                 const { _id: event_id } = response.data
                 setShowToast(true)
                 setToastMessage('Evento creado correctamente')
-                // fireFinalActions()
-                navigate(`/detalles/${event_id}`)
+                fireFinalActions()
             })
             .catch(err => setErrors(err.response.data.errorMessages))
     }
