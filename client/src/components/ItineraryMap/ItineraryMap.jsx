@@ -1,5 +1,5 @@
-import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
-import { useCallback } from 'react'
+import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-google-maps/api'
+import { useCallback, useEffect } from 'react'
 import '../ItineraryMap/ItineraryMap.css'
 import { useState, useRef } from 'react'
 
@@ -9,11 +9,24 @@ const containerStyle = {
 }
 
 function MyMap({ locations }) {
+
+    const stops = []
+    locations.forEach((elm, idx) => {
+        console.log(idx !== 0)
+        if (idx !== 0 && idx !== locations.length - 1) {
+            return stops.push(elm)
+        }
+    })
+
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
         googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
         libraries: ['places']
     })
+
+    useEffect(() => {
+
+    }, [isLoaded])
 
     const position = {
         lat: locations[0].coordinates[0],
@@ -45,18 +58,28 @@ function MyMap({ locations }) {
 
     const [directionsResponse, setDirectionsResponse] = useState(null)
 
-    const originRef = useRef()
-    const destinationRef = useRef()
-
     async function calculateRoute() {
-        const directionsService = new google.maps.DirectionsService()
-        const results = await directionsService.route({
-            origin: originRef.current.value,
-            destination: destinationRef.current.value,
-            // travelMode: google.maps.TravelMode.(el que elija el usuario en el form)
-        })
-        setDirectionsResponse(results)
+
+        try {
+            // eslint-disable-next-line no-undef
+            const directionsService = new google.maps.DirectionsService()
+
+            const results = await directionsService.route({
+                origin: { lat: locations[0].coordinates[0], lng: locations[0].coordinates[1] },
+                destination: { lat: locations[locations.length - 1].coordinates[0], lng: locations[locations.length - 1].coordinates[1] },
+                // eslint-disable-next-line no-undef
+                travelMode: google.maps.TravelMode.TRANSIT
+            })
+            setDirectionsResponse(results)
+        } catch (err) {
+            console.log(err.message)
+        }
     }
+
+    useEffect(() => {
+        calculateRoute()
+    }, [])
+
 
     return isLoaded ? (
         <GoogleMap
@@ -72,7 +95,9 @@ function MyMap({ locations }) {
                 return (<Marker onLoad={MarkeronLoad} position={{ lat: elm.coordinates[0], lng: elm.coordinates[1] }} />)
             })
             }
+            directionsResponse && <DirectionsRenderer directions={directionsResponse}
 
+            />
         </GoogleMap>
     ) : <></>
 }

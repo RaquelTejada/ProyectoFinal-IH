@@ -60,11 +60,10 @@ const itinerarySchema = new Schema(
         locations: [{
             type:
             {
-                type: String
+                type: String,
             },
 
             coordinates: [Number]
-
         }]
     },
 

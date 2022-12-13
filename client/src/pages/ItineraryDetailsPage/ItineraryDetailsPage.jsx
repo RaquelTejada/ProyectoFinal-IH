@@ -13,9 +13,10 @@ function ItineraryDetailsPage() {
     const [itinerary, setItinerary] = useState()
     const { itinerary_id } = useParams()
 
-    console.log(itinerary)
+    // console.log('PAGE')
 
     const getDetails = (itinerary_id) => {
+        // console.log('get details')
         itineraryService
             .getOneItinerary(itinerary_id)
             .then(({ data }) => setItinerary(data))
@@ -33,7 +34,7 @@ function ItineraryDetailsPage() {
             {itinerary ?
                 <>
                     <ItineraryDetailsCard itinerary={itinerary} />
-                    {/* <MyMap locations={itinerary.locations} /> */}
+
                 </>
                 : 'Cargando...'}
 

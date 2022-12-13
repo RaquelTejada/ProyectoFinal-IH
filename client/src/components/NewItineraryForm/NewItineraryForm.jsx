@@ -6,7 +6,7 @@ import uploadServices from "../../services/upload.service"
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
-import SelectSupplier from "../SelectSupplier/SelectSupplier"
+
 
 import { useNavigate } from 'react-router-dom'
 
@@ -46,8 +46,6 @@ const NewItineraryForm = ({ fireFinalActions }) => {
     }
 
     const handleLocations = () => {
-        console.log(coordinates)
-        console.log(currentStop)
         setItineraryLocations('')
         const _coordinates = [...coordinates]
         _coordinates.push(currentStop)
@@ -62,7 +60,6 @@ const NewItineraryForm = ({ fireFinalActions }) => {
     }
 
     const handleCheckboxChange = e => {
-        console.log(e.target.checked)
         const { name, checked } = e.target
         setItineraryData({ ...itineraryData, [name]: checked })
     }
