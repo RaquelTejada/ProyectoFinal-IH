@@ -6,6 +6,7 @@ const getAllEvents = (req, res, next) => {
 
     Event
         .find()
+        // .select()
         .then(response => res.json(response))
         .catch(err => next(err))
 }

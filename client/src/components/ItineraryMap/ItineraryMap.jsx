@@ -1,7 +1,7 @@
 import { GoogleMap, useJsApiLoader, Marker } from '@react-google-maps/api'
 import { useCallback } from 'react'
 import '../ItineraryMap/ItineraryMap.css'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 
 const containerStyle = {
     width: '100%',
@@ -11,7 +11,8 @@ const containerStyle = {
 function MyMap({ locations }) {
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
-        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY
+        googleMapsApiKey: process.env.REACT_APP_GOOGLE_KEY,
+        libraries: ['places']
     })
 
     const position = {
@@ -41,6 +42,21 @@ function MyMap({ locations }) {
     const onUnmount = useCallback(function callback(map) {
         setMap(null)
     }, [])
+
+    const [directionsResponse, setDirectionsResponse] = useState(null)
+
+    const originRef = useRef()
+    const destinationRef = useRef()
+
+    async function calculateRoute() {
+        const directionsService = new google.maps.DirectionsService()
+        const results = await directionsService.route({
+            origin: originRef.current.value,
+            destination: destinationRef.current.value,
+            // travelMode: google.maps.TravelMode.(el que elija el usuario en el form)
+        })
+        setDirectionsResponse(results)
+    }
 
     return isLoaded ? (
         <GoogleMap

@@ -30,6 +30,7 @@ const DestinationsPage = () => {
                         destinations ? destinations.map((destination, idx) => {
                             return (
                                 <Col md={{ span: 4 }}>
+                                    {/* SACAR A DESTINATION CARD */}
                                     <Card className="mb-4 destination-card" key={idx}>
                                         < Link to={`/itinerario/${destination}`} >
                                             <span className='card-title destination-span'>{destination}</span>

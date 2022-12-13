@@ -36,16 +36,14 @@ const ItinerariesList = () => {
                         :
                         <>
                             <Button className="fill create-route-button" onClick={openModal} variant="gray">Crea tu propia ruta</Button>
-                            <div>
-                                <Modal show={showModal} onHide={closeModal}>
-                                    <Modal.Header closeButton>
-                                        <Modal.Title>Nueva ruta</Modal.Title>
-                                    </Modal.Header>
-                                    <Modal.Body>
-                                        <NewItineraryForm fireFinalActions={fireFinalActions} />
-                                    </Modal.Body>
-                                </Modal>
-                            </div>
+                            <Modal show={showModal} onHide={closeModal}>
+                                <Modal.Header closeButton>
+                                    <Modal.Title>Nueva ruta</Modal.Title>
+                                </Modal.Header>
+                                <Modal.Body>
+                                    <NewItineraryForm fireFinalActions={fireFinalActions} />
+                                </Modal.Body>
+                            </Modal>
                         </>
                 }
                 {itineraries.map(elm => {

@@ -74,7 +74,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         e.preventDefault()
 
         itinerariesService
-            .saveItinerary({ ...itineraryData, coordinates: coordinates })
+            .saveItinerary({ ...itineraryData, coordinates })
             .then((response) => {
                 const { _id: itinerary_id } = response.data
                 setShowToast(true)
@@ -214,11 +214,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
 
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Paradas agregadas:</Form.Label>
-                {coordinates.map((e) => {
-                    return (
-                        <p>{e.value}</p>
-                    )
-                })}
+                {coordinates.map(({ value }) => <p>{value}</p>)}
             </Form.Group>
 
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}

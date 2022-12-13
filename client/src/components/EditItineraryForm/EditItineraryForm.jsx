@@ -17,7 +17,7 @@ const EditItineraryForm = ({ itinerary_id, closeModal }) => {
     useEffect(() => {
         itineraryService
             .getOneItinerary(itinerary_id)
-            .then(res => setItineraryData(res.data))
+            .then(({ data }) => setItineraryData(data))
             .catch(err => console.log(err))
     }, [])
 

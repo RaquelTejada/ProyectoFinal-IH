@@ -11,8 +11,8 @@ const App = () => {
   return (
     <div className="App">
       <Navigation />
-      <Footer />
       <AppRoutes />
+      <Footer />
       <UserMessage />
 
 

@@ -7,6 +7,7 @@ const getAllItineraries = (req, res, next) => {
 
     Itinerary
         .find()
+        // .select()
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -46,19 +47,18 @@ const deleteItinerary = (req, res, next) => {
 const saveItinerary = (req, res, next) => {
 
     const { city, description, title, transport, category, duration, pets, images, events, coordinates } = req.body
+    const { _id: owner } = req.payload
 
     const locations = coordinates.map((elm) => {
-        console.log('elm es:', elm)
         return {
             type: 'Point',
             coordinates: [elm.lat, elm.lng]
         }
     })
-    console.log('----', locations)
 
 
     Itinerary
-        .create({ city, description, title, transport, category, duration, pets, images, events, locations, owner: req.payload._id })
+        .create({ city, description, title, transport, category, duration, pets, images, events, locations, owner })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -76,9 +76,7 @@ const getAllDestinations = (req, res, next) => {
     Itinerary
         .find()
         .then(response => {
-            const cities = response.map((itinerary) => {
-                return itinerary.city
-            })
+            const cities = response.map(({ city }) => city)
 
             const setCities = [...new Set(cities)]
 

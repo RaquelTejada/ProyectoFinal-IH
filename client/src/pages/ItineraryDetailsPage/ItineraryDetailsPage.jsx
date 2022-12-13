@@ -18,11 +18,7 @@ function ItineraryDetailsPage() {
     const getDetails = (itinerary_id) => {
         itineraryService
             .getOneItinerary(itinerary_id)
-            .then((response) => {
-                const details = response.data
-                console.log(details)
-                setItinerary(details)
-            })
+            .then(({ data }) => setItinerary(data))
             .catch(err => console.log(err))
     }
 

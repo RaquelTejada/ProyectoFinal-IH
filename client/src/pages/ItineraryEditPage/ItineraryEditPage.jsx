@@ -21,11 +21,7 @@ const ItineraryEditPage = (props) => {
     useEffect(() => {
         itineraryService
             .getOneItinerary(itinerary_id)
-            .then((response) => {
-                const editItinerary = response.data;
-                setItinerary(editItinerary);
-
-            })
+            .then(({ data }) => setItinerary(data))
             .catch((error) => console.log(error));
 
     }, [itinerary_id]);
