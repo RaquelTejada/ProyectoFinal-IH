@@ -13,15 +13,23 @@ function ItineraryDetailsPage() {
     const [itinerary, setItinerary] = useState()
     const { itinerary_id } = useParams()
 
-    useEffect(() => {
+    console.log(itinerary)
+
+    const getDetails = (itinerary_id) => {
         itineraryService
             .getOneItinerary(itinerary_id)
             .then((response) => {
                 const details = response.data
+                console.log(details)
                 setItinerary(details)
             })
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        getDetails(itinerary_id)
     }, [])
+
 
     return (
         <>
@@ -36,7 +44,7 @@ function ItineraryDetailsPage() {
             <Container fluid>
                 <Row className="mb-4 d-flex justify-content-center">
                     <Col md={{ span: 5 }} >
-                        <MyMap />
+                        {/* <MyMap /> */}
                     </Col>
                     <Col md={{ span: 5 }} >
                         <CreateEvent />
