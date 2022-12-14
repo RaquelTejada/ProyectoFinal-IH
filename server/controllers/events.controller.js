@@ -55,7 +55,7 @@ const joinEvent = (req, res, next) => {
     const { event_id } = req.params
 
     Event
-        .findByIdAndUpdate(event_id, { $push: { users: req.payload._id } })
+        .findByIdAndUpdate(event_id, { $addToSet: { users: req.payload._id } })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
