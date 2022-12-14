@@ -12,7 +12,7 @@ import './ItineraryDetailsPage.css'
 
 function ItineraryDetailsPage() {
 
-    const [itinerary, setItinerary] = useState()
+    const [itineray, setItinerary] = useState()
     const { itinerary_id } = useParams()
     const [events, setEvents] = useState();
 
@@ -51,7 +51,7 @@ function ItineraryDetailsPage() {
 
         itineraryService
             .addFav(itinerary_id)
-            // .then(() => closeModal())
+            .then(() => console.log('likaso'))
             .catch(err => console.log(err))
 
     }
@@ -61,6 +61,8 @@ function ItineraryDetailsPage() {
         itineraryService
             .deleteFav(itinerary_id)
             // .then(() => closeModal())
+            .then(() => console.log('dis likaso'))
+
             .catch(console.log('ERROR'))
 
     }
@@ -74,9 +76,9 @@ function ItineraryDetailsPage() {
     return (
         <>
 
-            {itinerary ?
+            {itineray ?
                 <>
-                    <ItineraryDetailsCard itinerary={itinerary} />
+                    <ItineraryDetailsCard itinerary={itineray} />
                 </>
                 : 'Cargando...'
             }
@@ -97,9 +99,9 @@ function ItineraryDetailsPage() {
                 <Row className="mb-4 d-flex justify-content-center">
                     <Col md={{ span: 5 }} >
 
-                        {itinerary ?
+                        {itineray ?
                             <>
-                                <MyMap locations={itinerary.locations} />
+                                <MyMap locations={itineray.locations} />
                             </>
                             : 'Cargando...'}
                     </Col>
@@ -110,8 +112,8 @@ function ItineraryDetailsPage() {
                     <Col md={{ span: 11 }}>
                         <EventCalendar events={events} filterEvent={filterEvent} />
                     </Col>
-                    <Button onClick={() => addFav(itinerary._id)} variant="dark" size="sm">Añadir fav</Button>
-                    <Button onClick={() => deleteFav(itinerary._id)} variant="dark" size="sm">Quitar fav</Button>
+                    <Button onClick={() => addFav(itinerary_id)} variant="dark" size="sm">Añadir fav</Button>
+                    <Button onClick={() => deleteFav(itinerary_id)} variant="dark" size="sm">Quitar fav</Button>
                 </Row>
             </Container>
             <Container >

@@ -36,12 +36,12 @@ const ProfilePage = () => {
         getFavs()
     }, [])
 
-    console.log(itinerariesOwned)
+    console.log(favItineraries)
     return (
         <>
-            <h1>{user.username}</h1 >
-            <h1>{user.email}</h1 >
-            <img src={user.imageUrl}></img>
+            <h1>{user?.username}</h1 >
+            <h1>{user?.email}</h1 >
+            <img src={user?.imageUrl}></img>
             <Row>
                 {
                     itinerariesOwned ? itinerariesOwned.map((myItineraries, idx) => {
@@ -49,6 +49,20 @@ const ProfilePage = () => {
                             <Col md={{ span: 4 }}>
                                 <Card className="mb-4" key={idx}>
                                     <p >{myItineraries.title}</p>
+                                </Card>
+                            </Col>
+                        )
+                    })
+                        :
+                        'No has creado ninguna ruta aún.'}
+            </Row>
+            <Row>
+                {
+                    favItineraries ? favItineraries.map((myFavItineraries, idx) => {
+                        return (
+                            <Col md={{ span: 4 }}>
+                                <Card className="mb-4" key={idx}>
+                                    <p >{myFavItineraries.title}</p>
                                 </Card>
                             </Col>
                         )

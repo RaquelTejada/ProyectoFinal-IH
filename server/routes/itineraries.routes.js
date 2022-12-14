@@ -24,6 +24,6 @@ router.get('/getFavsItineraries', isAuthenticated, getFavsItineraries)
 
 router.put('/addFav/:itinerary_id', isAuthenticated, addFav)
 
-router.delete('/deleteFav/:itinerary_id', isAuthenticated, deleteFav)
+router.put('/deleteFav/:itinerary_id', isAuthenticated, deleteFav)
 
 module.exports = router
