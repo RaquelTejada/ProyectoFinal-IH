@@ -25,8 +25,12 @@ const eventSchema = new Schema(
         itineraryOwner: {
             type: Schema.Types.ObjectId,
             ref: 'Itinerary'
-        }
+        },
 
+        users: [{
+            type: Schema.Types.ObjectId,
+            ref: 'Itinerary'
+        }]
 
     },
 

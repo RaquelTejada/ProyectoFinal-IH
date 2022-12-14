@@ -4,7 +4,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 
 function ItineraryDetailsCard({ itinerary }) {
-    console.log(itinerary)
+
     return (
         <Container fluid className='mt-4'>
             <Row className="mb-4 d-flex justify-content-center">
