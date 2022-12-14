@@ -28,6 +28,14 @@ class EventService {
         return this.api.get(`/getOneEvent/${event_id}`)
     }
 
+    joinEvent(event_id) {
+        return this.api.put(`/joinEvent/${event_id}`)
+    }
+
+    unJoinEvent(event_id) {
+        return this.api.delete(`/unJoinEvent/${event_id}`)
+    }
+
     saveEvent(eventData) {
         return this.api.post('/saveEvent', eventData)
     }

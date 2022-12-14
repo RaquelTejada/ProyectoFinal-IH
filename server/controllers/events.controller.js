@@ -6,7 +6,6 @@ const getAllEvents = (req, res, next) => {
 
     Event
         .find()
-        // .select()
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -45,17 +44,28 @@ const deleteEvent = (req, res, next) => {
 
 const saveEvent = (req, res, next) => {
 
-    console.log(req.body)
     Event
         .create({ ...req.body, owner: req.payload._id })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
 
-const filteredItineraries = (req, res, next) => {
+const joinEvent = (req, res, next) => {
 
-    Itinerary
-        .find({ ...req.query })
+    const { event_id } = req.params
+
+    Event
+        .findByIdAndUpdate(event_id, { $push: { users: req.payload._id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const unJoinEvent = (req, res, next) => {
+
+    const { event_id } = req.params
+
+    Event
+        .findByIdAndUpdate(event_id, { $pull: { users: req.payload._id } })
         .then(response => res.json(response))
         .catch(err => next(err))
 }
@@ -65,5 +75,7 @@ module.exports = {
     getOneEvent,
     editEvent,
     deleteEvent,
+    joinEvent,
+    unJoinEvent,
     saveEvent
 }
