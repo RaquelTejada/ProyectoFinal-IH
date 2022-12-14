@@ -29,8 +29,8 @@ const HomePage = () => {
                     </Col>
                     <Col >
                         <Card className="bg-gray card-size">
-                            <Link to="/itinerario/Roma">
-                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490376/Proyecto%20Final%20IH/HomePage/HomePageRoma.jpg" alt="Card image" />
+                            <Link to="/itinerario/Roma,%20Italia">
+                                <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1671033742/Proyecto%20Final%20IH/HomePage/RomaHomePage.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>ROMA</Card.Title>
                                 </Card.ImgOverlay>
