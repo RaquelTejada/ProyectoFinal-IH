@@ -55,7 +55,7 @@ const EventCalendar = ({ filterEvent, events }) => {
                     <Modal.Title className="calendar-event-title">Datos de tu evento</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <h2 className="calendar-event-title">{events[0].title}</h2>
+                    {/* <h2 className="calendar-event-title">{events[0].title}</h2> */}
                     <Button onClick={openModal} variant="dark" size="sm">Unirse evento</Button>
                     {/* <EventJoinModal fireFinalActions={fireFinalActions} /> */}
                 </Modal.Body>

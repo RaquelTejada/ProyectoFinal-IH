@@ -52,6 +52,13 @@ const NewItineraryForm = ({ fireFinalActions }) => {
         setCoordinates(_coordinates)
     }
 
+    const handleDeleteStop = (idx) => {
+        const _coordinates = [...coordinates]
+        _coordinates.splice(idx, 1)
+        setCoordinates(_coordinates)
+
+    }
+
     const { setShowToast, setToastMessage } = useContext(MessageContext)
 
     const handleInputChange = e => {
@@ -211,7 +218,17 @@ const NewItineraryForm = ({ fireFinalActions }) => {
 
             <Form.Group className="mb-3" controlId="desc">
                 <Form.Label>Paradas agregadas:</Form.Label>
-                {coordinates.map(({ value }) => <p>{value}</p>)}
+                {coordinates.map((e, idx) => {
+                    const { value } = e
+                    return (
+                        <>
+                            <p>{value}</p>
+                            < Button onClick={() => handleDeleteStop(idx)}> ✕ </Button>
+                        </>
+                    )
+                }
+                )}
+
             </Form.Group>
 
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}

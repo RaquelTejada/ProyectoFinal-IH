@@ -47,6 +47,22 @@ class ItineraryService {
     getAllDestinations() {
         return this.api.get('/getAllDestinations')
     }
+
+    getOwnedItineraries() {
+        return this.api.get('/getOwnedItineraries')
+    }
+
+    getFavsItineraries() {
+        return this.api.get('/getFavsItineraries')
+    }
+
+    addFav(itinerary_id) {
+        return this.api.put(`/addFav/${itinerary_id}`)
+    }
+
+    deleteFav(itinerary_id) {
+        return this.api.put(`/deleteFav/${itinerary_id}`)
+    }
 }
 
 const itineraryService = new ItineraryService()

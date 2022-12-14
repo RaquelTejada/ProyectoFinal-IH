@@ -6,7 +6,7 @@ import ItineraryDetailsCard from '../../components/ItineraryDetailsCard/Itinerar
 import CreateEvent from '../../components/CreateEvent/CreateEvent';
 import MyMap from '../../components/ItineraryMap/ItineraryMap';
 import EventCalendar from '../../components/Calendar/Calendar';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 import eventService from '../../services/events.service';
 
 function ItineraryDetailsPage() {
@@ -29,7 +29,6 @@ function ItineraryDetailsPage() {
                     }
                 })
 
-
                 const filteredEvents = allEvents.filter(event => event.itineraryOwner === itinerary_id)
 
                 setEvents(filteredEvents)
@@ -44,6 +43,24 @@ function ItineraryDetailsPage() {
             .catch(err => console.log(err))
     }
 
+    const addFav = (itinerary_id) => {
+
+        itineraryService
+            .addFav(itinerary_id)
+            // .then(() => closeModal())
+            .catch(err => console.log(err))
+
+    }
+
+    const deleteFav = (itinerary_id) => {
+
+        itineraryService
+            .deleteFav(itinerary_id)
+            // .then(() => closeModal())
+            .catch(console.log('ERROR'))
+
+    }
+
     useEffect(() => {
         getDetails(itinerary_id)
     }, [])
@@ -55,33 +72,32 @@ function ItineraryDetailsPage() {
             {itinerary ?
                 <>
                     <ItineraryDetailsCard itinerary={itinerary} />
-<<<<<<< HEAD
-
-=======
->>>>>>> 6969c6badbf5d8091e994699cb4442f52f1b4360
                 </>
                 : 'Cargando...'
-}
+            }
 
-<Container fluid>
-    <Row className="mb-4 d-flex justify-content-center">
-        <Col md={{ span: 5 }} >
+            <Container fluid>
+                <Row className="mb-4 d-flex justify-content-center">
+                    <Col md={{ span: 5 }} >
 
-            {itinerary ?
-                <>
-                    <MyMap locations={itinerary.locations} />
-                </>
-                : 'Cargando...'}
-        </Col>
+                        {itinerary ?
+                            <>
+                                <MyMap locations={itinerary.locations} />
+                            </>
+                            : 'Cargando...'}
+                    </Col>
 
-        <Col md={{ span: 5 }} >
-            <CreateEvent itinerary_id={itinerary_id} filterEvent={filterEvent} />
-        </Col>
-        <Col md={{ span: 11 }}>
-            <EventCalendar events={events} filterEvent={filterEvent} />
-        </Col>
-    </Row>
-</Container>
+                    <Col md={{ span: 5 }} >
+                        <CreateEvent itinerary_id={itinerary_id} filterEvent={filterEvent} />
+                    </Col>
+                    <Col md={{ span: 11 }}>
+                        <EventCalendar events={events} filterEvent={filterEvent} />
+                    </Col>
+                    <Button onClick={() => addFav(itinerary._id)} variant="dark" size="sm">Añadir fav</Button>
+                    <Button onClick={() => deleteFav(itinerary._id)} variant="dark" size="sm">Quitar fav</Button>
+                </Row>
+            </Container>
+
         </>
     );
 }

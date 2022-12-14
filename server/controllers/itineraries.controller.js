@@ -2,6 +2,7 @@ const router = require("express").Router()
 
 const { response } = require("express")
 const Itinerary = require('./../models/Itinerary.model')
+const User = require('./../models/Itinerary.model')
 
 const getAllItineraries = (req, res, next) => {
 
@@ -85,7 +86,41 @@ const getAllDestinations = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getOwnedItineraries = (req, res, next) => {
 
+    Itinerary
+        .find({ owner: req.payload._id })
+        .then(ownedItineraries => res.json(ownedItineraries))
+        .catch(err => next(err))
+}
+
+const getFavsItineraries = (req, res, next) => {
+
+    User
+        .findById({ user: req.payload._id })
+        .populate('Fav')
+        .then(user => res.json(user.Fav))
+        .catch(err => next(err))
+}
+
+const addFav = (req, res, next) => {
+
+    const { itinerary_id } = req.params
+    User
+        .findByIdAndUpdate(itinerary_id, { $push: { Fav: req.payload._id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
+const deleteFav = (req, res, next) => {
+
+    const { itinerary_id } = req.params
+    User
+        .findByIdAndUpdate(itinerary_id, { $pull: { Fav: req.payload._id } })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+
+}
 module.exports = {
     getAllItineraries,
     getOneItinerary,
@@ -93,5 +128,9 @@ module.exports = {
     deleteItinerary,
     saveItinerary,
     filteredItineraries,
-    getAllDestinations
+    getAllDestinations,
+    getOwnedItineraries,
+    getFavsItineraries,
+    addFav,
+    deleteFav
 }

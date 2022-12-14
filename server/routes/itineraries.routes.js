@@ -1,6 +1,6 @@
 const router = require('express').Router()
 
-const { getAllItineraries, getOneItinerary, editItinerary, deleteItinerary, saveItinerary, filteredItineraries, getAllDestinations } = require('../controllers/itineraries.controller')
+const { getAllItineraries, getOneItinerary, editItinerary, deleteItinerary, saveItinerary, filteredItineraries, getAllDestinations, getOwnedItineraries, getFavsItineraries, addFav, deleteFav } = require('../controllers/itineraries.controller')
 
 const { isAuthenticated } = require('./../middleware/jwt.middleware')
 
@@ -17,5 +17,13 @@ router.post('/saveItinerary', isAuthenticated, saveItinerary)
 router.get('/filtered', filteredItineraries)
 
 router.get('/getAllDestinations', getAllDestinations)
+
+router.get('/getOwnedItineraries', isAuthenticated, getOwnedItineraries)
+
+router.get('/getFavsItineraries', isAuthenticated, getFavsItineraries)
+
+router.put('/addFav/:itinerary_id', isAuthenticated, addFav)
+
+router.delete('/deleteFav/:itinerary_id', isAuthenticated, deleteFav)
 
 module.exports = router

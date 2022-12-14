@@ -1,7 +1,7 @@
 import { GoogleMap, useJsApiLoader, Marker, DirectionsRenderer } from '@react-google-maps/api'
 import { useCallback, useEffect } from 'react'
 import '../ItineraryMap/ItineraryMap.css'
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 
 const containerStyle = {
     width: '100%',
@@ -10,13 +10,13 @@ const containerStyle = {
 
 function MyMap({ locations }) {
 
-    const stops = []
-    locations.forEach((elm, idx) => {
-        console.log(idx !== 0)
-        if (idx !== 0 && idx !== locations.length - 1) {
-            return stops.push(elm)
-        }
-    })
+    // const stops = []
+    // locations.forEach((elm, idx) => {
+    //     console.log(idx !== 0)
+    //     if (idx !== 0 && idx !== locations.length - 1) {
+    //         return stops.push(elm)
+    //     }
+    // })
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
