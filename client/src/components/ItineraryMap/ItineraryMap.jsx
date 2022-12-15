@@ -9,14 +9,14 @@ const containerStyle = {
 }
 
 function MyMap({ locations }) {
-
-    // const stops = []
-    // locations.forEach((elm, idx) => {
-    //     console.log(idx !== 0)
-    //     if (idx !== 0 && idx !== locations.length - 1) {
-    //         return stops.push(elm)
-    //     }
-    // })
+    const stops = []
+    locations.forEach((elm, idx) => {
+        console.log(idx !== 0)
+        if (idx !== 0 && idx !== locations.length - 1) {
+            console.log(elm)
+            return stops.push({ location: { lat: elm.coordinates[0], lng: elm.coordinates[1] } })
+        }
+    })
 
     const { isLoaded } = useJsApiLoader({
         id: 'google-map-script',
@@ -68,8 +68,10 @@ function MyMap({ locations }) {
                 origin: { lat: locations[0].coordinates[0], lng: locations[0].coordinates[1] },
                 destination: { lat: locations[locations.length - 1].coordinates[0], lng: locations[locations.length - 1].coordinates[1] },
                 // eslint-disable-next-line no-undef
-                travelMode: google.maps.TravelMode.TRANSIT
+                travelMode: google.maps.TravelMode.WALKING,
+                waypoints: stops
             })
+
             setDirectionsResponse(results)
         } catch (err) {
             console.log(err.message)
