@@ -39,6 +39,10 @@ class EventService {
     saveEvent(eventData) {
         return this.api.post('/saveEvent', eventData)
     }
+
+    getJoinedEvents() {
+        return this.api.get('/joinedEvents')
+    }
 }
 
 const eventService = new EventService()

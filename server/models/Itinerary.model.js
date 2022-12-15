@@ -48,10 +48,6 @@ const itinerarySchema = new Schema(
             ref: 'User'
         },
 
-        // rating: {
-
-        // },
-
         events: {
             type: Schema.Types.ObjectId,
             ref: 'Event'
