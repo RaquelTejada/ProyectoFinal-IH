@@ -153,8 +153,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                     <option>Gastronomia</option>
                     <option>Naturaleza</option>
                     <option>Ocio nocturno</option>
-                    <option>Playas</option>
-                    <option>Turismo rural</option>
+                    <option>Turismo</option>
                 </Form.Select>
             </Form.Group>
 

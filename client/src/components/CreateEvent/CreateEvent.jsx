@@ -21,14 +21,14 @@ const CreateEvent = ({ itinerary_id, filterEvent }) => {
     // }, [])
 
     return (
-        <div>
+        <>
             <Container>
-                <Row className="d-flex align-items-center">
+                <Row>
                     <Col>
                         <h1 className="details-title">Eventos</h1>
                     </Col>
                     <Col>
-                        <Button className="fill details-event-button" onClick={openModal} variant="gray" size="sm">Crear nuevo evento</Button>
+                        <Button className="fill create-event-button" onClick={openModal} variant="gray" size="sm">Crear nuevo evento</Button>
                     </Col>
                 </Row>
             </Container>
@@ -41,7 +41,7 @@ const CreateEvent = ({ itinerary_id, filterEvent }) => {
                     <NewEventForm fireFinalActions={fireFinalActions} itinerary_id={itinerary_id} />
                 </Modal.Body>
             </Modal >
-        </div >
+        </ >
     )
 }
 

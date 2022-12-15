@@ -74,7 +74,7 @@ const ItineraryType = () => {
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758326/turismo.jpg" />
                             <Card.Body>
-                                <Link name="Turismo rural" className='category-title' onClick={handleTypeChange}>Turismo rural</Link>
+                                <Link name="Turismo" className='category-title' onClick={handleTypeChange}>Turismo</Link>
                             </Card.Body>
                         </Card>
                     </Col>

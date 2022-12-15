@@ -16,7 +16,7 @@ const itinerarySchema = new Schema(
 
         category: {
             type: String,
-            enum: ['Arte', 'Gastronomia', 'Naturaleza', 'Ocio nocturno', 'Turismo rural'],
+            enum: ['Arte', 'Gastronomia', 'Naturaleza', 'Ocio nocturno', 'Turismo'],
             required: [true, 'La categoría es obligatoria']
         },
 

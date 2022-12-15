@@ -11,20 +11,11 @@
     width: 19.666667%
 }
 
-.category-card {
-    /* width: 16rem !important;
-    height: 16rem !important; */
-}
-
 .category-image {
     width: 90%;
     margin: 5%;
     object-fit: cover;
     height: 150px;
-    /* margin-top: 15px;
-    height: 14rem !important;
-    width: 14rem !important;
-    margin-left: 1rem; */
 }
 
 .category-title {

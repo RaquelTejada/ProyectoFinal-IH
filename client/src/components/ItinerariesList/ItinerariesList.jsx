@@ -35,15 +35,17 @@ const ItinerariesList = () => {
                         </>
                         :
                         <>
-                            <Button className="fill create-route-button" onClick={openModal} variant="gray">Crea tu propia ruta</Button>
-                            <Modal show={showModal} onHide={closeModal}>
-                                <Modal.Header closeButton>
-                                    <Modal.Title>Nueva ruta</Modal.Title>
-                                </Modal.Header>
-                                <Modal.Body>
-                                    <NewItineraryForm fireFinalActions={fireFinalActions} />
-                                </Modal.Body>
-                            </Modal>
+                            <Row className="d-flex justify-content-center">
+                                <Button className="fill create-route-button" onClick={openModal} variant="gray">Crea tu propia ruta</Button>
+                                <Modal show={showModal} onHide={closeModal}>
+                                    <Modal.Header closeButton>
+                                        <Modal.Title>Nueva ruta</Modal.Title>
+                                    </Modal.Header>
+                                    <Modal.Body>
+                                        <NewItineraryForm fireFinalActions={fireFinalActions} />
+                                    </Modal.Body>
+                                </Modal>
+                            </Row>
                         </>
                 }
                 {itineraries.map(elm => {
