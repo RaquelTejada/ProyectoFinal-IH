@@ -35,7 +35,7 @@ const ItineraryType = () => {
 
             <Container fluid className='category-container'>
 
-                <h1 className='card-title category-capitalize'>{city}</h1>
+                <h1 className='card-title-home category-capitalize'>{city}</h1>
 
                 <Row className='category-row '>
                     <Col md={{ span: 2 }}>

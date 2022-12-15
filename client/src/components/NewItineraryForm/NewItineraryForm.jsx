@@ -1,11 +1,12 @@
 import { useState, useContext } from "react"
-import { Form, Button } from "react-bootstrap"
+import { Form, Button, Row, Col } from "react-bootstrap"
 import itinerariesService from "../../services/itineraries.service"
 import { MessageContext } from './../../contexts/userMessage.context'
 import uploadServices from "../../services/upload.service"
 import PlacesAutocomplete from 'react-places-autocomplete';
 import { geocodeByAddress, geocodeByPlaceId, getLatLng, } from 'react-places-autocomplete';
 import ErrorMessage from "../ErrorMessage/ErrorMessage"
+import './NewItineraryForm.css'
 
 
 import { useNavigate } from 'react-router-dom'
@@ -197,7 +198,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                     <div>
 
                         <Form.Group className="mb-3" controlId="name">
-                            <Button onClick={handleLocations} variant="dark" className='form-label'>Añadir paradas</Button>
+                            <Button onClick={handleLocations} className='form-label create-button'>Añadir paradas</Button>
                             <input {...getInputProps({ placeholder: "Escriba la parada" })} className="form-control" />
                         </Form.Group>
                         <div>
@@ -220,10 +221,14 @@ const NewItineraryForm = ({ fireFinalActions }) => {
                 {coordinates.map((e, idx) => {
                     const { value } = e
                     return (
-                        <>
-                            <p>{value}</p>
-                            < Button onClick={() => handleDeleteStop(idx)}> ✕ </Button>
-                        </>
+                        <Row className="d-flex align-items-center">
+                            <Col>
+                                <p className="mb-0">{value}</p>
+                            </Col>
+                            <Col className="d-flex justify-content-end">
+                                <Button size="lg" onClick={() => handleDeleteStop(idx)}> ✕ </Button>
+                            </Col>
+                        </Row>
                     )
                 }
                 )}
@@ -233,7 +238,7 @@ const NewItineraryForm = ({ fireFinalActions }) => {
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear ruta'}</Button>
+                <Button className="create-button" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Crear ruta'}</Button>
             </div>
         </Form >
     )

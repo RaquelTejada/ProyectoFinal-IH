@@ -68,7 +68,7 @@ const NewEventForm = ({ fireFinalActions, itinerary_id }) => {
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}
 
             <div className="d-grid">
-                <Button variant="dark" type="submit">Crear evento</Button>
+                <Button className="create-button" type="submit">Crear evento</Button>
             </div>
         </Form>
     )
