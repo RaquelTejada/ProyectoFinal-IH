@@ -33,7 +33,9 @@ function ItineraryDetailsPage() {
                     }
                 })
 
-                const filteredEvents = allEvents.filter(event => event.itineraryOwner === itinerary_id)
+                const filteredEvents = allEvents.filter(event => {
+                    return (event.itineraryOwner === itinerary_id)
+                })
 
                 setEvents(filteredEvents)
             })

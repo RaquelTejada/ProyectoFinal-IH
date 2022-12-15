@@ -1,6 +1,7 @@
 const router = require("express").Router()
 
 const Event = require('./../models/Event.model')
+const Itinerary = require('./../models/Itinerary.model')
 
 const getAllEvents = (req, res, next) => {
 
@@ -81,8 +82,21 @@ const getJoinedEvents = (req, res, next) => {
         .catch(next)
 }
 
+const getItineraryFromEventId = (req, res, next) => {
+
+    const { event_id } = req.params
+
+    Itinerary
+        .find({ event: event_id })
+        .then(relatedItinerary => {
+            res.json(relatedItinerary)
+        })
+        .catch(next)
+}
+
 module.exports = {
     getAllEvents,
+    getItineraryFromEventId,
     getOneEvent,
     editEvent,
     deleteEvent,
