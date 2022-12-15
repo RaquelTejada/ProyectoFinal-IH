@@ -29,11 +29,11 @@ const DestinationsPage = () => {
                     {
                         destinations ? destinations.map((destination, idx) => {
                             return (
-                                <Col md={{ span: 4 }}>
+                                <Col md={{ span: 3 }}>
                                     {/* SACAR A DESTINATION CARD */}
                                     <Card className="mb-4 destination-card" key={idx}>
                                         < Link to={`/itinerario/${destination}`} >
-                                            <span className='card-title destination-span'>{destination}</span>
+                                            <span className='card-title-home destination-span'>{destination}</span>
                                         </Link >
                                     </Card>
                                 </Col>

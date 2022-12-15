@@ -50,27 +50,25 @@ const ProfilePage = () => {
     return (
         <Container fluid className='profile-container'>
 
-            <Row className='d-flex justify-content-space-around'>
-                <Col md={{ span: 3 }}>
+            <Row className='profile-main-row'>
+                <Col className='info-personal-col' md={{ span: 3 }}>
                     <h3 className='profile-info-text mt-4 d-flex text-align-left'>INFORMACIÓN PERSONAL</h3>
-
                     <img className='profile-img' src={user?.imageUrl}></img>
-                    <h1 className='profile-info-text'>{user?.username}</h1 >
-                    <h1 className='profile-info-text'>{user?.email}</h1 >
+                    <h1 className='profile-info-text-h1'>{user?.username}</h1 >
+                    <h1 className='profile-info-text-h1'>{user?.email}</h1 >
                 </Col>
-
                 <Col md={{ span: 3 }}>
                     <h3 className='profile-info-text mt-4 d-flex text-align-left'>ITINERARIOS</h3>
                     {
                         itinerariesOwned ? itinerariesOwned.map((myItineraries, idx) => {
                             return (
-                                <Card className="mb-4" key={idx}>
+                                <Card className="mb-4 itinerary-card" key={idx}>
+                                    <img className='profile-images' src={myItineraries.images}></img>
                                     <Link to={`/detalles/${myItineraries._id}`}>
                                         <div>
-                                            <Card.Title><h3>{myItineraries.title}</h3></Card.Title>
+                                            <Card.Title className='profile-card-title'>{myItineraries.title}</Card.Title>
                                         </div>
                                     </Link>
-                                    <img src={myItineraries.images}></img>
                                 </Card>
                             )
                         })
@@ -85,13 +83,13 @@ const ProfilePage = () => {
                         favItineraries ? favItineraries.map((myFavItineraries, idx) => {
                             return (
                                 <>
-                                    <Card className="mb-4" key={idx}>
+                                    <Card className="mb-4 itinerary-card" key={idx}>
+                                        <img className='profile-images' src={myFavItineraries.images}></img>
                                         <Link to={`/detalles/${myFavItineraries._id}`}>
                                             <div>
-                                                <Card.Title><h3>{myFavItineraries.title}</h3></Card.Title>
+                                                <Card.Title className='profile-card-title'>{myFavItineraries.title}</Card.Title>
                                             </div>
                                         </Link>
-                                        <img src={myFavItineraries.images}></img>
                                     </Card>
                                 </>
                             )
@@ -99,25 +97,26 @@ const ProfilePage = () => {
                             :
                             'No tienes ningún favorito aún.'}
                 </Col>
-
-                <h3 className='profile-info-text mt-4 d-flex text-align-left'>EVENTOS</h3>
-                {
-                    yourEvents ? yourEvents.map((myEvents, idx) => {
-                        return (
-                            <Col md={{ span: 3 }}>
-                                <Card className="mb-4" key={idx}>
-                                    <Link to={`/detalles/${myEvents.itineraryOwner}`}>
-                                        <p >{myEvents.title}</p>
-                                    </Link>
-                                    <p>{my_date(new Date(myEvents.date))}</p>
-                                </Card>
-                            </Col>
-                        )
-                    })
-                        :
-                        'No te has unido a ningún evento aún.'}
+                <Col>
+                    <h3 className='profile-info-text mt-4 d-flex text-align-left'>EVENTOS</h3>
+                    {
+                        yourEvents ? yourEvents.map((myEvents, idx) => {
+                            return (
+                                <Col>
+                                    <Card className="mb-4" key={idx}>
+                                        <Link to={`/detalles/${myEvents.itineraryOwner}`}>
+                                            <p className='profile-event-title'>{myEvents.title}</p>
+                                        </Link>
+                                        <p>{my_date(new Date(myEvents.date))}</p>
+                                    </Card>
+                                </Col>
+                            )
+                        })
+                            :
+                            'No te has unido a ningún evento aún.'}
+                </Col>
             </Row>
-        </Container>
+        </Container >
     )
 }
 
