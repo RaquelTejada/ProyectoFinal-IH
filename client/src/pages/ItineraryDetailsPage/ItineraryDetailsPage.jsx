@@ -1,13 +1,13 @@
 
 import itineraryService from '../../services/itineraries.service'
 import { useParams } from 'react-router-dom'
-import { useState, useEffect } from 'react';
-import ItineraryDetailsCard from '../../components/ItineraryDetailsCard/ItineraryDetailsCard';
-import CreateEvent from '../../components/CreateEvent/CreateEvent';
-import MyMap from '../../components/ItineraryMap/ItineraryMap';
-import EventCalendar from '../../components/Calendar/Calendar';
-import { Container, Row, Col, Button } from 'react-bootstrap';
-import eventService from '../../services/events.service';
+import { useState, useEffect } from 'react'
+import ItineraryDetailsCard from '../../components/ItineraryDetailsCard/ItineraryDetailsCard'
+import CreateEvent from '../../components/CreateEvent/CreateEvent'
+import MyMap from '../../components/ItineraryMap/ItineraryMap'
+import EventCalendar from '../../components/Calendar/Calendar'
+import { Container, Row, Col, Button } from 'react-bootstrap'
+import eventService from '../../services/events.service'
 import './ItineraryDetailsPage.css'
 
 function ItineraryDetailsPage() {

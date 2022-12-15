@@ -61,16 +61,20 @@ function MyMap({ locations }) {
     async function calculateRoute() {
 
         try {
+
             // eslint-disable-next-line no-undef
             const directionsService = new google.maps.DirectionsService()
+
+
 
             const results = await directionsService.route({
                 origin: { lat: locations[0].coordinates[0], lng: locations[0].coordinates[1] },
                 destination: { lat: locations[locations.length - 1].coordinates[0], lng: locations[locations.length - 1].coordinates[1] },
                 // eslint-disable-next-line no-undef
-                travelMode: google.maps.TravelMode.WALKING,
+                travelMode: 'WALKING',
                 waypoints: stops
             })
+
 
             setDirectionsResponse(results)
         } catch (err) {

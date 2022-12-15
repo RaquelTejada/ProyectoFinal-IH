@@ -73,9 +73,9 @@ const unJoinEvent = (req, res, next) => {
 const getJoinedEvents = (req, res, next) => {
 
     Event
-        .find({ $in: { users: req.payload._id } })
+        .find({ users: { $in: [req.payload._id] } })
         .then(joinedEvents => {
-            console.log(joinedEvents)
+            console.log('---------JOINEDEVENT-----', joinedEvents)
             res.json(joinedEvents)
         })
         .catch(next)

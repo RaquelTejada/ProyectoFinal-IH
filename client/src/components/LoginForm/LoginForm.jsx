@@ -38,7 +38,7 @@ const LoginForm = () => {
                 storeToken(tokenFromServe)
                 authenticateUser()
                 setShowToast(true)
-                setToastMessage('Usuario creado correctamente')
+                setToastMessage('Sesión iniciada correctamente')
                 navigate('/')
             })
             .catch(err => setErrors(err.response.data.errorMessages))

@@ -84,7 +84,7 @@ const SignupForm = () => {
 
             <Form.Group className="mb-3" controlId="imageUrl">
                 <Form.Label>Foto de perfil</Form.Label>
-                <Form.Control type="file" value={imageUrl} name='imageUrl' onChange={handleFileUpload} />
+                <Form.Control type="file" name='imageUrl' onChange={handleFileUpload} />
             </Form.Group>
 
             {errors.length ? <ErrorMessage>{errors.map(elm => <p key={elm}>{elm}</p>)}</ErrorMessage> : undefined}

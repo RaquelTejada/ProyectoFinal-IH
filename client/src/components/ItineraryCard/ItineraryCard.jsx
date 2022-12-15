@@ -1,6 +1,6 @@
 import './ItineraryCard.css'
-import { useState, useEffect, useContext } from 'react'
-import { useParams, useNavigate, Link } from "react-router-dom"
+import { useState, useContext } from 'react'
+import { Link } from "react-router-dom"
 import { Button, ButtonGroup, Modal } from 'react-bootstrap';
 import Card from 'react-bootstrap/Card'
 import { AuthContext } from './../../contexts/auth.context'

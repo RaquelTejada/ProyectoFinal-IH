@@ -33,7 +33,7 @@ class EventService {
     }
 
     unJoinEvent(event_id) {
-        return this.api.delete(`/unJoinEvent/${event_id}`)
+        return this.api.put(`/unJoinEvent/${event_id}`)
     }
 
     saveEvent(eventData) {

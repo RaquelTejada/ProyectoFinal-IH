@@ -12,7 +12,7 @@ router.delete('/delete/:event_id', deleteEvent)
 
 router.put("/joinEvent/:event_id", joinEvent)
 
-router.delete('/unJoinEvent/:event_id', unJoinEvent)
+router.put('/unJoinEvent/:event_id', unJoinEvent)
 
 router.post("/saveEvent", saveEvent)
 

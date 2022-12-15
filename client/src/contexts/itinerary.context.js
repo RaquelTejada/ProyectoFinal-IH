@@ -48,11 +48,6 @@ function ItinerariesProviderWrapper(props) {
             .catch(err => console.log(err))
     }
 
-    // useEffect(() => {
-    //     getAllItineraries()
-    // }, [])
-
-
     return (
         < ItinerariesContext.Provider value={{ itineraries, loadItineraries, getItineraryDetails, resetItineraries, getAllItineraries }}>
             {props.children}

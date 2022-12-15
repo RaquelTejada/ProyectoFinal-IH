@@ -3,10 +3,10 @@ import { useContext, useState } from 'react'
 import { AuthContext } from '../../contexts/auth.context'
 import itineraryService from '../../services/itineraries.service'
 import { useEffect } from 'react'
-import { Row, Col, Card, Button, Container } from 'react-bootstrap'
+import { Row, Col, Card, Container } from 'react-bootstrap'
 import eventService from '../../services/events.service'
-import { Link, useParams } from 'react-router-dom'
-
+import { Link } from 'react-router-dom'
+import my_date from '../../utils/date.utils'
 
 const ProfilePage = () => {
 
@@ -15,8 +15,6 @@ const ProfilePage = () => {
     const [yourEvents, setYourEvents] = useState()
 
     const { user } = useContext(AuthContext)
-
-    const { itinerary_id } = useParams()
 
     const filterItineraries = () => {
 
@@ -43,7 +41,6 @@ const ProfilePage = () => {
 
     }
 
-
     useEffect(() => {
         filterItineraries()
         getFavs()
@@ -68,7 +65,11 @@ const ProfilePage = () => {
                         itinerariesOwned ? itinerariesOwned.map((myItineraries, idx) => {
                             return (
                                 <Card className="mb-4" key={idx}>
-                                    <p >{myItineraries.title}</p>
+                                    <Link to={`/detalles/${myItineraries._id}`}>
+                                        <div>
+                                            <Card.Title><h3>{myItineraries.title}</h3></Card.Title>
+                                        </div>
+                                    </Link>
                                     <img src={myItineraries.images}></img>
                                 </Card>
                             )
@@ -85,7 +86,7 @@ const ProfilePage = () => {
                             return (
                                 <>
                                     <Card className="mb-4" key={idx}>
-                                        <Link to={`/detalles/${itinerary_id}`}>
+                                        <Link to={`/detalles/${myFavItineraries._id}`}>
                                             <div>
                                                 <Card.Title><h3>{myFavItineraries.title}</h3></Card.Title>
                                             </div>
@@ -105,7 +106,10 @@ const ProfilePage = () => {
                         return (
                             <Col md={{ span: 3 }}>
                                 <Card className="mb-4" key={idx}>
-                                    <p >{myEvents.title}</p>
+                                    <Link to={`/detalles/${myEvents.itineraryOwner}`}>
+                                        <p >{myEvents.title}</p>
+                                    </Link>
+                                    <p>{my_date(new Date(myEvents.date))}</p>
                                 </Card>
                             </Col>
                         )
