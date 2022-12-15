@@ -100,10 +100,6 @@ const EditItineraryForm = ({ itinerary_id, closeModal }) => {
                     </div>
                 )}
             </PlacesAutocomplete>
-            {/* <Form.Group className="mb-3" controlId="name">
-                <Form.Label>Ciudad</Form.Label>
-                <Form.Control type="text" value={city} onChange={handleInputChange} name="city" />
-            </Form.Group> */}
 
             <Form.Group className="mb-3" controlId="name">
                 <Form.Label>Medio de transporte</Form.Label>
@@ -160,7 +156,7 @@ const EditItineraryForm = ({ itinerary_id, closeModal }) => {
             </Form.Group>
 
             <div className="d-grid">
-                <Button variant="dark" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar itinerario'}</Button>
+                <Button variant="secondary" type="submit" disabled={loadingImage}>{loadingImage ? 'Subiendo imagen...' : 'Editar itinerario'}</Button>
             </div>
 
         </Form>

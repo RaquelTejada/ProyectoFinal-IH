@@ -10,6 +10,7 @@ import { Container, Row, Col, Button } from 'react-bootstrap'
 import eventService from '../../services/events.service'
 import './ItineraryDetailsPage.css'
 
+
 function ItineraryDetailsPage() {
 
     const [itineray, setItinerary] = useState()
@@ -90,7 +91,7 @@ function ItineraryDetailsPage() {
                     <Col className='d-flex' md={{ span: 5 }} >
                         <CreateEvent itinerary_id={itinerary_id} filterEvent={filterEvent} />
                     </Col>
-                    <Col className='d-flex justify-content-center'>
+                    <Col className='d-flex justify-content-end'>
                         <Button className="fill details-event-button" onClick={() => addFav(itinerary_id)} variant="gray" size="sm">Añadir favorito</Button>
                     </Col>
                     <Col>
@@ -98,8 +99,8 @@ function ItineraryDetailsPage() {
                     </Col>
                 </Row>
 
-                <Row className="mb-4 d-flex justify-content-center">
-                    <Col md={{ span: 6 }}>
+                <Row className="mb-4 details-row">
+                    <Col md={{ span: 5 }}>
                         {events && <EventCalendar events={events} filterEvent={filterEvent} />}
                     </Col>
                     <Col className='mt-5' md={{ span: 5 }} >
