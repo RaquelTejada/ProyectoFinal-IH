@@ -37,8 +37,8 @@ const ItineraryType = () => {
 
                 <h1 className='card-title category-capitalize'>{city}</h1>
 
-                <Row className='category-row'>
-                    <Col md='auto'>
+                <Row className='category-row '>
+                    <Col md={{ span: 2 }}>
                         <Card className='category-card' >
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670756908/arte.webp" />
                             <Card.Body>
@@ -46,7 +46,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col md='auto'>
+                    <Col md={{ span: 2 }}>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670754391/gastronomia.webp" />
                             <Card.Body>
@@ -54,7 +54,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col md='auto'>
+                    <Col md={{ span: 2 }}>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758617/naturaleza.webp" />
                             <Card.Body>
@@ -62,7 +62,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col md='auto'>
+                    <Col md={{ span: 2 }}>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670757667/ocioNocturno.jpg" />
                             <Card.Body>
@@ -70,7 +70,7 @@ const ItineraryType = () => {
                             </Card.Body>
                         </Card>
                     </Col>
-                    <Col md='auto'>
+                    <Col md={{ span: 2 }}>
                         <Card className='category-card'>
                             <Card.Img className='category-image' variant="top" src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670758326/turismo.jpg" />
                             <Card.Body>
