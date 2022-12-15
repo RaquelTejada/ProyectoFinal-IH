@@ -45,7 +45,7 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
                         <Card.Img variant="top" src={images} />
                         <Link to={`/iniciar-sesion`}>
                             <div>
-                                <Card.Title><h3>{title}</h3></Card.Title>
+                                <Card.Title className='itinerary-card-title'>{title}</Card.Title>
                             </div>
                         </Link>
                     </Card>
@@ -56,7 +56,7 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
                         <Card.Body>
                             <Link to={`/detalles/${_id}`}>
                                 <div>
-                                    <Card.Title className='itinerary-title'><h3>{title}</h3></Card.Title>
+                                    <Card.Title className='itinerary-card-title'>{title}</Card.Title>
                                 </div>
                             </Link>
                             {
@@ -68,9 +68,10 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
                                     <>
                                         <div className="d-grid">
                                             <ButtonGroup aria-label="Basic example">
-                                                <Button variant="dark" size="sm" onClick={deleteItinerary}>Eliminar</Button>
-                                                <div>
-                                                    <Button variant="dark" onClick={openModal}>Edit</Button>
+                                                <Button className="fill-card itinerary-button d-flex align-items-center justify-content-center" variant="gray" onClick={openModal}>Editar</Button>
+                                                <>
+                                                    <Button className="fill-card itinerary-button d-flex align-items-center justify-content-center" variant="gray" onClick={deleteItinerary}>Eliminar</Button>
+
                                                     <Modal show={showModal} onHide={closeModal}>
                                                         <Modal.Header closeButton>
                                                             <Modal.Title>Editar Ruta</Modal.Title>
@@ -79,7 +80,7 @@ function ItineraryCard({ city, transport, _id, owner, images, title, category })
                                                             <EditItineraryForm itinerary_id={_id} closeModal={closeModal} />
                                                         </Modal.Body>
                                                     </Modal>
-                                                </div>
+                                                </>
                                             </ButtonGroup>
                                         </div>
                                     </>

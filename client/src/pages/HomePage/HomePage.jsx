@@ -39,7 +39,7 @@ const HomePage = () => {
                     </Col>
                     <Col >
                         <Card className="bg-gray card-size">
-                            <Link to="/itinerario/Amsterdam">
+                            <Link to="/itinerario/Amsterdam,%20Netherlands">
                                 <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490709/Proyecto%20Final%20IH/HomePage/HomePageAmsterdam.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>AMSTERDAM</Card.Title>
@@ -54,7 +54,7 @@ const HomePage = () => {
                     </Row>
                     <Col >
                         <Card className="bg-gray card-size">
-                            <Link to="/itinerario/NuevaYork">
+                            <Link to="/itinerario/Nueva%20York,%20NY,%20USA">
                                 <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670491258/Proyecto%20Final%20IH/HomePage/HomePageNY.webp" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>NUEVA YORK</Card.Title>
@@ -64,7 +64,7 @@ const HomePage = () => {
                     </Col>
                     <Col >
                         <Card className="bg-gray card-size">
-                            <Link to="/itinerario/París">
+                            <Link to="/itinerario/París,%20Francia">
                                 <Card.Img src="https://res.cloudinary.com/drcjyzigg/image/upload/v1670490638/Proyecto%20Final%20IH/HomePage/HomePageParis.jpg" alt="Card image" />
                                 <Card.ImgOverlay>
                                     <Card.Title className='card-title'>PARíS</Card.Title>

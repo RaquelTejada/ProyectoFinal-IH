@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 const containerStyle = {
     width: '100%',
-    height: '400px'
+    height: '500px'
 }
 
 function MyMap({ locations }) {
