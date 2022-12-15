@@ -14,7 +14,7 @@ function ItineraryDetailsPage() {
 
     const [itineray, setItinerary] = useState()
     const { itinerary_id } = useParams()
-    const [events, setEvents] = useState();
+    const [events, setEvents] = useState()
 
     const filterEvent = () => {
 
@@ -110,23 +110,12 @@ function ItineraryDetailsPage() {
                         <CreateEvent itinerary_id={itinerary_id} filterEvent={filterEvent} />
                     </Col>
                     <Col md={{ span: 11 }}>
-                        <EventCalendar events={events} filterEvent={filterEvent} />
+                        {events && <EventCalendar events={events} filterEvent={filterEvent} />}
                     </Col>
                     <Button onClick={() => addFav(itinerary_id)} variant="dark" size="sm">Añadir fav</Button>
                     <Button onClick={() => deleteFav(itinerary_id)} variant="dark" size="sm">Quitar fav</Button>
                 </Row>
             </Container>
-            <Container >
-                <Row>
-
-                    <Col md={{ span: 5 }} >
-                        <CreateEvent itinerary_id={itinerary_id} filterEvent={filterEvent} />
-                    </Col>
-                    <Col md={{ span: 11 }}>
-                        {events && <EventCalendar events={events} filterEvent={filterEvent} />}
-                    </Col>
-                </Row>
-            </Container >
         </>
     );
 }

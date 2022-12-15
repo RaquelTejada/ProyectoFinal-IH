@@ -1,6 +1,6 @@
 const router = require("express").Router()
 
-const { getAllEvents, getOneEvent, editEvent, deleteEvent, joinEvent, unJoinEvent, saveEvent } = require('../controllers/events.controller')
+const { getAllEvents, getOneEvent, editEvent, deleteEvent, joinEvent, unJoinEvent, saveEvent, getJoinedEvents } = require('../controllers/events.controller')
 
 router.get("/getAllEvents", getAllEvents)
 
@@ -15,5 +15,7 @@ router.put("/joinEvent/:event_id", joinEvent)
 router.delete('/unJoinEvent/:event_id', unJoinEvent)
 
 router.post("/saveEvent", saveEvent)
+
+router.get('/joinedEvents', getJoinedEvents)
 
 module.exports = router

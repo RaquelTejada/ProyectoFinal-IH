@@ -30,8 +30,10 @@ const userSchema = new Schema(
     Fav: [{
       type: Schema.Types.ObjectId,
       ref: 'Itinerary'
-    }]
+    }],
+
   },
+
   {
     timestamps: true
   }

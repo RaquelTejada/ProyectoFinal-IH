@@ -70,6 +70,17 @@ const unJoinEvent = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const getJoinedEvents = (req, res, next) => {
+
+    Event
+        .find({ $in: { users: req.payload._id } })
+        .then(joinedEvents => {
+            console.log(joinedEvents)
+            res.json(joinedEvents)
+        })
+        .catch(next)
+}
+
 module.exports = {
     getAllEvents,
     getOneEvent,
@@ -77,5 +88,6 @@ module.exports = {
     deleteEvent,
     joinEvent,
     unJoinEvent,
-    saveEvent
+    saveEvent,
+    getJoinedEvents
 }
